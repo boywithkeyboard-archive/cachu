@@ -46,3 +46,4 @@ myCache.setKey('first key', 'hello world!')
 - [`readKey(key)`](#features) to read a key without modifying it
 - [`hasKey(key)`](#features) to check if a key exists (`boolean`)
 - [`deleteKey(key)`](#features) to delete a key
+- [`purge()`](#features) to clear the cache
