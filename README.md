@@ -35,14 +35,14 @@ myCache.setKey('first key', 'hello world!')
 
 ### Configuration
 
-- [`maxAge`](./#configuration) to set the maximum age (in seconds) for each item in the cache
-- [`maxLength`](./#configuration) to set the maximum size of the cache
+- [`maxAge`](#configuration) to set the maximum age (in seconds) for each item in the cache
+- [`maxLength`](#configuration) to set the maximum size of the cache
 
 ### Features
 
-- [`setKey(key, value, maxAge)`](./#features) to set a new key
-- [`getKey(key)`](./#features) to get a key (will return `null` if key couldn't be found)
-- [`updateKey(key, value)`](./#features) to update a key
-- [`readKey(key)`](./#features) to read a key without modifying it
-- [`hasKey(key)`](./#features) to check if a key exists (`boolean`)
-- [`deleteKey(key)`](./#features) to delete a key
+- [`setKey(key, value, maxAge)`](#features) to set a new key
+- [`getKey(key)`](#features) to get a key (will return `null` if key couldn't be found)
+- [`updateKey(key, value)`](#features) to update a key
+- [`readKey(key)`](#features) to read a key without modifying it
+- [`hasKey(key)`](#features) to check if a key exists (`boolean`)
+- [`deleteKey(key)`](#features) to delete a key
