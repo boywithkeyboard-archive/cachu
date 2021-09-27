@@ -1,4 +1,4 @@
-# Cache
+# Devyl's Cache
 
 Simple, modern key-based cache with support for Redis, created by Devyl.
 
