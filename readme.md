@@ -42,7 +42,7 @@ demo()
 
 ## Features
 
-- `setKey(key, value)` to set a new key <br/> 👉 `key` can be anything, nevertheless it should be unique <br/> 👉 `value` can be of any type, doesn't have to be unique <br/><br/>
+- `setKey(key, value)` to set a new item _(will return `null` if key isn't unique)_ <br/> 👉 `key` can be anything, nevertheless it should be unique <br/> 👉 `value` can be of any type, doesn't have to be unique <br/><br/>
 - `getKey(key)` to get a key <br/> 👉 will return the value of the item or `null` if it doesn't exist <br/><br/>
 - `updateKey(key, value)` to update a key <br/> 👉 `key` has to exist, in case it doesn't it'll return `mull` <br/> 👉 `value` can be of any type, doesn't have to be unique <br/><br/>
 - `stealKey(key)` to read a key without modifying it <br/><br/>
