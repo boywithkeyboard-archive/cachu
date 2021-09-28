@@ -1,6 +1,6 @@
 {
   "name": "@devyl/cache",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple, minimalistic key-value cache.",
   "main": "src/cache.min.js",
   "scripts": {
