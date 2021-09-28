@@ -1,13 +1,12 @@
 # Devyl's Cache
 
-Simple, modern key-based cache with support for Redis, created by Devyl.
+Simple, minimalistic key-value cache, created by Devyl.
 
-#### Why use it?
+### Why use it?
 
-- completely asynchronous
-- built for production
-- no dependencies
-- smallest cache out there
+- fully asynchronous
+- small n' easy
+- zero dependencies
 
 ## Installation
 
@@ -24,26 +23,30 @@ Create a basic cache instance.
 import cache from '@devyl/cache'
 
 const myCache = new cache({
-  maxAge: 60, // items expire after 1 minute
-  maxLength: 10 // cache can contain up to 10 items
+  max: 10, // cache can contain up to 10 items
+  maxAge: 60 // delete each item after 1 minute
 })
 
-myCache.setKey('first key', 'hello world!')
+async function demo() {
+  await myCache.setKey('some key', 'hello world')
+}
+
+demo()
 ```
 
-## Usage
+## Configuration
 
-### Configuration
+- `maxAge` to set the maximum age for each item in the cache <br/> 👉 `900` _(seconds)_ by default <br/><br/>
+- `max` to set the maximum size for the store <br/> 👉 `Infinity` by default <br/><br/>
+- `maxLength` to set the maximum length for each item <br/> 👉 `Infinity` by default _(affects only strings)_
 
-- [`maxAge`](#configuration) to set the maximum age (in seconds) for each item in the cache (defaults to `900`)
-- [`maxLength`](#configuration) to set the maximum size of the cache (defaults to `100`)
+## Features
 
-### Features
-
-- [`setKey(key, value)`](#features) to set a new key
-- [`getKey(key)`](#features) to get a key (will return `null` if key couldn't be found)
-- [`updateKey(key, value)`](#features) to update a key
-- [`readKey(key)`](#features) to read a key without modifying it
-- [`hasKey(key)`](#features) to check if a key exists (`boolean`)
-- [`deleteKey(key)`](#features) to delete a key
-- [`purge()`](#features) to clear the cache
+- `setKey(key, value)` to set a new key <br/> 👉 `key` can be anything, nevertheless it should be unique <br/> 👉 `value` can be of any type, doesn't have to be unique <br/><br/>
+- `getKey(key)` to get a key <br/> 👉 will return the value of the item or `null` if it doesn't exist <br/><br/>
+- `updateKey(key, value)` to update a key <br/> 👉 `key` has to exist, in case it doesn't it'll return `mull` <br/> 👉 `value` can be of any type, doesn't have to be unique <br/><br/>
+- `stealKey(key)` to read a key without modifying it <br/><br/>
+- `hasKey(key)` to check if a key exists <br/> 👉 will return either `true` or `false`, `null` if the key is non-existent <br/><br/>
+- `hasValue(value)` to check if any item has a specific value <br/> 👉 will return either `true` or `false`, `null` if the value is non-existent <br/><br/>
+- `deleteKey(key)` to delete a key 👉 will return either `true` or `null` if the key is non-existent <br/><br/>
+- `purge()` to clear the cache
