@@ -1,5 +1,5 @@
 /*!
- * Devyl's Cache v1.0.1
+ * Devyl's Cache v1.0.2
  * © 2021 - Samuel Kopp
  * Code licensed under Apache-2.0
  */
@@ -103,10 +103,12 @@ export default class cache {
     const index = this.store.findIndex(i => i.key === key)
 
     // item doesn't exist in store
-    if (index === -1) return
+    if (index === -1) return null
 
     // remove item from store
     this.store.splice(index, 1)
+
+    return true
   }
 
   purge = async () => {
