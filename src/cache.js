@@ -1,5 +1,5 @@
 /*!
- * Devyl's Cache v1.0.0
+ * Devyl's Cache v1.0.1
  * © 2021 - Samuel Kopp
  * Code licensed under Apache-2.0
  */
@@ -26,7 +26,7 @@ export default class cache {
 
   getKey = async (key) => {
     // search for item
-    const index = this.store.findIndex(item => item.key === key)
+    const index = this.store.findIndex(i => i.key === key)
 
     // item doesn't exist in store
     if (index === -1) return null
@@ -34,8 +34,11 @@ export default class cache {
     // get item
     const item = this.store[index]
 
-    // delete all items exceeding max age
-    this.store = this.store.filter(i => Date.now() - i.createdAt < this.maxAge * 1000)
+    // delete all items exceeding max age except this one
+    this.store = this.store.filter(i => (Date.now() - i.createdAt < this.maxAge * 1000) && (i.key !== key))
+
+    // update max age of item
+    this.store[index].createdAt = Date.now()
 
     // return value
     return item.value
@@ -43,7 +46,7 @@ export default class cache {
 
   updateKey = async (key, value) => {
     // search for item
-    const index = this.store.findIndex(item => item.key === key)
+    const index = this.store.findIndex(i => i.key === key)
     
     // item doesn't exist in store
     if (index === -1) return null
@@ -61,7 +64,7 @@ export default class cache {
 
   stealKey = async (key) => {
     // search for item
-    const index = this.store.findIndex(item => item.key === key)
+    const index = this.store.findIndex(i => i.key === key)
 
     // item doesn't exist in store
     if (index === -1) return null
@@ -75,7 +78,7 @@ export default class cache {
 
   hasKey = async (key) => {
     // search for item
-    const index = this.store.findIndex(item => item.key === key)
+    const index = this.store.findIndex(i => i.key === key)
 
     // item doesn't exist in store
     if (index === -1) return false
@@ -97,7 +100,7 @@ export default class cache {
 
   deleteKey = async (key) => {
     // search for item
-    const index = this.store.findIndex(item => item.key === key)
+    const index = this.store.findIndex(i => i.key === key)
 
     // item doesn't exist in store
     if (index === -1) return
