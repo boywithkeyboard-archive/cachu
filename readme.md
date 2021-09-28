@@ -48,5 +48,5 @@ demo()
 - `stealKey(key)` to read a key without modifying it <br/><br/>
 - `hasKey(key)` to check if a key exists <br/> 👉 will return either `true` or `false`, `null` if the key is non-existent <br/><br/>
 - `hasValue(value)` to check if any item has a specific value <br/> 👉 will return either `true` or `false`, `null` if the value is non-existent <br/><br/>
-- `deleteKey(key)` to delete a key 👉 will return either `true` or `null` if the key is non-existent <br/><br/>
+- `deleteKey(key)` to delete a key <br/> 👉 will return either `true` or `null` if the key is non-existent <br/><br/>
 - `purge()` to clear the cache
