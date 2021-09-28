@@ -2,6 +2,8 @@
 
 Simple, minimalistic key-value cache, created by Devyl.
 
+> This package is included in [Devyl](https://npmjs.com/package/devyl).
+
 ### Why use it?
 
 - fully asynchronous
