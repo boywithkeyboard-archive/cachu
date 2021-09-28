@@ -44,7 +44,7 @@ demo()
 
 - `setKey(key, value)` to set a new item _(will return either `true` or `false`)_ <br/> 👉 `key` can be anything, nevertheless it should be unique <br/> 👉 `value` can be of any type, doesn't have to be unique <br/><br/>
 - `getKey(key)` to get a item <br/> 👉 will return the value of the item or `null` if it doesn't exist <br/><br/>
-- `updateKey(key, value)` to update a key _(will return either `true` or `false` based on result)_ <br/> 👉 `key` has to exist, in case it doesn't it'll return `false` <br/> 👉 `value` can be of any type, doesn't have to be unique <br/><br/>
+- `updateKey(key, value)` to update a key _(will return either `true` or `false`)_ <br/> 👉 `key` has to exist, in case it doesn't it'll return `false` <br/> 👉 `value` can be of any type, doesn't have to be unique <br/><br/>
 - `stealKey(key)` to get a item without modifying anything <br/> 👉 will return the value of the item or `null` if it doesn't exist <br/><br/>
 - `hasKey(key)` to check if a key exists <br/> 👉 will return either `true` or `false` <br/><br/>
 - `hasValue(value)` to check if any item has a specific value <br/> 👉 will return either `true` or `false` <br/><br/>
