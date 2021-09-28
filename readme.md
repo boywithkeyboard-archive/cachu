@@ -13,8 +13,8 @@ Simple, minimalistic key-value cache, created by Devyl.
 Install the package using your favorite manager.
 
 ```sh-session
-npm i devyl
-yarn add devyl
+npm i @devyl/cache
+yarn add @devyl/cache
 ```
 
 Create a basic cache instance.
