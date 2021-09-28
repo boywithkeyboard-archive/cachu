@@ -16,8 +16,5 @@
     "url": "https://github.com/devylstudios/cache/issues"
   },
   "homepage": "https://github.com/devylstudios/cache#readme",
-  "devDependencies": {
-    "nodemon": "^2.0.13"
-  },
   "type": "module"
 }
