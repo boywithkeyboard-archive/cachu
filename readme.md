@@ -1,8 +1,6 @@
-# Devyl's Cache
+# Cachu
 
 Simple, minimalistic key-value cache, created by Devyl.
-
-> This package is included in [Devyl](https://npmjs.com/package/devyl).
 
 ### Why use it?
 
@@ -15,14 +13,14 @@ Simple, minimalistic key-value cache, created by Devyl.
 Install the package using your favorite manager.
 
 ```sh-session
-npm i @devyl/cache
-yarn add @devyl/cache
+npm i cachu
+yarn add cachu
 ```
 
 Create a basic cache instance.
 
 ```js
-import cache from '@devyl/cache'
+import cache from 'cachu'
 
 const myCache = new cache({
   max: 10, // cache can contain up to 10 items
