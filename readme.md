@@ -1,4 +1,4 @@
-# Cachu
+# cachu
 
 Simple, minimalistic key-value cache, created by Devyl.
 
