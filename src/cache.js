@@ -1,17 +1,38 @@
 /*!
- * Devyl's Cache v1.0.3
+ * cachu v1.0.4
  * © 2021 - Samuel Kopp
  * Code licensed under Apache-2.0
  */
 
 export default class cache {
-  // contructor
+  /**
+  * **Create a new cache instance.**
+  * 
+  * @param {{ max: number, maxAge: number, maxLength: number }} config
+  * @param {number} config.max - maximum amount of items
+  * @param {number} config.maxAge - maximum age of each item
+  * @param {number} config.maxLength - maximum length of each item's value
+  * 
+  * *Will add a new item to the cache and return `true` or `false` if something went wrong.*
+  */
+
   constructor(config) {
+    if (typeof config !== 'object') return
+
     this.max = config.max || Infinity
     this.maxAge = config.maxAge || 900
-    this.maxLength = config.length || Infinity
+    this.maxLength = config.maxLength || Infinity
     this.store = []
   }
+
+  /**
+  * **Set a new item.**
+  * 
+  * @param key - something unique
+  * @param value - can be of any type, doesn't have to be unique
+  * 
+  * *Will add a new item to the cache and return `true` or `false` if something went wrong.*
+  */
 
   setKey = async (key, value) => {
     // make sure key and value are valid
@@ -50,6 +71,14 @@ export default class cache {
     return true
   }
 
+  /**
+  * **Get a item.**
+  * 
+  * @param key - the key of the item
+  * 
+  * *Will return either the value of the item or `null` if it doesn't exist.* 
+  */
+
   getKey = async (key) => {
     // make sure key and value are valid
     if (!key) return null
@@ -73,6 +102,15 @@ export default class cache {
     return item.value
   }
 
+  /**
+  * **Update a item.**
+  * 
+  * @param key - the key of the item
+  * @param value - the new value
+  * 
+  * *Will return either `true` or `false` if the item doesn't exist or something went wrong.* 
+  */
+
   updateKey = async (key, value) => {
     // make sure key and value are valid
     if (!key || !value) return false
@@ -94,6 +132,14 @@ export default class cache {
     return true
   }
 
+  /**
+  * **Steal a item.**
+  * 
+  * @param key - the key of the item
+  * 
+  * *Will return either the value of the item or `null` if it doesn't exist.*
+  */
+
   stealKey = async (key) => {
     // make sure key and value are valid
     if (!key) return null
@@ -114,6 +160,14 @@ export default class cache {
     return item.value
   }
 
+  /**
+  * **Check if the cache has a item.**
+  * 
+  * @param key - the key of the item
+  * 
+  * *Will return either `true` or `false` if the item doesn't exist.*
+  */
+
   hasKey = async (key) => {
     // make sure key and value are valid
     if (!key) return false
@@ -128,6 +182,14 @@ export default class cache {
     return true
   }
 
+  /**
+  * **Check if the cache has a item.**
+  * 
+  * @param value - the value of the item
+  * 
+  * *Will return either `true` or `false` if the item doesn't exist.*
+  */
+
   hasValue = async (value) => {
     // make sure key and value are valid
     if (!value) return false
@@ -141,6 +203,14 @@ export default class cache {
     // found item
     return true
   }
+
+  /**
+  * **Remove a item.**
+  * 
+  * @param key the key of the item
+  * 
+  * *Will return either `true` or `false` if the item doesn't exist.*
+  */
 
   deleteKey = async (key) => {
     // make sure key and value are valid
@@ -158,6 +228,12 @@ export default class cache {
     // let user know everything went alright
     return true
   }
+
+  /**
+  * **Purge the cache.**
+  * 
+  * Will clear the cache and return `true`.
+  */
 
   purge = async () => {
     // reset store

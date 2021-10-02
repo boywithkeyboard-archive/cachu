@@ -1,20 +1,24 @@
 {
-  "name": "@devyl/cache",
-  "version": "1.0.3",
+  "name": "cachu",
+  "version": "1.0.5",
   "description": "Simple, minimalistic key-value cache.",
-  "main": "src/cache.min.js",
+  "main": "src/cache.js",
   "scripts": {
+    "start": "node src/cache.js",
     "start:dev": "nodemon dev.js"
+  },
+  "exports": {
+    "./minified": "./src/cache.min.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devylstudios/cache.git"
+    "url": "git+https://github.com/devylstudios/cachu.git"
   },
   "author": "Azury <hello@azury.dev> (https://azury.dev)",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/devylstudios/cache/issues"
+    "url": "https://github.com/devylstudios/cachu/issues"
   },
-  "homepage": "https://github.com/devylstudios/cache#readme",
+  "homepage": "https://github.com/devylstudios/cachu#readme",
   "type": "module"
 }
