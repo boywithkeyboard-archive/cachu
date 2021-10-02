@@ -1,6 +1,6 @@
 # cachu
 
-Simple, minimalistic key-value cache, created by Devyl.
+Simple, minimalistic key-value cache, created by [Devyl Studios](https://github.com/devylstudios).
 
 ### Why use it?
 
@@ -20,15 +20,15 @@ yarn add cachu
 Create a basic cache instance.
 
 ```js
-import cache from 'cachu'
+import cachu from 'cachu'
 
-const myCache = new cache({
+const cache = new cachu({
   max: 10, // cache can contain up to 10 items
   maxAge: 60 // delete each item after 1 minute
 })
 
 async function demo() {
-  await myCache.setKey('some key', 'hello world')
+  await cache.setKey('some key', 'hello world')
 }
 
 demo()
