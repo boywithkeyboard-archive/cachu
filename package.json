@@ -1,14 +1,11 @@
 {
   "name": "cachu",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Simple, minimalistic key-value cache.",
   "main": "src/cache.js",
   "scripts": {
     "start": "node src/cache.js",
     "start:dev": "nodemon dev.js"
-  },
-  "exports": {
-    "./minified": "./src/cache.min.js"
   },
   "repository": {
     "type": "git",
