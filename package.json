@@ -1,6 +1,6 @@
 {
   "name": "cachu",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Simple, minimalistic key-value cache.",
   "main": "src/cache.js",
   "scripts": {
@@ -12,13 +12,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devylstudios/cachu.git"
+    "url": "git+https://github.com/azurystudios/cachu.git"
   },
   "author": "Azury <hello@azury.dev> (https://azury.dev)",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/devylstudios/cachu/issues"
+    "url": "https://github.com/azurystudios/cachu/issues"
   },
-  "homepage": "https://github.com/devylstudios/cachu#readme",
+  "homepage": "https://github.com/azurystudios/cachu#readme",
   "type": "module"
 }
