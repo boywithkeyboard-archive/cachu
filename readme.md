@@ -1,6 +1,6 @@
 # cachu
 
-Simple, minimalistic key-value cache, created by [Devyl Studios](https://github.com/devylstudios).
+Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurystudios).
 
 ### Why use it?
 
