@@ -1,5 +1,5 @@
 /*!
- * cachu v1.0.7
+ * cachu v1.0.9
  * © 2021 - Samuel Kopp
  * Code licensed under Apache-2.0
  */

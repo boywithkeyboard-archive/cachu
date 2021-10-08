@@ -1,6 +1,6 @@
 {
   "name": "cachu",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Simple, minimalistic key-value cache.",
   "main": "src/cachu.js",
   "scripts": {
@@ -12,7 +12,13 @@
     "url": "git+https://github.com/azurystudios/cachu.git"
   },
   "keywords": [
-    "cache", "minimalistic", "js", "kv", "nodejs", "node", "javascript"
+    "cache",
+    "minimalistic",
+    "js",
+    "kv",
+    "nodejs",
+    "node",
+    "javascript"
   ],
   "author": "Azury <hello@azury.dev> (https://azury.dev)",
   "license": "Apache-2.0",
