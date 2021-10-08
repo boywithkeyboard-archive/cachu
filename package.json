@@ -19,5 +19,6 @@
   "bugs": {
     "url": "https://github.com/azurystudios/cachu/issues"
   },
-  "homepage": "https://github.com/azurystudios/cachu#readme"
+  "homepage": "https://github.com/azurystudios/cachu#readme",
+  "type": "module"
 }
