@@ -4,7 +4,7 @@
  * Code licensed under Apache-2.0
  */
 
-export default class cache {
+export default class cachu {
   /**
   * **Create a new cache instance.**
   * 
