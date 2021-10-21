@@ -2,7 +2,7 @@
 
 Simple, minimalistic key-value cache, created by [**Azury**](https://github.com/azurystudios).
 
-> Compatible with Node.js [v16](https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V16.md) and [v17](https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V17.md).
+> 💪 Compatible with Node.js [v16](https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V16.md) and [v17](https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V17.md) 😺🔥
 
 ### Why use it?
 
@@ -14,14 +14,16 @@ Simple, minimalistic key-value cache, created by [**Azury**](https://github.com/
 
 ### Install the Package
 
+Install it using your favorite package manager.
+
 ```sh-session
 npm i cachu
 yarn add cachu
 ```
 
-### Multiple Instances
+### Class Instance
 
-Create a simple class instance.
+Recommended if you need multiple caches.
 
 ```js
 import { instance } from 'cachu'
@@ -39,7 +41,9 @@ const try = async () => {
 try()
 ```
 
-Use the global instance.
+### Global Instance
+
+Recommended if you need only one cache.
 
 ```js
 import cachu, { setItem, getItem } from 'cachu'
