@@ -66,22 +66,22 @@ try()
 
 ### Configuration
 
-- [`maxAge`](https://github.com/azurystudios/cachu/wiki/configuration#maxAge) to set the **maximum age** for each item in the store
+- [`maxAge`](https://github.com/azurystudios/cachu/wiki/configuration#max-age) to set the **maximum age** for each item in the store
 - [`max`](https://github.com/azurystudios/cachu/wiki/configuration#max) to set the **maximum size** for the store
 
 ### Features
 
-- [`setItem(key, value, maxAge)`](https://github.com/azurystudios/cachu/wiki/features#setItem)
-- [`getItem(key)`](https://github.com/azurystudios/cachu/wiki/features#getItem)
-- [`updateItem(key, value)`](https://github.com/azurystudios/cachu/wiki/features#updateItem)
-- [`viewItem(key)`](https://github.com/azurystudios/cachu/wiki/features#viewItem)
-- [`deleteItem(key)`](https://github.com/azurystudios/cachu/wiki/features#deleteItem)
-- [`hasItem(key)`](https://github.com/azurystudios/cachu/wiki/features#hasItem)
+- [`setItem(key, value, maxAge)`](https://github.com/azurystudios/cachu/wiki/features#set-item)
+- [`getItem(key)`](https://github.com/azurystudios/cachu/wiki/features#get-item)
+- [`updateItem(key, value)`](https://github.com/azurystudios/cachu/wiki/features#update-item)
+- [`viewItem(key)`](https://github.com/azurystudios/cachu/wiki/features#view-item)
+- [`deleteItem(key)`](https://github.com/azurystudios/cachu/wiki/features#delete-item)
+- [`hasItem(key)`](https://github.com/azurystudios/cachu/wiki/features#has-item)
 - [`prune()`](https://github.com/azurystudios/cachu/wiki/features#prune)
 - [`purge()`](https://github.com/azurystudios/cachu/wiki/features#purge)
-- [`getItems()`](https://github.com/azurystudios/cachu/wiki/features#getItems)
-- [`getAmountOfItems()`](https://github.com/azurystudios/cachu/wiki/features#getAmountOfItems)
-- [`getItemsByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#getItemsByCondition)
-- [`purgeItemsByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#purgeItemsByCondition)
-- [`getValuesOfItems()`](https://github.com/azurystudios/cachu/wiki/features#getValuesOfItems)
-- [`getKeysOfItems()`](https://github.com/azurystudios/cachu/wiki/features#getKeysOfItems)
+- [`getItems()`](https://github.com/azurystudios/cachu/wiki/features#get-items)
+- [`getAmountOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-amount-of-items)
+- [`getItemsByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#get-items-by-condition)
+- [`purgeItemsByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#purge-items-by-condition)
+- [`getValuesOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-values-of-items)
+- [`getKeysOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-keys-of-items)
