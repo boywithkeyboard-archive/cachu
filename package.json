@@ -2,11 +2,15 @@
   "name": "cachu",
   "version": "2.0.0",
   "description": "Simple, minimalistic key-value cache.",
-  "main": "./src/index.mjs",
   "scripts": {
-    "test": ""
+    "build": "node build.mjs",
+    "test": "jest dev.mjs"
   },
-  "types": "./typings/index.d.ts",
+  "exports": {
+    "import": "./dist/mjs/index.mjs",
+    "require": "./dist/cjs/index.cjs"
+  },
+  "types": "./types/index.d.ts",
   "funding": {
     "type": "individual",
     "url": "https://ko-fi.com/azury"
@@ -33,6 +37,9 @@
   },
   "homepage": "https://github.com/azurystudios/cachu#readme",
   "devDependencies": {
-    "jest": "^27.3.1"
+    "chalk": "^4.1.2",
+    "fs-extra": "^10.0.0",
+    "jest": "^27.3.1",
+    "terser": "^5.9.0"
   }
 }
