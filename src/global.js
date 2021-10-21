@@ -2,12 +2,12 @@ let store = []
 let max = Infinity
 let maxAge = Infinity
 
-export async function global(config) {
+async function global(config) {
   max = config.max ?? Infinity
   maxAge = config.maxAge ?? Infinity
 }
 
-export async function setItem(key, value) {
+async function setItem(key, value) {
   if (!key || !value) return false
 
   const index = store.findIndex(i => i.key === key)
@@ -31,7 +31,7 @@ export async function setItem(key, value) {
   return true
 }
 
-export async function getItem(key) {
+async function getItem(key) {
   if (!key) return null
 
   const index = store.findIndex(i => i.key === key)
@@ -45,7 +45,7 @@ export async function getItem(key) {
   return item.value
 }
 
-export async function updateItem(key, value) {
+async function updateItem(key, value) {
   if (!key || !value) return false
 
   const index = store.findIndex(i => i.key === key)
@@ -60,7 +60,7 @@ export async function updateItem(key, value) {
   return true
 }
 
-export async function viewItem(key) {
+async function viewItem(key) {
   if (!key) return null
 
   const index = store.findIndex(i => i.key === key)
@@ -70,7 +70,7 @@ export async function viewItem(key) {
   return item.value
 }
 
-export async function hasItem(key) {
+async function hasItem(key) {
   try {
     if (!key) return false
 
@@ -83,7 +83,7 @@ export async function hasItem(key) {
   return true
 }
 
-export async function deleteItem(key) {
+async function deleteItem(key) {
   try {
     if (!key) return false
     
@@ -98,7 +98,7 @@ export async function deleteItem(key) {
   return true
 }
 
-export async function prune() {
+async function prune() {
   try {
     store = store.filter(i => Date.now() - i.createdAt < maxAge * 1000)
   } catch {
@@ -108,13 +108,13 @@ export async function prune() {
   return true
 }
 
-export async function purge() {
+async function purge() {
   store = []
 
   return true
 }
 
-export async function getItems() {
+async function getItems() {
   try {
     return store.map(i => delete i.createdAt)
   } catch {
@@ -122,17 +122,17 @@ export async function getItems() {
   }
 }
 
-export async function getAmountOfItems() {
+async function getAmountOfItems() {
   return store.length
 }
 
-export async function getItemsByCondition(condition) {
+async function getItemsByCondition(condition) {
   if (!condition) return null
 
   return store.filter(i => !condition(i))
 }
 
-export async function purgeItemsByCondition (condition) {
+async function purgeItemsByCondition(condition) {
   if (!condition) return false
 
   store = store.filter(i => !condition(i))
@@ -140,7 +140,7 @@ export async function purgeItemsByCondition (condition) {
   return true
 }
 
-export async function getValuesOfItems() {
+async function getValuesOfItems() {
   if (store.length === 0) return null
 
   return store.map(i => {
@@ -149,11 +149,29 @@ export async function getValuesOfItems() {
   })
 }
 
-export async function getKeysOfItems() {
+async function getKeysOfItems() {
   if (store.length === 0) return null
 
   return store.map(i => {
     delete i.value
     delete i.createdAt
   })
+}
+
+export {
+  global,
+  setItem,
+  getItem,
+  updateItem,
+  viewItem,
+  hasItem,
+  deleteItem,
+  prune,
+  purge,
+  getItems,
+  getAmountOfItems,
+  getItemsByCondition,
+  purgeItemsByCondition,
+  getValuesOfItems,
+  getKeysOfItems
 }

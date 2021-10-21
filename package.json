@@ -3,13 +3,10 @@
   "version": "2.0.0",
   "description": "Simple, minimalistic key-value cache.",
   "scripts": {
-    "build": "node build.mjs",
-    "test": "jest dev.mjs"
+    "build": "node build.js",
+    "test": "jest dev.js"
   },
-  "exports": {
-    "import": "./dist/mjs/index.mjs",
-    "require": "./dist/cjs/index.cjs"
-  },
+  "main": "dist/index.js",
   "types": "./types/index.d.ts",
   "funding": {
     "type": "individual",
@@ -41,5 +38,10 @@
     "fs-extra": "^10.0.0",
     "jest": "^27.3.1",
     "terser": "^5.9.0"
-  }
+  },
+  "engines": {
+    "node": ">=16.12.0",
+    "npm": ">=8.1.0"
+  },
+  "type": "module"
 }
