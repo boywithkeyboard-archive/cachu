@@ -66,22 +66,22 @@ try()
 
 ### Configuration
 
-- [`maxAge`](https://cachu.js.org/configuration#maxAge) to set the **maximum age** for each item in the store
-- [`max`](https://cachu.js.org/configuration#max) to set the **maximum size** for the store
+- [`maxAge`](https://github.com/azurystudios/cachu/wiki/configuration#maxAge) to set the **maximum age** for each item in the store
+- [`max`](https://github.com/azurystudios/cachu/wiki/configuration#max) to set the **maximum size** for the store
 
 ### Features
 
-- [`setItem(key, value, maxAge)`](https://cachu.js.org/features#setItem)
-- [`getItem(key)`](https://cachu.js.org/features#getItem)
-- [`updateItem(key, value)`](https://cachu.js.org/features#updateItem)
-- [`viewItem(key)`](https://cachu.js.org/features#viewItem)
-- [`deleteItem(key)`](https://cachu.js.org/features#deleteItem)
-- [`hasItem(key)`](https://cachu.js.org/features#hasItem)
-- [`prune()`](https://cachu.js.org/features#prune)
-- [`purge()`](https://cachu.js.org/features#purge)
-- [`getItems()`](https://cachu.js.org/features#getItems)
-- [`getAmountOfItems()`](https://cachu.js.org/features#getAmountOfItems)
-- [`getItemsByCondition(condition)`](https://cachu.js.org/features#getItemsByCondition)
-- [`purgeItemsByCondition(condition)`](https://cachu.js.org/features#purgeItemsByCondition)
-- [`getValuesOfItems()`](https://cachu.js.org/features#getValuesOfItems)
-- [`getKeysOfItems()`](https://cachu.js.org/features#getKeysOfItems)
+- [`setItem(key, value, maxAge)`](https://github.com/azurystudios/cachu/wiki/features#setItem)
+- [`getItem(key)`](https://github.com/azurystudios/cachu/wiki/features#getItem)
+- [`updateItem(key, value)`](https://github.com/azurystudios/cachu/wiki/features#updateItem)
+- [`viewItem(key)`](https://github.com/azurystudios/cachu/wiki/features#viewItem)
+- [`deleteItem(key)`](https://github.com/azurystudios/cachu/wiki/features#deleteItem)
+- [`hasItem(key)`](https://github.com/azurystudios/cachu/wiki/features#hasItem)
+- [`prune()`](https://github.com/azurystudios/cachu/wiki/features#prune)
+- [`purge()`](https://github.com/azurystudios/cachu/wiki/features#purge)
+- [`getItems()`](https://github.com/azurystudios/cachu/wiki/features#getItems)
+- [`getAmountOfItems()`](https://github.com/azurystudios/cachu/wiki/features#getAmountOfItems)
+- [`getItemsByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#getItemsByCondition)
+- [`purgeItemsByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#purgeItemsByCondition)
+- [`getValuesOfItems()`](https://github.com/azurystudios/cachu/wiki/features#getValuesOfItems)
+- [`getKeysOfItems()`](https://github.com/azurystudios/cachu/wiki/features#getKeysOfItems)
