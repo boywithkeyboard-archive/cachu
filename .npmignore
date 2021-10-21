@@ -1,3 +1,4 @@
-dev.js
+dev.mjs
 src
 .github
+build.mjs
