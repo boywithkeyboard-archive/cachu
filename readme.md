@@ -1,6 +1,8 @@
-# cachu
+# Cachu
 
-Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurystudios).
+Simple, minimalistic key-value cache, created by [**Azury**](https://github.com/azurystudios).
+
+> Compatible with Node.js [v16](https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V16.md) and [v17](https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V17.md).
 
 ### Why use it?
 
@@ -10,37 +12,55 @@ Simple, minimalistic key-value cache, created by [Azury](https://github.com/azur
 
 ## Installation
 
-Install the package using your favorite manager.
+### Install the Package
 
 ```sh-session
 npm i cachu
 yarn add cachu
 ```
 
-Create a basic cache instance.
+### Multiple Instances
+
+Create a simple class instance.
 
 ```js
-// es
-import cachu from 'cachu'
+import { instance } from 'cachu'
 
-// common js
-const cachu = require('cachu')
-
-const cache = new cachu({
+const cache = new instance({
   max: 10, // cache can contain up to 10 items
-  maxAge: 60 // delete each item after 1 minute
+  maxAge: 60 // delete items after a minute
 })
 
-async function demo() {
-  await cache.setKey('some key', 'hello world')
+const try = async () => {
+  await cache.setItem(123, 'hello world')
+  console.log(await cache.getItem(123))
 }
 
-demo()
+try()
+```
+
+Use the global instance.
+
+```js
+import cachu, { setItem, getItem } from 'cachu'
+
+// configure cachu globally (optional)
+cachu({
+  max: 10, // cache can contain up to 10 items
+  maxAge: 60 // delete items after a minute
+})
+
+const try = async () => {
+  await setItem(123, 'hello world')
+  console.log(await getItem(123))
+}
+
+try()
 ```
 
 ## API
 
-### Global Config
+### Configuration
 
 - [`maxAge`](https://cachu.js.org/configuration#maxAge) to set the **maximum age** for each item in the store
 - [`max`](https://cachu.js.org/configuration#max) to set the **maximum size** for the store
