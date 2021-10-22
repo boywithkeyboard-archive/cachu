@@ -43,7 +43,7 @@ try()
 
 ### Global Instance
 
-Recommended if you need only one cache.
+Recommended if you need only one cache or want to configure cachu globally.
 
 ```js
 import cachu, { setItem, getItem } from 'cachu'
