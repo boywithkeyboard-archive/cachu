@@ -67,7 +67,7 @@ try()
 ### Configuration
 
 - [`maxAge`](https://github.com/azurystudios/cachu/wiki/configuration#max-age) to set the **maximum age** for each item in the store
-- [`max`](https://github.com/azurystudios/cachu/wiki/configuration#max) to set the **maximum size** for the store
+- [`maxAmount`](https://github.com/azurystudios/cachu/wiki/configuration#max-amount) to set the **maximum size** for the store
 
 ### Features
 
