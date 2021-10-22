@@ -1,10 +1,20 @@
 let store = []
-let max = Infinity
-let maxAge = Infinity
+, maxAmount = Infinity
+, maxAge = Infinity
 
-async function global(config) {
-  max = config.max ?? Infinity
-  maxAge = config.maxAge ?? Infinity
+async function getGlobalMaxAmount() {
+  return maxAmount
+}
+
+async function getGlobalMaxAge() {
+  return maxAge
+}
+
+async function global(options) {
+  if (typeof options !== 'object') return false
+
+  maxAmount = options.maxAmount ?? Infinity
+  maxAge = options.maxAge ?? Infinity
 }
 
 async function setItem(key, value) {
@@ -159,6 +169,8 @@ async function getKeysOfItems() {
 }
 
 export {
+  getGlobalMaxAmount,
+  getGlobalMaxAge,
   global,
   setItem,
   getItem,
