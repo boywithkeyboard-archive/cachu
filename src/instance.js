@@ -1,7 +1,11 @@
+import { getGlobalMaxAmount, getGlobalMaxAge } from './global.js'
+
 export class instance {
-  constructor(max, maxAge) {
-    this.max = max ?? Infinity
-    this.maxAge = maxAge ?? Infinity
+  constructor(options) {
+    if (typeof options !== 'object') return false
+    
+    this.maxAmount = options.maxAmount ?? await getGlobalMaxAmount()
+    this.maxAge = options.maxAge ?? await getGlobalMaxAge()
     this.store = []
   }
 
@@ -11,7 +15,7 @@ export class instance {
     const index = this.store.findIndex(i => i.key === key)
     if (index !== -1) return false
 
-    if (this.store.length === this.max) {
+    if (this.store.length === this.maxAmount) {
       const max = this.store.reduce((prev, current) => (prev.maxAge < current.maxAge) ? prev : current)
       const i = this.store.findIndex(i => i.key === max.key)
       this.store.splice(i, 1)
