@@ -1,4 +1,4 @@
-export default class cachu {
+export class instance {
   constructor(max, maxAge) {
     this.max = max ?? Infinity
     this.maxAge = maxAge ?? Infinity
