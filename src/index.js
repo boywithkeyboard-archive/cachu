@@ -1,4 +1,4 @@
-import instance from '../instance.js'
+import instance from './instance.js'
 export default instance
 
 export {
@@ -17,4 +17,4 @@ export {
   purgeItemsByCondition,
   getValuesOfItems,
   getKeysOfItems
-} from '../global.js'
+} from './global.js'
