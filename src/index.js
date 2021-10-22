@@ -1,8 +1,9 @@
-import instance from './instance.js'
-export default instance
+export { instance } from './instance.js'
+
+import global from './global.js'
+export default global
 
 export {
-  global,
   setItem,
   getItem,
   updateItem,
