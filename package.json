@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "Simple, minimalistic key-value cache.",
   "scripts": {
-    "build": "node build.js",
+    "build": "esbuild src/index.js --platform=node --bundle --outfile=dist/index.js && terser dist/index.js --output dist/index.js",
     "test": "jest dev.js"
   },
   "main": "dist/index.js",
@@ -34,8 +34,7 @@
   },
   "homepage": "https://github.com/azurystudios/cachu#readme",
   "devDependencies": {
-    "chalk": "^4.1.2",
-    "fs-extra": "^10.0.0",
+    "esbuild": "^0.13.8",
     "jest": "^27.3.1",
     "terser": "^5.9.0"
   },
