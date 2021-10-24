@@ -26,9 +26,9 @@ yarn add cachu
 Recommended if you need multiple caches.
 
 ```js
-import { instance } from 'cachu'
+import { Instance } from 'cachu'
 
-const cache = new instance({
+const cache = new Instance({
   max: 10, // cache can contain up to 10 items
   maxAge: 60 // delete items after a minute
 })
