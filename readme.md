@@ -71,6 +71,8 @@ try()
 
 ### Features
 
+Stable:
+
 - [`setItem(key, value, maxAge)`](https://github.com/azurystudios/cachu/wiki/features#set-item)
 - [`getItem(key)`](https://github.com/azurystudios/cachu/wiki/features#get-item)
 - [`updateItem(key, value)`](https://github.com/azurystudios/cachu/wiki/features#update-item)
@@ -85,3 +87,12 @@ try()
 - [`purgeItemsByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#purge-items-by-condition)
 - [`getValuesOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-values-of-items)
 - [`getKeysOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-keys-of-items)
+
+Prototypes:
+
+- `deleteItemByKey(key)`
+- `deleteItemByValue(value)`
+- `getInsights()`
+- `clearInsights()`
+- `on(event)`
+- `iterateOverAll(function)`
