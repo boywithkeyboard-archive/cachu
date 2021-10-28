@@ -90,9 +90,9 @@ Stable:
 
 Prototypes:
 
-- `deleteItemByKey(key)`
-- `deleteItemByValue(value)`
-- `getInsights()`
-- `clearInsights()`
-- `on(event)`
-- `iterateOverAll(function)`
+- `deleteItemByKey(key)` _(upcoming)_
+- `deleteItemsByValue(value)` _(upcoming)_
+- `getInsights()` _(upcoming)_
+- `purgeInsights()` _(upcoming)_
+- `on(event)` _(upcoming)_
+- `iterateOverAll(function)` _(upcoming)_
