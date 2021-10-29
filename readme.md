@@ -90,8 +90,9 @@ Stable:
 
 Prototypes:
 
-- `deleteItemByKey(key)` _(upcoming)_
-- `deleteItemsByValue(value)` _(upcoming)_
+- `purgeItem(key)` _(upcoming)_
+- `purgeMultipleItems([keys])` _(upcoming)_
+- `getItemsByValue()` _(upcoming)_
 - `getInsights()` _(upcoming)_
 - `purgeInsights()` _(upcoming)_
 - `on(event)` _(upcoming)_
