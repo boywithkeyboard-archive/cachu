@@ -29,7 +29,9 @@
   },
   "homepage": "https://github.com/azurystudios/cachu#readme",
   "devDependencies": {
-    "jest": "^27.3.1"
+    "fs-extra": "^10.0.0",
+    "jest": "^27.3.1",
+    "terser": "^5.9.0"
   },
   "engines": {
     "node": ">=16.12.0",
