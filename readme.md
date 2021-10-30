@@ -33,12 +33,10 @@ const cache = new Instance({
   maxAge: 60 // delete items after a minute
 })
 
-const try = async () => {
+(async () => {
   await cache.setItem(123, 'hello world')
   console.log(await cache.getItem(123))
-}
-
-try()
+})()
 ```
 
 ### Global Instance
@@ -54,12 +52,10 @@ cachu({
   maxAge: 60 // delete items after a minute
 })
 
-const try = async () => {
+(async () => {
   await setItem(123, 'hello world')
   console.log(await getItem(123))
-}
-
-try()
+})()
 ```
 
 ## API
