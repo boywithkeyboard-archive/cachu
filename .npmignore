@@ -1,3 +1,5 @@
-dev.mjs
+dev.js
 src
 .github
+changelog
+build.js
