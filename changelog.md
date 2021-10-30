@@ -1,17 +1,21 @@
-# cachu v2
+# cachu's changelog
 
-Available Releases
+Available Releases:
 
-- [v2.x](https://github.com/azurystudios/cachu/blob/changelogs/v2.md)
+- [v2.0.0](#2.0.0)
 
-<table>
-  <tr>
-    <th>v2</th>
-  </tr>
-  <tr>
-    <td>
-      <a href="#17.0.1">17.0.1</a><br/>
-      <a href="#17.0.0">17.0.0</a><br/>
-    </td>
-  </tr>
-</table>
+## 2.0.0
+
+### Changes
+
+- renamed functions
+- added global instance
+- added `purgeMany`, `getMany`, `purgeManyByCondition`, `getManyByCondition`, `getKeysOfItems`, `getValuesOfItems`, `getAmountOfItems`, and `each` functions
+- added engine requirements
+- added funding
+- minified package
+- made testing easier 
+
+### Bug Fixes
+
+- fixed deletion of expired items
