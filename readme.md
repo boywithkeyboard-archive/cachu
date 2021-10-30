@@ -1,10 +1,8 @@
 # cachu
 
-Simple, minimalistic key-value cache, created by [**Azury**](https://github.com/azurystudios).
+Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurystudios).
 
-> 💪 Compatible with Node.js [v16](https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V16.md) and [v17](https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V17.md) 😺🔥
-
-### Why use it?
+#### Why should you use cachu?
 
 - fully asynchronous
 - small n' easy
@@ -67,29 +65,19 @@ cachu({
 
 ### Features
 
-Stable:
-
-- [`setItem(key, value, maxAge)`](https://github.com/azurystudios/cachu/wiki/features#set-item)
-- [`getItem(key)`](https://github.com/azurystudios/cachu/wiki/features#get-item)
-- [`updateItem(key, value)`](https://github.com/azurystudios/cachu/wiki/features#update-item)
-- [`viewItem(key)`](https://github.com/azurystudios/cachu/wiki/features#view-item)
-- [`deleteItem(key)`](https://github.com/azurystudios/cachu/wiki/features#delete-item)
-- [`hasItem(key)`](https://github.com/azurystudios/cachu/wiki/features#has-item)
+- [`set(key, value, maxAge)`](https://github.com/azurystudios/cachu/wiki/features#set)
+- [`get(key)`](https://github.com/azurystudios/cachu/wiki/features#get)
+- [`update(key, value)`](https://github.com/azurystudios/cachu/wiki/features#update)
+- [`view(key)`](https://github.com/azurystudios/cachu/wiki/features#view)
+- [`purge(key)`](https://github.com/azurystudios/cachu/wiki/features#purge)
+- [`has(key)`](https://github.com/azurystudios/cachu/wiki/features#has)
 - [`prune()`](https://github.com/azurystudios/cachu/wiki/features#prune)
-- [`purge()`](https://github.com/azurystudios/cachu/wiki/features#purge)
-- [`getItems()`](https://github.com/azurystudios/cachu/wiki/features#get-items)
+- [`destroy()`](https://github.com/azurystudios/cachu/wiki/features#destroy)
+- [`purgeMany(keys)`](https://github.com/azurystudios/cachu/wiki/features#purge-many)
+- [`getMany(keys)`](https://github.com/azurystudios/cachu/wiki/features#get-many)
 - [`getAmountOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-amount-of-items)
-- [`getItemsByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#get-items-by-condition)
-- [`purgeItemsByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#purge-items-by-condition)
+- [`getManyByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#get-many-by-condition)
+- [`purgeManyByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#purge-many-by-condition)
 - [`getValuesOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-values-of-items)
 - [`getKeysOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-keys-of-items)
-
-Prototypes:
-
-- `purgeItem(key)` _(upcoming)_
-- `purgeMultipleItems([keys])` _(upcoming)_
-- `getItemsByValue()` _(upcoming)_
-- `getInsights()` _(upcoming)_
-- `purgeInsights()` _(upcoming)_
-- `on(event)` _(upcoming)_
-- `iterateOverItems(function)` _(upcoming)_
+- [`each()`](https://github.com/azurystudios/cachu/wiki/features#get-keys-of-items)
