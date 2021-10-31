@@ -2,7 +2,7 @@
 
 Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurystudios).
 
-### Why use it?
+#### Why should you use cachu?
 
 - fully asynchronous
 - small n' easy
@@ -10,43 +10,74 @@ Simple, minimalistic key-value cache, created by [Azury](https://github.com/azur
 
 ## Installation
 
-Install the package using your favorite manager.
+### Install the Package
+
+Install it using your favorite package manager.
 
 ```sh-session
 npm i cachu
 yarn add cachu
 ```
 
-Create a basic cache instance.
+### Class Instance
+
+Recommended if you need multiple caches.
 
 ```js
-import cachu from 'cachu'
+import { Cachu } from 'cachu'
 
-const cache = new cachu({
+const cache = new Cachu({
   max: 10, // cache can contain up to 10 items
-  maxAge: 60 // delete each item after 1 minute
+  maxAge: 60 // delete items after a minute
 })
 
-async function demo() {
-  await cache.setKey('some key', 'hello world')
-}
-
-demo()
+(async () => {
+  await cache.setItem(123, 'hello world')
+  console.log(await cache.getItem(123))
+})()
 ```
 
-## Configuration
+### Global Instance
 
-- `maxAge` to set the maximum age for each item in the cache <br/> 👉 `900` _(seconds)_ by default <br/><br/>
-- `max` to set the maximum size for the store <br/> 👉 `Infinity` by default <br/><br/>
-- `maxLength` to set the maximum length for each item <br/> 👉 `Infinity` by default _(affects only strings)_
+Recommended if you need only one cache or want to configure cachu globally.
 
-## Features
+```js
+import cachu, { setItem, getItem } from 'cachu'
 
-- `setKey(key, value)` to set a new item _(will return either `true` or `false`)_ <br/> 👉 `key` can be anything, nevertheless it should be unique <br/> 👉 `value` can be of any type, doesn't have to be unique <br/><br/>
-- `getKey(key)` to get a item <br/> 👉 will return the value of the item or `null` if it doesn't exist <br/><br/>
-- `updateKey(key, value)` to update a key _(will return either `true` or `false`)_ <br/> 👉 `key` has to exist, in case it doesn't it'll return `false` <br/> 👉 `value` can be of any type, doesn't have to be unique <br/><br/>
-- `stealKey(key)` to get a item without modifying anything <br/> 👉 will return the value of the item or `null` if it doesn't exist <br/><br/>
-- `hasKey(key)` to check if a key exists <br/> 👉 will return either `true` or `false` <br/><br/>
-- `hasValue(value)` to check if any item has a specific value <br/> 👉 will return either `true` or `false` <br/><br/>
-- `deleteKey(key)` to delete a key <br/> 👉 will return either `true` or `false` <br/><br/>
-- `purge()` to reset the cache
+// configure cachu globally (optional)
+cachu({
+  max: 10, // cache can contain up to 10 items
+  maxAge: 60 // delete items after a minute
+})
+
+(async () => {
+  await setItem(123, 'hello world')
+  console.log(await getItem(123))
+})()
+```
+
+## API
+
+### Configuration
+
+- [`maxAge`](https://github.com/azurystudios/cachu/wiki/configuration#max-age) to set the **maximum age** for each item in the store
+- [`maxAmount`](https://github.com/azurystudios/cachu/wiki/configuration#max-amount) to set the **maximum size** for the store
+
+### Features
+
+- [`set(key, value, maxAge)`](https://github.com/azurystudios/cachu/wiki/features#set)
+- [`get(key)`](https://github.com/azurystudios/cachu/wiki/features#get)
+- [`update(key, value)`](https://github.com/azurystudios/cachu/wiki/features#update)
+- [`view(key)`](https://github.com/azurystudios/cachu/wiki/features#view)
+- [`purge(key)`](https://github.com/azurystudios/cachu/wiki/features#purge)
+- [`has(key)`](https://github.com/azurystudios/cachu/wiki/features#has)
+- [`prune()`](https://github.com/azurystudios/cachu/wiki/features#prune)
+- [`destroy()`](https://github.com/azurystudios/cachu/wiki/features#destroy)
+- [`purgeMany(keys)`](https://github.com/azurystudios/cachu/wiki/features#purge-many)
+- [`getMany(keys)`](https://github.com/azurystudios/cachu/wiki/features#get-many)
+- [`getAmountOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-amount-of-items)
+- [`getManyByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#get-many-by-condition)
+- [`purgeManyByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#purge-many-by-condition)
+- [`getValuesOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-values-of-items)
+- [`getKeysOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-keys-of-items)
+- [`each()`](https://github.com/azurystudios/cachu/wiki/features#get-keys-of-items)

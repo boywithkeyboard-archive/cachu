@@ -1,11 +1,15 @@
 {
   "name": "cachu",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "description": "Simple, minimalistic key-value cache.",
-  "main": "src/cachu.js",
+  "main": "build/index.js",
   "scripts": {
-    "start": "node src/cachu.js",
-    "start:dev": "nodemon dev.js"
+    "build": "esbuild src/index.mjs --bundle --platform=node --outfile=build/index.js && terser build/index.js --output build/index.js",
+    "test": "node dev/instance.mjs"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://ko-fi.com/azury"
   },
   "repository": {
     "type": "git",
@@ -14,11 +18,9 @@
   "keywords": [
     "cache",
     "minimalistic",
-    "js",
     "kv",
-    "nodejs",
-    "node",
-    "javascript"
+    "easy-to-use",
+    "asynchronous"
   ],
   "author": "Azury <hello@azury.dev> (https://azury.dev)",
   "license": "Apache-2.0",
@@ -26,5 +28,13 @@
     "url": "https://github.com/azurystudios/cachu/issues"
   },
   "homepage": "https://github.com/azurystudios/cachu#readme",
-  "type": "module"
+  "devDependencies": {
+    "esbuild": "^0.13.11",
+    "jest": "^27.3.1",
+    "terser": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=16.13.0",
+    "npm": ">=8.1.0"
+  }
 }
