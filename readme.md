@@ -65,7 +65,7 @@ cachu({
 
 ### Features
 
-- [`set(key, value, maxAge)`](https://github.com/azurystudios/cachu/wiki/features#set)
+- [`set(key, value)`](https://github.com/azurystudios/cachu/wiki/features#set)
 - [`get(key)`](https://github.com/azurystudios/cachu/wiki/features#get)
 - [`update(key, value)`](https://github.com/azurystudios/cachu/wiki/features#update)
 - [`view(key)`](https://github.com/azurystudios/cachu/wiki/features#view)
