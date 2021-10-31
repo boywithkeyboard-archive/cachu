@@ -27,13 +27,13 @@ Recommended if you need multiple caches.
 import { Cachu } from 'cachu'
 
 const cache = new Cachu({
-  max: 10, // cache can contain up to 10 items
+  maxAmount: 10, // cache can contain up to 10 items
   maxAge: 60 // delete items after a minute
 })
 
 (async () => {
-  await cache.setItem(123, 'hello world')
-  console.log(await cache.getItem(123))
+  await cache.set(123, 'hello world')
+  console.log(await cache.get(123))
 })()
 ```
 
@@ -42,17 +42,17 @@ const cache = new Cachu({
 Recommended if you need only one cache or want to configure cachu globally.
 
 ```js
-import cachu, { setItem, getItem } from 'cachu'
+import cachu, { set, get } from 'cachu'
 
 // configure cachu globally (optional)
 cachu({
-  max: 10, // cache can contain up to 10 items
+  maxAmount: 10, // cache can contain up to 10 items
   maxAge: 60 // delete items after a minute
 })
 
 (async () => {
-  await setItem(123, 'hello world')
-  console.log(await getItem(123))
+  await set(123, 'hello world')
+  console.log(await get(123))
 })()
 ```
 
