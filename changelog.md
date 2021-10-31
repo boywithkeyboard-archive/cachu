@@ -8,9 +8,13 @@ Available Releases:
 
 ## v2.0.2
 
+### Bug Fixes
+
 - fixed examples
 
 ## v2.0.1
+
+### Changes
 
 - removed `jest`
 
