@@ -2,9 +2,19 @@
 
 Available Releases:
 
-- [v2.0.0](#2.0.0)
+- [v2.0.2](#v2.0.2)
+- [v2.0.1](#v2.0.1)
+- [v2.0.0](#v2.0.0)
 
-## 2.0.0
+## v2.0.2
+
+- fixed examples
+
+## v2.0.1
+
+- removed `jest`
+
+## v2.0.0
 
 ### Changes
 
