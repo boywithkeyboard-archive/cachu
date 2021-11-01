@@ -6,7 +6,9 @@
   "scripts": {
     "build": "esbuild src/index.mjs --bundle --platform=node --outfile=build/index.js && terser build/index.js --output build/index.js",
     "test": "node dev/instance.mjs",
-    "publish": "npm run build && npm publish"
+    "publish:patch": "npm run build && npm version patch && npm publish",
+    "publish:minor": "npm run build && npm version minor && npm publish",
+    "publish:major": "npm run build && npm version major && npm publish"
   },
   "funding": {
     "type": "individual",
