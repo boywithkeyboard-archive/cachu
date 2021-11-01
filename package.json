@@ -1,11 +1,12 @@
 {
   "name": "cachu",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Simple, minimalistic key-value cache.",
   "main": "build/index.js",
   "scripts": {
     "build": "esbuild src/index.mjs --bundle --platform=node --outfile=build/index.js && terser build/index.js --output build/index.js",
-    "test": "node dev/instance.mjs"
+    "test": "node dev/instance.mjs",
+    "publish": "npm run build && npm publish"
   },
   "funding": {
     "type": "individual",
