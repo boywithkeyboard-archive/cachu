@@ -2,9 +2,16 @@
 
 Available Releases:
 
+- [v2.0.3](#v2.0.3)
 - [v2.0.2](#v2.0.2)
 - [v2.0.1](#v2.0.1)
 - [v2.0.0](#v2.0.0)
+
+## v2.0.3
+
+### Bug Fixes
+
+- fixed a small issue regarding default config
 
 ## v2.0.2
 
