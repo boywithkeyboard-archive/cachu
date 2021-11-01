@@ -1,7 +1,8 @@
 export class Cachu {
   constructor(config) {
     // validate config
-    if (typeof config !== 'object' || (config.maxAmount && typeof config.maxAmount !== 'number') || (config.maxAge && typeof config.maxAge !== 'number')) return
+    if (typeof config !== 'object') config = {}
+    if ((config.maxAmount && typeof config.maxAmount !== 'number') || (config.maxAge && typeof config.maxAge !== 'number')) return
 
     // set config
     this.maxAmount = config.maxAmount ?? Infinity

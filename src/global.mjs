@@ -3,8 +3,11 @@ let store = []
 , maxAge = Infinity
 
 export default async (config) => {
-  if (typeof config !== 'object') return
+  // validate config
+  if (typeof config !== 'object') config = {}
+  if ((config.maxAmount && typeof config.maxAmount !== 'number') || (config.maxAge && typeof config.maxAge !== 'number')) return
 
+  // set config
   maxAmount = config.maxAmount ?? Infinity
   maxAge = config.maxAge ?? Infinity
 }
