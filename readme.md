@@ -8,6 +8,8 @@ Simple, minimalistic key-value cache, created by [Azury](https://github.com/azur
 - small n' easy
 - zero dependencies
 
+🤫 All the upcoming features are listed [over here](https://github.com/azurystudios/cachu/projects/1).
+
 ## Installation
 
 ### Install the Package
