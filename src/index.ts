@@ -1,6 +1,6 @@
-export { Cachu } from './instance.mjs'
+export { Cachu } from './instance'
 
-import global from './global.mjs'
+import global from './global'
 export default global
 
 export {
@@ -20,4 +20,4 @@ export {
   getValuesOfItems,
   getKeysOfItems,
   each
-} from './global.mjs'
+} from './global'

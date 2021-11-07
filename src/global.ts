@@ -1,21 +1,19 @@
-let store = []
+let store: Array<any> = []
 , maxAmount = Infinity
 , maxAge = Infinity
 
-export default async (config) => {
-  // validate config
-  if (typeof config !== 'object') config = {}
-  if ((config.maxAmount && typeof config.maxAmount !== 'number') || (config.maxAge && typeof config.maxAge !== 'number')) return
+interface Configuration {
+  maxAge: number | undefined;
+  maxAmount: number | undefined;
+}
 
+export default async (config: Configuration) => {
   // set config
   maxAmount = config.maxAmount ?? Infinity
   maxAge = config.maxAge ?? Infinity
 }
 
-export const set = async (key, value) => {
-  // validate params
-  if (!key || !value) return false
-
+export const set = async (key: {}, value: {}) => {
   // validate uniqueness of key
   const index = store.findIndex(i => i[0] === key)
   if (index !== -1) return false
@@ -35,10 +33,7 @@ export const set = async (key, value) => {
   return true
 }
 
-export const get = async (key) => {
-  // validate params
-  if (!key) return null
-
+export const get = async (key: {}) => {
   // remove outdated items
   store = store.filter(i => Date.now() - i[2] < maxAge * 1000)
 
@@ -53,10 +48,7 @@ export const get = async (key) => {
   return item[1]
 }
 
-export const view = async (key) => {
-  // validate params
-  if (!key) return null
-
+export const view = async (key: {}) => {
   // remove outdated items
   store = store.filter(i => (Date.now() - i[2] < maxAge * 1000) || (i[0] === key))
 
@@ -71,10 +63,7 @@ export const view = async (key) => {
   return item[1]
 }
 
-export const update = async (key, value) => {
-  // validate params
-  if (!key || !value) return false
-
+export const update = async (key: {}, value: {}) => {
   // search for item
   const index = store.findIndex(i => i[0] === key)
   if (index === -1) return false
@@ -85,10 +74,7 @@ export const update = async (key, value) => {
   return true
 }
 
-export const has = async (key) => {
-  // validate params
-  if (!key) return false
-
+export const has = async (key: {}) => {
   // search for item
   const index = store.findIndex(i => i[0] === key)
   if (index === -1) return false
@@ -96,10 +82,7 @@ export const has = async (key) => {
   return true
 }
 
-export const purge = async (key) => {
-  // validate params
-  if (!key) return false
-
+export const purge = async (key: {}) => {
   // search for item
   const index = store.findIndex(i => i[0] === key)
   if (index === -1) return false
@@ -124,10 +107,7 @@ export const destroy = async () => {
   return true
 }
 
-export const purgeMany = async (keys) => {
-  // validate params
-  if (typeof keys !== 'object') return false
-
+export const purgeMany = async (keys: Array<any>) => {
   // purge each item
   for (const key of keys) 
     await purge(key)
@@ -135,10 +115,7 @@ export const purgeMany = async (keys) => {
   return true
 }
 
-export const getMany = async (keys) => {
-  // validate params
-  if (typeof keys !== 'object') return
-
+export const getMany = async (keys: Array<any>) => {
   // create the array
   const items = []
 
@@ -151,20 +128,14 @@ export const getMany = async (keys) => {
   return items
 }
 
-export const purgeManyByCondition = async (condition) => {
-  // validate params
-  if (typeof condition !== 'function') return false
-
+export const purgeManyByCondition = async (condition: Function) => {
   // purge each item
   store = store.filter(item => !condition(item))
 
   return true
 }
 
-export const getManyByCondition = async (condition) => {
-  // validate params
-  if (typeof condition !== 'function') return false
-
+export const getManyByCondition = async (condition: Function) => {
   // return items
   return store.filter(item => condition(item))
 }
@@ -185,10 +156,7 @@ export const getKeysOfItems = async () => {
   return store.map(item => item[0])
 }
 
-export const each = async (action) => {
-  // validate params
-  if (!action) return false
-
+export const each = async (action: Function) => {
   // execute action on each item
   store.forEach(async item => {
     await action(item)
