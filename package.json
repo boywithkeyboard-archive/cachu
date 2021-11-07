@@ -1,14 +1,17 @@
 {
   "name": "cachu",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "Simple, minimalistic key-value cache.",
   "main": "build/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
-    "build": "esbuild src/index.mjs --bundle --platform=node --outfile=build/index.js && terser build/index.js --output build/index.js",
-    "test": "node dev/instance.mjs",
-    "publish:patch": "npm run build && npm version patch && npm publish",
-    "publish:minor": "npm run build && npm version minor && npm publish",
-    "publish:major": "npm run build && npm version major && npm publish"
+    "build": "tsc",
+    "build:dev": "tsc -w",
+    "minify": "node minify.mjs",
+    "release:patch": "npm run minify && npm version patch && npm publish",
+    "release:minor": "npm run minify && npm version minor && npm publish",
+    "release:major": "npm run minify && npm version major && npm publish",
+    "test": "node dev/instance.mjs"
   },
   "funding": {
     "type": "individual",
@@ -32,8 +35,9 @@
   },
   "homepage": "https://github.com/azurystudios/cachu#readme",
   "devDependencies": {
-    "esbuild": "^0.13.11",
-    "terser": "^5.9.0"
+    "glob": "^7.2.0",
+    "terser": "^5.9.0",
+    "typescript": "^4.4.4"
   },
   "engines": {
     "node": ">=16.13.0",
