@@ -2,10 +2,21 @@
 
 Available Releases:
 
+- [v2.1.1](#v2.1.1)
+- [v2.1.0](#v2.1.0)
 - [v2.0.3](#v2.0.3)
 - [v2.0.2](#v2.0.2)
 - [v2.0.1](#v2.0.1)
 - [v2.0.0](#v2.0.0)
+
+## v2.1.1
+
+- fixed a minor issue
+
+## v2.1.0
+
+- added support for TypeScript
+- added type definitions
 
 ## v2.0.3
 
