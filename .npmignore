@@ -2,4 +2,5 @@ dev
 src
 .github
 changelog.md
-build.mjs
+minify.mjs
+tsconfig.json
