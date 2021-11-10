@@ -8,7 +8,7 @@ Simple, minimalistic key-value cache, created by [Azury](https://github.com/azur
 - small n' easy
 - zero dependencies
 
-🤫 All the upcoming features are listed [over here](https://github.com/azurystudios/cachu/projects/1).
+Upcoming features are listed [over here](https://github.com/azurystudios/cachu/projects/1).
 
 ## Installation
 
@@ -21,7 +21,7 @@ npm i cachu
 yarn add cachu
 ```
 
-### Class Instance
+### Create New Instance
 
 Recommended if you need multiple caches.
 
@@ -33,29 +33,11 @@ const cache = new Cachu({
   maxAge: 60 // delete items after a minute
 })
 
-(async () => {
+const demo = async () => {
   await cache.set(123, 'hello world')
   console.log(await cache.get(123))
-})()
-```
-
-### Global Instance
-
-Recommended if you need only one cache or want to configure cachu globally.
-
-```js
-import cachu, { set, get } from 'cachu'
-
-// configure cachu globally (optional)
-cachu({
-  maxAmount: 10, // cache can contain up to 10 items
-  maxAge: 60 // delete items after a minute
-})
-
-(async () => {
-  await set(123, 'hello world')
-  console.log(await get(123))
-})()
+}
+demo()
 ```
 
 ## API
