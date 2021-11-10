@@ -12,15 +12,24 @@ Available Releases:
 
 ## v2.2.0
 
+### Changes
+
 - removed global instance
-- made config optional
 - edited engine requirements
 
+### Bug Fixes
+
+- made config optional
+
 ## v2.1.1
+
+### Bug Fixes
 
 - fixed a minor issue
 
 ## v2.1.0
+
+### Changes
 
 - added support for TypeScript
 - added type definitions
