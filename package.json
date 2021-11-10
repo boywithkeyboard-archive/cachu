@@ -8,9 +8,9 @@
     "build": "tsc",
     "build:dev": "tsc -w",
     "minify": "node minify.mjs",
-    "release:patch": "npm run minify && npm version patch && npm publish",
-    "release:minor": "npm run minify && npm version minor && npm publish",
-    "release:major": "npm run minify && npm version major && npm publish",
+    "push:patch": "npm run minify && npm version patch && npm publish",
+    "push:minor": "npm run minify && npm version minor && npm publish",
+    "push:major": "npm run minify && npm version major && npm publish",
     "test": "node dev/instance.mjs"
   },
   "funding": {
