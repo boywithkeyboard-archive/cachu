@@ -19,6 +19,7 @@ Install it using your favorite package manager.
 ```sh-session
 npm i cachu
 yarn add cachu
+pnpm add cachu
 ```
 
 ### Create New Instance
