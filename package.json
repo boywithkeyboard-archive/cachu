@@ -1,6 +1,6 @@
 {
   "name": "cachu",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Simple, minimalistic key-value cache.",
   "main": "build/index.js",
   "types": "types/index.d.ts",
