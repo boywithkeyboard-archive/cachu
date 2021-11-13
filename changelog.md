@@ -2,6 +2,7 @@
 
 Available Releases:
 
+- [v2.3.0](#v2.3.0)
 - [v2.2.0](#v2.2.0)
 - [v2.1.1](#v2.1.1)
 - [v2.1.0](#v2.1.0)
@@ -9,6 +10,13 @@ Available Releases:
 - [v2.0.2](#v2.0.2)
 - [v2.0.1](#v2.0.1)
 - [v2.0.0](#v2.0.0)
+
+## v2.3.0
+
+### New
+
+- added jsdoc declarations
+- added unit tests
 
 ## v2.2.0
 
