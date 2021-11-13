@@ -12,7 +12,7 @@ Upcoming features are listed [over here](https://github.com/azurystudios/cachu/p
 
 #### Known Issues
 
-- `getMany()`, `getManyByCondition()` don't work right now
+*Currently there are no known issues.*
 
 ## Installation
 
