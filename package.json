@@ -6,9 +6,9 @@
   "types": "types/index.d.ts",
   "scripts": {
     "build": "tsc -w",
-    "push:patch": "node minify.mjs && npm version patch && npm publish",
-    "push:minor": "node minify.mjs && npm version minor && npm publish",
-    "push:major": "node minify.mjs && npm version major && npm publish",
+    "release:patch": "node minify.mjs && npm version patch && npm publish",
+    "release:minor": "node minify.mjs && npm version minor && npm publish",
+    "release:major": "node minify.mjs && npm version major && npm publish",
     "test": "jest --detectOpenHandles"
   },
   "funding": {
