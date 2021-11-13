@@ -1,5 +1,6 @@
 dev
 src
+test
 .github
 changelog.md
 minify.mjs
