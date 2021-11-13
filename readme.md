@@ -10,6 +10,10 @@ Simple, minimalistic key-value cache, created by [Azury](https://github.com/azur
 
 Upcoming features are listed [over here](https://github.com/azurystudios/cachu/projects/1).
 
+#### Known Issues
+
+- `getMany()`, `getManyByCondition()` don't work right now
+
 ## Installation
 
 ### Install the Package
