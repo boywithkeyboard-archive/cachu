@@ -13,9 +13,7 @@ Simple, minimalistic key-value cache, created by [Azury](https://github.com/azur
 
 - fully asynchronous
 - small n' easy
-- zero dependencies*
-
-<sup>*only packages required for cachu's built-in logger</sup>
+- zero dependencies
 
 Upcoming features are listed [over here](https://github.com/azurystudios/cachu/projects/1).
 
