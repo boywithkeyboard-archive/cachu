@@ -1,5 +1,11 @@
 # cachu
 
+[![npm](https://img.shields.io/npm/v/cachu)](https://www.npmjs.com/package/cachu)
+[![npm](https://img.shields.io/npm/dt/cachu)](https://www.npmjs.com/package/cachu)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/cachu)](https://bundlephobia.com/package/cachu)
+[![GitHub last commit](https://img.shields.io/github/last-commit/azurystudios/cachu)](https://github.com/azurystudios/cachu)
+[![GitHub issues](https://img.shields.io/github/issues-raw/azurystudios/cachu)](https://github.com/azurystudios/cachu/issues)
+
 Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurystudios).
 
 #### Why should you use cachu?
