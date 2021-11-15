@@ -5,6 +5,7 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/min/cachu)](https://bundlephobia.com/package/cachu)
 [![GitHub last commit](https://img.shields.io/github/last-commit/azurystudios/cachu)](https://github.com/azurystudios/cachu)
 [![GitHub issues](https://img.shields.io/github/issues-raw/azurystudios/cachu)](https://github.com/azurystudios/cachu/issues)
+[![snyk vulnerabilities](https://snyk.io/test/github/azurystudios/cachu/badge.svg)](https://snyk.io/test/github/azurystudios/cachu)
 
 Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurystudios).
 
