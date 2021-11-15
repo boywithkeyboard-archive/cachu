@@ -28,7 +28,7 @@ pnpm add cachu
 
 ### Create New Instance
 
-Recommended if you need multiple caches.
+Just create a new instance, it's as easy as that!
 
 ```js
 import { Cachu } from 'cachu'
