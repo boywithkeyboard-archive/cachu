@@ -176,7 +176,7 @@ export class Cachu {
    */
   purgeMany = async (keys: Array<any>) => {
     // purge each item
-    for (const key of keys) 
+    for await (const key of keys) 
       await this.purge(key)
   
     return true
@@ -193,7 +193,7 @@ export class Cachu {
     const items = []
   
     // get each item
-    for (const key of keys) {
+    for await (const key of keys) {
       const item = await this.get(key)
       if (item !== null || item !== undefined) items.push(item)
     }
@@ -227,7 +227,7 @@ export class Cachu {
     const filteredItems = this.store.filter(i => condition(i))
 
     const itemValues: Array<any> = []
-    for (const item of filteredItems) {
+    for await (const item of filteredItems) {
       itemValues.push(item[1])
     }
 
