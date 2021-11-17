@@ -1,5 +1,3 @@
-import fs from 'fs'
-
 interface Configuration {
   maxAge?: number | undefined;
   maxAmount?: number | undefined;
@@ -54,7 +52,7 @@ export class Cachu {
   }
 
   /**
-   * **Get an Item**
+   * **Get Item**
    * 
    * Get the content of an existing item.
    * @param key
@@ -75,7 +73,7 @@ export class Cachu {
   }
 
   /**
-   * **View a Item**
+   * **View Item**
    * 
    * Get the content of an existing item without removing any overaged items or without returning `null` if it's overaged.
    * @param key
@@ -96,7 +94,7 @@ export class Cachu {
   }
   
   /**
-   * **Update a Item**
+   * **Update Item**
    * 
    * Update the content of an existing item. 
    * @param key
@@ -114,7 +112,7 @@ export class Cachu {
   }
   
   /**
-   * **Has a Item**
+   * **Has Item**
    * 
    * Check if the cache has an item with the specified key. 
    * @param key
@@ -128,7 +126,7 @@ export class Cachu {
   }
   
   /**
-   * **Purge a Item**
+   * **Purge Item**
    * 
    * Delete the item with the specified key.
    * @param key
@@ -169,21 +167,21 @@ export class Cachu {
   }
   
   /**
-   * **Purge Many Items**
+   * **Purge Multiple Items**
    * 
    * Delete multiple items by their keys.
    * @param keys
    */
   purgeMany = async (keys: Array<any>) => {
     // purge each item
-    for await (const key of keys) 
+    for (const key of keys) 
       await this.purge(key)
   
     return true
   }
   
   /**
-   * **Get Many Items**
+   * **Get Multiple Items**
    * 
    * Get multiple items by their keys.
    * @param keys
@@ -193,7 +191,7 @@ export class Cachu {
     const items = []
   
     // get each item
-    for await (const key of keys) {
+    for (const key of keys) {
       const item = await this.get(key)
       if (item !== null || item !== undefined) items.push(item)
     }
@@ -204,30 +202,30 @@ export class Cachu {
   }
   
   /**
-   * **Purge Many Items by a Condition**
+   * **Purge Multiple Items Conditionally**
    * 
    * Delete multiple items by a specific condition.
    * @param condition
    */
   purgeManyByCondition = async (condition: Function) => {
     // purge each item
-    this.store = this.store.filter(i => !condition(i))
+    this.store = this.store.filter(i => !condition(i[0], i[1], i[2]))
   
     return true
   }
   
   /**
-   * **Get Multiple Items by a Condition**
+   * **Get Multiple Items Conditionally**
    * 
    * Delete multiple items by a specific condition.
    * @param condition
    */
   getManyByCondition = async (condition: Function) => {
     // filter items
-    const filteredItems = this.store.filter(i => condition(i))
+    const filteredItems = this.store.filter(i => condition(i[0], i[1], i[2]))
 
     const itemValues: Array<any> = []
-    for await (const item of filteredItems) {
+    for (const item of filteredItems) {
       itemValues.push(item[1])
     }
 
@@ -236,7 +234,7 @@ export class Cachu {
   }
   
   /**
-   * **Get Amount of Items**
+   * **Get Amount Of Items**
    * 
    * Get the amount of items the cache has.
    */
@@ -245,7 +243,7 @@ export class Cachu {
   }
   
   /**
-   * **Get Values of Items**
+   * **Get Values Of Items**
    * 
    * Get an array of all the item values.
    */
@@ -256,7 +254,7 @@ export class Cachu {
   }
   
   /**
-   * **Get Keys of Items**
+   * **Get Keys Of Items**
    * 
    * Get an array of all item keys.
    */
@@ -267,7 +265,7 @@ export class Cachu {
   }
   
   /**
-   * **Execute an Action on Each Item**
+   * **Iterate Over Items**
    * 
    * Executes a specific function on each item.
    * @param action
