@@ -7,9 +7,9 @@
   "scripts": {
     "build": "tsc -w",
     "minify": "node minify.mjs",
-    "release:patch": "npm run minify && npm version patch && npm publish",
-    "release:minor": "npm run minify && npm version minor && npm publish",
-    "release:major": "npm run minify && npm version major && npm publish",
+    "publish:patch": "npm run minify && npm version patch && npm publish",
+    "publish:minor": "npm run minify && npm version minor && npm publish",
+    "publish:major": "npm run minify && npm version major && npm publish",
     "test": "jest --detectOpenHandles"
   },
   "funding": {
