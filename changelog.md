@@ -19,6 +19,7 @@ Available Releases:
 - edited jsdoc declarations
 - edited unit tests
 - enhanced conditional querying
+- patched terser
 
 ## v2.3.0
 
