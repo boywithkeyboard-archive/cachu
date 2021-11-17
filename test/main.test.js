@@ -67,15 +67,15 @@ test('get/purge many items by condition', async () => {
   expect(typeof item2).toBe('number')
 
   // get all items having a number as value
-  expect(await cachu.getManyByCondition(i => {
-    return (typeof i[1] === 'number')
+  expect(await cachu.getManyByCondition((key, value, age) => {
+    return (typeof value === 'number')
   })).toStrictEqual([
     123
   ])
 
   // get all items having a string as value
-  expect(await cachu.getManyByCondition(i => {
-    return (typeof i[1] === 'string')
+  expect(await cachu.getManyByCondition((key, value, age) => {
+    return (typeof value === 'string')
   })).toStrictEqual([
     'first',
     'third'
@@ -147,8 +147,8 @@ test('purge one or multiple items, prune items, destroy cache', async () => {
     expect(await cachu.get(5)).toBe(null)
 
     // purge many by condition
-    expect(await cachu.purgeManyByCondition(i => {
-      return (typeof i[1] === 'number')
+    expect(await cachu.purgeManyByCondition((key, value, age) => {
+      return (typeof value === 'number')
     })).toBe(true)
     expect(await cachu.get(6)).toBe(null)
     expect(await cachu.get(7)).toBe(null)
