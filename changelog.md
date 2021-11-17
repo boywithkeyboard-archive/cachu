@@ -2,6 +2,7 @@
 
 Available Releases:
 
+- [v2.4.0](#v2.4.0)
 - [v2.3.0](#v2.3.0)
 - [v2.2.0](#v2.2.0)
 - [v2.1.1](#v2.1.1)
@@ -10,6 +11,14 @@ Available Releases:
 - [v2.0.2](#v2.0.2)
 - [v2.0.1](#v2.0.1)
 - [v2.0.0](#v2.0.0)
+
+## v2.4.0
+
+## Changes
+
+- edited jsdoc declarations
+- edited unit tests
+- enhanced conditional querying
 
 ## v2.3.0
 
