@@ -2,6 +2,7 @@
 
 Available Releases:
 
+- [v2.4.1](#v2.4.1)
 - [v2.4.0](#v2.4.0)
 - [v2.3.0](#v2.3.0)
 - [v2.2.0](#v2.2.0)
@@ -11,6 +12,13 @@ Available Releases:
 - [v2.0.2](#v2.0.2)
 - [v2.0.1](#v2.0.1)
 - [v2.0.0](#v2.0.0)
+
+## v2.4.1
+
+- changed build standard to `es2021` *(results in less code)*
+- added `minify` script *(dev-only)*
+- edited types *(dev-only)*
+- renamed publish scripts *(dev-only)*
 
 ## v2.4.0
 
