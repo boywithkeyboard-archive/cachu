@@ -4,8 +4,8 @@ interface Configuration {
 }
 
 export class Cachu {
-  private maxAmount: Number
-  private maxAge: Number
+  private maxAmount: number
+  private maxAge: number
   private store: Array<any>
 
   /**
