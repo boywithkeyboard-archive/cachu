@@ -22,7 +22,7 @@ Available Releases:
 
 ## v2.4.0
 
-## Changes
+### Changes
 
 - edited jsdoc declarations
 - edited unit tests
