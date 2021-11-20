@@ -278,4 +278,29 @@ export class Cachu {
   
     return true
   }
+
+  /**
+   * **Change Max Age**
+   * 
+   * Change the max age for the instance.
+   * @param maxAge
+   */
+  changeMaxAge = async (maxAge: number) => {
+    this.maxAge = maxAge
+
+    // remove outdated items
+    this.store = this.store.filter(i => Date.now() - i[2] < this.maxAge.valueOf() * 1000)
+  }
+
+  /**
+   * **Change Max Amount**
+   * 
+   * Change the max amount for the instance.
+   * @param maxAmount
+   */
+  changeMaxAmount = async (maxAmount: number) => {
+    this.maxAmount = maxAmount
+
+    if (this.store.length > this.maxAmount) this.store = this.store.slice(0, this.maxAmount)
+  }
 }
