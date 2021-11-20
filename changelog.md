@@ -2,6 +2,7 @@
 
 Available Releases:
 
+- [v2.4.2](#v242)
 - [v2.4.1](#v241)
 - [v2.4.0](#v240)
 - [v2.3.0](#v230)
@@ -14,6 +15,16 @@ Available Releases:
 - [v2.0.0](#v200)
 
 ## v2.4.1
+
+### Changes
+
+- patched TypeScript
+- fixed changelog
+- edited package description
+
+## v2.4.1
+
+### Changes
 
 - changed build standard to `es2021` *(results in less code)*
 - added `minify` script *(dev-only)*
