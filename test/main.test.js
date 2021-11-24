@@ -156,3 +156,23 @@ test('purge one or multiple items, prune items, destroy cache', async () => {
     expect(await cachu.get(8)).toBe('eighth')
   }, 200 * 1000)
 })
+
+test('steal one or many items', async () => {
+  const cachu = new Cachu()
+
+  // set items
+  await cachu.set(1, 'first')
+  await cachu.set(2, 'second')
+  await cachu.set(3, 'third')
+
+  // steal many items
+  expect(await cachu.steal(1)).toBe('first')
+  expect(await cachu.get(1)).toBe(null)
+
+  expect(await cachu.stealMany([2, 3])).toStrictEqual([
+    'second',
+    'third'
+  ])
+  expect(await cachu.get(2)).toBe(null)
+  expect(await cachu.get(3)).toBe(null)
+})
