@@ -2,6 +2,7 @@
 
 Available Releases:
 
+- [v2.5.0](#v2.5.0)
 - [v2.4.2](#v2.4.2)
 - [v2.4.1](#v2.4.1)
 - [v2.4.0](#v2.4.0)
@@ -13,6 +14,11 @@ Available Releases:
 - [v2.0.2](#v2.0.2)
 - [v2.0.1](#v2.0.1)
 - [v2.0.0](#v2.0.0)
+
+## v2.5.0
+
+- added `steal` and `stealMany` functions
+- removed `build` folder from github ***(dev-only)***
 
 ## v2.4.1
 
@@ -26,10 +32,10 @@ Available Releases:
 
 ### Changes
 
-- changed build standard to `es2021` *(results in less code)*
-- added `minify` script *(dev-only)*
-- edited types *(dev-only)*
-- renamed publish scripts *(dev-only)*
+- changed build standard to `es2021` ***(results in less code)***
+- added `minify` script ***(dev-only)***
+- edited types ***(dev-only)***
+- renamed publish scripts ***(dev-only)***
 
 ## v2.4.0
 

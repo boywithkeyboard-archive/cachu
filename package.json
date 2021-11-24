@@ -1,6 +1,6 @@
 {
   "name": "cachu",
-  "version": "2.4.2",
+  "version": "2.5.0",
   "description": "Simple, Minimalistic KV Cache",
   "main": "build/index.js",
   "types": "types/index.d.ts",
