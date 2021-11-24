@@ -8,8 +8,6 @@
 
 Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurystudios).
 
-> Compatible with Node.js [v16](https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V16.md) and [v17](https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V17.md) only!
-
 #### Why should you use cachu?
 
 - fully asynchronous
@@ -17,10 +15,6 @@ Simple, minimalistic key-value cache, created by [Azury](https://github.com/azur
 - zero dependencies
 
 Upcoming features are listed [over here](https://github.com/azurystudios/cachu/projects/1).
-
-#### Known Issues
-
-*Currently there are no known issues.*
 
 ## Installation
 
