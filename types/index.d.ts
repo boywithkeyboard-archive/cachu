@@ -122,5 +122,19 @@ export declare class Cachu {
      * @param action
      */
     each: (action: Function) => Promise<boolean>;
+    /**
+     * **Steal Item**
+     *
+     * Steal a item from the cache.
+     * @param key
+     */
+    steal: (key: {}) => Promise<any>;
+    /**
+     * **Steal Many Items**
+     *
+     * Steal many items from the cache.
+     * @param keys
+     */
+    stealMany: (keys: Array<any>) => Promise<any[]>;
 }
 export {};
