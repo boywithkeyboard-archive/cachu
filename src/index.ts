@@ -280,27 +280,45 @@ export class Cachu {
   }
 
   /**
-   * **Change Max Age**
+   * **Steal Item**
    * 
-   * Change the max age for the instance.
-   * @param maxAge
+   * Steal a item from the cache.
+   * @param key
    */
-  changeMaxAge = async (maxAge: number) => {
-    this.maxAge = maxAge
-
+   steal = async (key: {}) => {
     // remove outdated items
     this.store = this.store.filter(i => Date.now() - i[2] < this.maxAge.valueOf() * 1000)
+  
+    // search for item
+    const index = this.store.findIndex(i => i[0] === key)
+    if (index === -1) return null
+  
+    // get item
+    const item = this.store[index]
+  
+    // remove item
+    this.store.splice(index, 1)
+  
+    // return value of item
+    return item[1]
   }
 
   /**
-   * **Change Max Amount**
+   * **Steal Many Items**
    * 
-   * Change the max amount for the instance.
-   * @param maxAmount
+   * Steal many items from the cache.
+   * @param keys
    */
-  changeMaxAmount = async (maxAmount: number) => {
-    this.maxAmount = maxAmount
+   stealMany = async (keys: Array<any>) => {
+    // create the array
+    const items = []
+  
+    // get each item
+    for (const key of keys) {
+      items.push(await this.get(key))
+      await this.purge(key)
+    }
 
-    if (this.store.length > this.maxAmount) this.store = this.store.slice(0, this.maxAmount)
+    return items
   }
 }
