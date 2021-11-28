@@ -1,7 +1,6 @@
-dev
 src
 test
 .github
+.gitignore
 changelog.md
-minify.mjs
 tsconfig.json
