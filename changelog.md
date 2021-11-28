@@ -2,6 +2,7 @@
 
 Available Releases:
 
+- [v2.6.0](#v260)
 - [v2.5.0](#v250)
 - [v2.4.2](#v242)
 - [v2.4.1](#v241)
@@ -14,6 +15,12 @@ Available Releases:
 - [v2.0.2](#v202)
 - [v2.0.1](#v201)
 - [v2.0.0](#v200)
+
+## v2.6.0
+
+- removed `glob` dependency ***(dev-only)***
+- removed types from github ***(dev-only)***
+- edited ignored files
 
 ## v2.5.0
 
