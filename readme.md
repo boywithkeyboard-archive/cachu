@@ -8,7 +8,7 @@
 
 Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurystudios).
 
-#### Why should you use cachu?
+**Why should you use cachu?**
 
 - fully asynchronous
 - small n' easy
