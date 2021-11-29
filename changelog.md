@@ -27,7 +27,7 @@ Available Releases:
 - added `steal` and `stealMany` functions
 - removed `build` folder from github ***(dev-only)***
 
-## v2.4.1
+## v2.4.2
 
 ### Changes
 
