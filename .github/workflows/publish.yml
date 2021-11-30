@@ -1,0 +1,32 @@
+name: Publish
+
+on:
+  release:
+    types: [unpublished]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.release.target_commitish }}
+      - name: Use Node.js 16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: git config --global user.name "Azury CI"
+      - run: git config --global user.email "hello@azury.dev"
+      - run: npm version ${{ github.event.release.tag_name }}
+      - run: npm run build
+      - run: npm run minify
+      - run: npm test
+      - run: npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
+      - run: npm publish --tag ${{ github.event.release.target_commitish }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: git push
+        env:
+          github-token: ${{ secrets.GIT_TOKEN }}
