@@ -16,6 +16,13 @@ Available Releases:
 - [v2.0.1](#v201)
 - [v2.0.0](#v200)
 
+## v2.6.1
+
+- patched `jest` ***(dev-only)***
+- fixed typo in changelog ***(dev-only)***
+- removed types from github (again) ***(dev-only)***
+- added automated releases (just testing) ***(dev-only)***
+
 ## v2.6.0
 
 - removed `glob` dependency ***(dev-only)***
