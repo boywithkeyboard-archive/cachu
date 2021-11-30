@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "build": "tsc -w",
+    "dev": "tsc -w",
+    "build": "esbuild src/index.ts --bundle --minify --platform=node --outfile=build/index.js",
     "minify": "terser build/index.js --compress --mangle --output build/index.js",
     "publish:patch": "npm run minify && npm version patch && npm publish",
     "publish:minor": "npm run minify && npm version minor && npm publish",
@@ -34,6 +35,7 @@
   },
   "homepage": "https://github.com/azurystudios/cachu#readme",
   "devDependencies": {
+    "esbuild": "^0.14.1",
     "jest": "^27.4.2",
     "terser": "^5.9.0",
     "typescript": "^4.4.4"
