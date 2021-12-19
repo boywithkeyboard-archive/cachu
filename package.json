@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azurystudios/cachu.git"
+    "url": "git+https://github.com/azurydev/cachu.git"
   },
   "keywords": [
     "cache",
@@ -31,9 +31,9 @@
   "author": "Azury <hello@azury.dev> (https://azury.dev)",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/azurystudios/cachu/issues"
+    "url": "https://github.com/azurydev/cachu/issues"
   },
-  "homepage": "https://github.com/azurystudios/cachu#readme",
+  "homepage": "https://github.com/azurydev/cachu#readme",
   "devDependencies": {
     "@azury/bundler": "^1.0.3",
     "jest": "^27.4.2",
