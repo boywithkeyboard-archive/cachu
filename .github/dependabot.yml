@@ -4,6 +4,8 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
-    open-pull-requests-limit: 10
+      time: '18:00'
+      timezone: 'Europe/Berlin'
+    open-pull-requests-limit: 100
     target-branch: 'nightly'
     versioning-strategy: 'increase'
