@@ -2,11 +2,11 @@
 
 [![npm](https://img.shields.io/npm/v/cachu)](https://www.npmjs.com/package/cachu)
 [![npm](https://img.shields.io/npm/dt/cachu)](https://www.npmjs.com/package/cachu)
-[![GitHub last commit](https://img.shields.io/github/last-commit/azurystudios/cachu)](https://github.com/azurystudios/cachu)
-[![GitHub issues](https://img.shields.io/github/issues-raw/azurystudios/cachu)](https://github.com/azurystudios/cachu/issues)
-[![snyk vulnerabilities](https://snyk.io/test/github/azurystudios/cachu/badge.svg)](https://snyk.io/test/github/azurystudios/cachu)
+[![GitHub last commit](https://img.shields.io/github/last-commit/azurydev/cachu)](https://github.com/azurydev/cachu)
+[![GitHub issues](https://img.shields.io/github/issues-raw/azurydev/cachu)](https://github.com/azurydev/cachu/issues)
+[![snyk vulnerabilities](https://snyk.io/test/github/azurydev/cachu/badge.svg)](https://snyk.io/test/github/azurydev/cachu)
 
-Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurystudios).
+Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurydev).
 
 **Why should you use cachu?**
 
@@ -49,26 +49,32 @@ demo()
 
 ### Configuration
 
-- [`maxAge`](https://github.com/azurystudios/cachu/wiki/configuration#max-age) to set the **maximum age** for each item in the store
-- [`maxAmount`](https://github.com/azurystudios/cachu/wiki/configuration#max-amount) to set the **maximum size** for the store
+- [`maxAge`](https://github.com/azurydev/cachu/wiki/configuration#max-age) to set the **maximum age** for each item in the store
+- [`maxAmount`](https://github.com/azurydev/cachu/wiki/configuration#max-amount) to set the **maximum size** for the store
 
 ### Features
 
-- [`set(key, value)`](https://github.com/azurystudios/cachu/wiki/features#set)
-- [`get(key)`](https://github.com/azurystudios/cachu/wiki/features#get)
-- [`update(key, value)`](https://github.com/azurystudios/cachu/wiki/features#update)
-- [`view(key)`](https://github.com/azurystudios/cachu/wiki/features#view)
-- [`purge(key)`](https://github.com/azurystudios/cachu/wiki/features#purge)
-- [`steal(key)`](https://github.com/azurystudios/cachu/wiki/features#steal)
-- [`has(key)`](https://github.com/azurystudios/cachu/wiki/features#has)
-- [`prune()`](https://github.com/azurystudios/cachu/wiki/features#prune)
-- [`destroy()`](https://github.com/azurystudios/cachu/wiki/features#destroy)
-- [`purgeMany(keys)`](https://github.com/azurystudios/cachu/wiki/features#purge-many)
-- [`getMany(keys)`](https://github.com/azurystudios/cachu/wiki/features#get-many)
-- [`stealMany(keys)`](https://github.com/azurystudios/cachu/wiki/features#steal-many)
-- [`getAmountOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-amount-of-items)
-- [`getManyByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#get-many-by-condition)
-- [`purgeManyByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#purge-many-by-condition)
-- [`getValuesOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-values-of-items)
-- [`getKeysOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-keys-of-items)
-- [`each(action)`](https://github.com/azurystudios/cachu/wiki/features#each)
+- [`write(key, value)`](https://github.com/azurydev/cachu/wiki/features#write)
+- [`writeMany(key, value)`](https://github.com/azurydev/cachu/wiki/features#write-many)
+- [`get(key)`](https://github.com/azurydev/cachu/wiki/features#get)
+- [`getMany(key)`](https://github.com/azurydev/cachu/wiki/features#get-many)
+- [`update(key, value)`](https://github.com/azurydev/cachu/wiki/features#update)
+- [`updateMany(key, value)`](https://github.com/azurydev/cachu/wiki/features#update-many)
+- [`view(key)`](https://github.com/azurydev/cachu/wiki/features#view)
+- [`viewMany(key)`](https://github.com/azurydev/cachu/wiki/features#view-many)
+- [`purge(key)`](https://github.com/azurydev/cachu/wiki/features#purge)
+- [`purgeMany(key)`](https://github.com/azurydev/cachu/wiki/features#purge-many)
+- [`steal(key)`](https://github.com/azurydev/cachu/wiki/features#steal)
+- [`stealMany(key)`](https://github.com/azurydev/cachu/wiki/features#stealMany)
+- [`has(key)`](https://github.com/azurydev/cachu/wiki/features#has)
+- [`prune()`](https://github.com/azurydev/cachu/wiki/features#prune)
+- [`destroy()`](https://github.com/azurydev/cachu/wiki/features#destroy)
+- [`getAmountOfItems()`](https://github.com/azurydev/cachu/wiki/features#get-amount-of-items)
+- [`getManyByCondition(condition)`](https://github.com/azurydev/cachu/wiki/features#get-many-by-condition)
+- [`purgeManyByCondition(condition)`](https://github.com/azurydev/cachu/wiki/features#purge-many-by-condition)
+- [`getValuesOfItems()`](https://github.com/azurydev/cachu/wiki/features#get-values-of-items)
+- [`getKeysOfItems()`](https://github.com/azurydev/cachu/wiki/features#get-keys-of-items)
+- [`dump()`](https://github.com/azurydev/cachu/wiki/features#dump)
+- [`modifyMaxAge(maxAge)`](https://github.com/azurydev/cachu/wiki/features#modify-max-age)
+- [`modifyMaxAmount(maxAmount)`](https://github.com/azurydev/cachu/wiki/features#modify-max-amount)
+- [`each(action)`](https://github.com/azurydev/cachu/wiki/features#each)
