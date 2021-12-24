@@ -2,20 +2,24 @@
 
 | | `cachu` | [`lru-cache`](https://npm.im/lru-cache) | [`memory-cache`](https://npm.im/memory-cache) | [`node-cache`](https://npm.im/node-cache) | [`flat-cache`](https://npm.im/flat-cache) | [`cache-base`](https://npm.im/cache-base)
 | :--- | :----: | :----: | :----: | :----: | :----: | :----: |
+| **Storage**  | Memory | Memory | Memory | Memory | Disk | Memory |
+| **Mechanism**  | Date Comparison | Date Comparison | Timeout | TTL | Date Comparison | No Auto-Removing |
+| **Browser Support**  | ❌** | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Asynchronous** | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | **Set/Remove Item**  | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | **Update Item** | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| **Steal Item** | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| **Grab Item** | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| **Has Item** | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| **Dump Cache** | ✔️ | ✔️ | ❌ | ❌ | ❌ | ❌ |
-| **Prune Cache** | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| **Destroy Cache** | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| **Get Amount of Items** | ✔️ | ✔️ | ❌ | ❌ | ❌ | ❌ |
-| **Get Keys of Items** | ✔️ | ✔️ | ❌ | ❌ | ❌ | ❌ |
+| **Steal Item** | ✔️ | ❌ | ✔️ | ❌ | ❌ | ❌ |
+| **Grab Item** | ✔️ | ✔️ | ❌ | ❌ | ❌ | ❌ |
+| **Has Item** | ✔️ | ✔️ | ❌ | ✔️ | ❌ | ✔️ |
+| **Dump Cache** | ✔️ | ✔️ | ✔️ | ✔️ | ❌ | ❌ |
+| **Prune Cache** | ✔️ | ✔️ | ❌ | ❌ | ❌ | ❌ |
+| **Destroy Cache** | ✔️ | ✔️ | ✔️ | ✔️* | ✔️ | ✔️ |
+| **Get Amount of Items** | ✔️ | ✔️ | ✔️ | ❌ | ❌ | ✔️ |
+| **Get Keys of Items** | ✔️ | ✔️ | ✔️ | ❌ | ❌ | ✔️ |
 | **Get Values of Items** | ✔️ | ✔️ | ❌ | ❌ | ❌ | ❌ |
-| **Modify Max Age/Amount** | ✔️ | ✔️ | ❌ | ❌ | ❌ | ❌ |
+| **Modify Max Age/Amount** | ✔️ | ✔️ | ❌ | ✔️* | ❌ | ❌ |
 | **Iterate over Items** | ✔️ | ✔️ | ❌ | ❌ | ❌ | ❌ |
-| **Asynchronous** | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Import/Export as JSON** | ❌** | ❌ | ✔️ | ❌ | ❌ | ❌ |
 | **Open Issues** | ![][oi1] | ![][oi2] | ![][oi3] | ![][oi4] | ![][oi5] | ![][oi6] |
 | **Closed Issues** | ![][ci1] | ![][ci2] | ![][ci3] | ![][ci4] | ![][ci5] | ![][ci6] |
 | **Downloads** | ![][d1] | ![][d2] | ![][d3] | ![][d4] | ![][d5] | ![][d6] |
@@ -23,6 +27,12 @@
 | **Stars** | ![][s1] | ![][s2] | ![][s3] | ![][s4] | ![][s5] | ![][s6] |
 | **TypeScript Support** | ![][ts1] | ![][ts2] | ![][ts3] | ![][ts4] | ![][ts5] | ![][ts6] |
 | **Last Commit** | ![][lc1] | ![][lc2] | ![][lc3] | ![][lc4] | ![][lc5] | ![][lc6] |
+
+\* similar feature  
+\*\* planned feature  
+\*\*\* unstable feature
+
+> ℹ️ Last updated on **December 24, 2021**
 
 <!-- open issues -->
 [oi1]: https://badgen.net/github/open-issues/azurydev/cachu?color=grey&label
@@ -71,10 +81,10 @@
 <!-- typescript support -->
 
 [ts1]: https://badgen.net/badge/t/included/blue?label
-[ts2]: https://badgen.net/badge/t/addon/cyan?label
-[ts3]: https://badgen.net/badge/t/addon/cyan?label
+[ts2]: https://badgen.net/badge/t/third%20party/cyan?label
+[ts3]: https://badgen.net/badge/t/third%20party/cyan?label
 [ts4]: https://badgen.net/badge/t/included/blue?label
-[ts5]: https://badgen.net/badge/t/addon/cyan?label
+[ts5]: https://badgen.net/badge/t/third%20party/cyan?label
 [ts6]: https://badgen.net/badge/t/none/grey?label
 
 <!-- last commit -->
