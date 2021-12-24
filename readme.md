@@ -1,11 +1,11 @@
 # cachu
 
-[![version](https://badgen.net/npm/v/cachu?icon=npm&label&color=black&labelColor=purple)](https://www.npmjs.com/package/cachu)
-[![npm downloads](https://badgen.net/npm/dt/cachu?label=downloads&color=black&labelColor=purple)](https://www.npmjs.com/package/cachu)
-[![open issues](https://badgen.net/github/open-issues/azurydev/cachu?icon=github&label=open%20issues&color=black&labelColor=purple)](https://github.com/azurydev/cachu/issues)
-[![snyk vulnerabilities](https://badgen.net/snyk/azurydev/cachu?label=vulnerabilities&color=black&labelColor=purple)](https://snyk.io/test/github/azurydev/cachu)
+[![version](https://badgen.net/npm/v/cachu?label=Current&color=black&labelColor=purple)](https://www.npmjs.com/package/cachu)
+[![npm downloads](https://badgen.net/npm/dt/cachu?label=Installations&color=black&labelColor=purple)](https://www.npmjs.com/package/cachu)
+[![open issues](https://badgen.net/github/open-issues/azurydev/cachu?label=Issues&color=black&labelColor=purple)](https://github.com/azurydev/cachu/issues)
+[![snyk vulnerabilities](https://badgen.net/snyk/azurydev/cachu?label=Vulnerabilities&color=black&labelColor=purple)](https://snyk.io/test/github/azurydev/cachu)
 [![npm package size](https://badgen.net/packagephobia/install/cachu?icon=packagephobia&label&color=black&labelColor=purple)](https://packagephobia.com/result?p=cachu)
-[![language](https://badgen.net/badge/custom/language/orange?icon=typescript&label&color=black&labelColor=purple)](https://github.com/azurydev/cachu/search?l=typescript)
+[![language](https://badgen.net/badge/c/Language/orange?icon=typescript&label&color=black&labelColor=purple)](https://github.com/azurydev/cachu/search?l=typescript)
 
 Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurydev).
 
