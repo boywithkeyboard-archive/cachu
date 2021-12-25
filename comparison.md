@@ -4,7 +4,7 @@
 | :--- | :----: | :----: | :----: | :----: | :----: | :----: |
 | **Storage**  | Memory | Memory | Memory | Memory | Disk | Memory |
 | **Mechanism**  | Date Comparison | Date Comparison | Timeout | TTL | Date Comparison | No Auto-Removing |
-| **Browser Support**  | ❌** | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Browser Support**  | ❇️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | **Asynchronous** | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | **Set/Remove Item**  | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | **Update Item** | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |
@@ -19,7 +19,7 @@
 | **Get Values of Items** | ✔️ | ✔️ | ❌ | ❌ | ❌ | ❌ |
 | **Modify Max Age/Amount** | ✔️ | ✔️ | ❌ | ✔️* | ❌ | ❌ |
 | **Iterate over Items** | ✔️ | ✔️ | ❌ | ❌ | ❌ | ❌ |
-| **Import/Export as JSON** | ❌** | ❌ | ✔️ | ❌ | ❌ | ❌ |
+| **Import/Export as JSON** | ❇️ | ❌ | ✔️ | ❌ | ❌ | ❌ |
 | **Open Issues** | ![][oi1] | ![][oi2] | ![][oi3] | ![][oi4] | ![][oi5] | ![][oi6] |
 | **Closed Issues** | ![][ci1] | ![][ci2] | ![][ci3] | ![][ci4] | ![][ci5] | ![][ci6] |
 | **Downloads** | ![][d1] | ![][d2] | ![][d3] | ![][d4] | ![][d5] | ![][d6] |
@@ -30,7 +30,7 @@
 
 \* similar feature  
 \*\* planned feature  
-\*\*\* unstable feature
+❇️ unstable feature (available in `cachu@next`)
 
 > ℹ️ Last updated on **December 24, 2021**
 
