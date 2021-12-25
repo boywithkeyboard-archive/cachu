@@ -1,15 +1,8 @@
 # cachu
 
-[![version](https://badgen.net/npm/v/cachu?label=Current&color=black&labelColor=purple)](https://www.npmjs.com/package/cachu)
-[![npm downloads](https://badgen.net/npm/dt/cachu?label=Installations&color=black&labelColor=purple)](https://www.npmjs.com/package/cachu)
-[![open issues](https://badgen.net/github/open-issues/azurydev/cachu?label=Issues&color=black&labelColor=purple)](https://github.com/azurydev/cachu/issues)
-[![snyk vulnerabilities](https://badgen.net/snyk/azurydev/cachu?label=Vulnerabilities&color=black&labelColor=purple)](https://snyk.io/test/github/azurydev/cachu)
-[![npm package size](https://badgen.net/packagephobia/install/cachu?icon=packagephobia&label&color=black&labelColor=purple)](https://packagephobia.com/result?p=cachu)
-[![language](https://badgen.net/badge/c/Language/orange?icon=typescript&label&color=black&labelColor=purple)](https://github.com/azurydev/cachu/search?l=typescript)
+**Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurydev).**
 
-Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurydev).
-
-### Why should you use cachu?
+#### Why should you use cachu?
 
 - fully asynchronous
 - small n' easy
@@ -32,18 +25,17 @@ pnpm add cachu
 Just create a new instance, it's as easy as that!
 
 ```js
-import { Cachu } from 'cachu'
+import Cachu from 'cachu'
 
 const cache = new Cachu({
-  maxAmount: 10, // cache can contain up to 10 items
-  maxAge: 60 // delete items after a minute
+  maxAmount: 99, // cache can contain up to 99 items
+  maxAge: 60 // keep items for up to a minute
 })
 
-const demo = async () => {
-  await cache.set(123, 'hello world')
-  console.log(await cache.get(123))
-}
-demo()
+(async () => {
+  await cache.write(123, 'Hello World')
+  console.log(await cache.get(123)) // should give out 'Hello World'
+})()
 ```
 
 ## API
