@@ -5,6 +5,7 @@
 | **Storage**  | Memory | Memory | Memory | Memory | Disk | Memory |
 | **Mechanism**  | Date Comparison | Date Comparison | Timeout | TTL | Date Comparison | No Auto-Removing |
 | **Browser Support**  | ❇️ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Redis Support**  | ❌** | ❌ | ❌ | ❌ | ❌ | ❌ |
 | **Asynchronous** | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | **Set/Remove Item**  | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | **Update Item** | ✔️ | ❌ | ❌ | ❌ | ❌ | ❌ |
