@@ -6,11 +6,10 @@
   "types": "types/index.d.ts",
   "scripts": {
     "dev": "tsc -w",
-    "build": "build --node --esm -i src/index.ts -o build/index.js",
-    "minify": "terser build/index.js --compress --mangle --output build/index.js",
-    "publish:patch": "npm run minify && npm version patch && npm publish",
-    "publish:minor": "npm run minify && npm version minor && npm publish",
-    "publish:major": "npm run minify && npm version major && npm publish",
+    "build": "packu --node -i src/index.ts -o build/index.js",
+    "publish:patch": "npm run build && npm version patch && npm publish",
+    "publish:minor": "npm run build && npm version minor && npm publish",
+    "publish:major": "npm run build && npm version major && npm publish",
     "test": "jest --detectOpenHandles"
   },
   "funding": {
