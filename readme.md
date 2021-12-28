@@ -1,6 +1,6 @@
 # cachu
 
-**Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurydev).**
+**Simple, minimalistic key-value cache, created by [Azury](https://azury.dev).**
 
 #### Why should you use cachu?
 
@@ -8,11 +8,11 @@
 - small n' easy
 - zero dependencies
 
-## Installation
+## Setup
 
 ### Install the Package
 
-Install it using your favorite package manager.
+Install **cachu** using your favorite package manager.
 
 ```sh-session
 npm i cachu
@@ -20,7 +20,7 @@ yarn add cachu
 pnpm add cachu
 ```
 
-### Create New Instance
+### Usage
 
 Just create a new instance, it's as easy as that!
 
@@ -28,8 +28,8 @@ Just create a new instance, it's as easy as that!
 import Cachu from 'cachu'
 
 const cache = new Cachu({
-  maxAmount: 99, // cache can contain up to 99 items
-  maxAge: 60 // keep items for up to a minute
+  maxAmount: 99, // cache can contain up to 99 records
+  maxAge: 60 // keep records for up to a minute
 })
 
 (async () => {
@@ -42,32 +42,32 @@ const cache = new Cachu({
 
 - ### Configuration
 
-  - [`maxAge`](https://github.com/azurydev/cachu/wiki/configuration#max-age) to set the **maximum age** for each item in the store
-  - [`maxAmount`](https://github.com/azurydev/cachu/wiki/configuration#max-amount) to set the **maximum size** for the store
+  - [`maxAge`](https://github.com/azurydev/cachu/blob/current/guide/configuration/maxAge) to set the **maximum age** for each record in the cache
+  - [`maxAmount`](https://github.com/azurydev/cachu/blob/current/guide/configuration/maxAmount) to set the **maximum size** for the cache
 
 - ### Features
 
-  - [`write(key, value)`](https://github.com/azurydev/cachu/wiki/features#write)
-  - [`writeMany(key, value)`](https://github.com/azurydev/cachu/wiki/features#write-many)
-  - [`get(key)`](https://github.com/azurydev/cachu/wiki/features#get)
-  - [`getMany(key)`](https://github.com/azurydev/cachu/wiki/features#get-many)
-  - [`update(key, value)`](https://github.com/azurydev/cachu/wiki/features#update)
-  - [`updateMany(key, value)`](https://github.com/azurydev/cachu/wiki/features#update-many)
-  - [`grab(key)`](https://github.com/azurydev/cachu/wiki/features#grab)
-  - [`grabMany(key)`](https://github.com/azurydev/cachu/wiki/features#grab-many)
-  - [`purge(key)`](https://github.com/azurydev/cachu/wiki/features#purge)
-  - [`purgeMany(key)`](https://github.com/azurydev/cachu/wiki/features#purge-many)
-  - [`steal(key)`](https://github.com/azurydev/cachu/wiki/features#steal)
-  - [`stealMany(key)`](https://github.com/azurydev/cachu/wiki/features#stealMany)
-  - [`has(key)`](https://github.com/azurydev/cachu/wiki/features#has)
-  - [`prune()`](https://github.com/azurydev/cachu/wiki/features#prune)
-  - [`destroy()`](https://github.com/azurydev/cachu/wiki/features#destroy)
-  - [`getAmountOfItems()`](https://github.com/azurydev/cachu/wiki/features#get-amount-of-items)
-  - [`getManyByCondition(condition)`](https://github.com/azurydev/cachu/wiki/features#get-many-by-condition)
-  - [`purgeManyByCondition(condition)`](https://github.com/azurydev/cachu/wiki/features#purge-many-by-condition)
-  - [`getValuesOfItems()`](https://github.com/azurydev/cachu/wiki/features#get-values-of-items)
-  - [`getKeysOfItems()`](https://github.com/azurydev/cachu/wiki/features#get-keys-of-items)
-  - [`dump()`](https://github.com/azurydev/cachu/wiki/features#dump)
-  - [`modifyMaxAge(maxAge)`](https://github.com/azurydev/cachu/wiki/features#modify-max-age)
-  - [`modifyMaxAmount(maxAmount)`](https://github.com/azurydev/cachu/wiki/features#modify-max-amount)
-  - [`each(action)`](https://github.com/azurydev/cachu/wiki/features#each)
+  - [`write(key, value)`](https://github.com/azurydev/cachu/blob/current/guide/features/write)
+  - [`writeMany(key, value)`](https://github.com/azurydev/cachu/blob/current/guide/features/writeMany)
+  - [`get(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/get)
+  - [`getMany(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/getMany)
+  - [`update(key, value)`](https://github.com/azurydev/cachu/blob/current/guide/features/update)
+  - [`updateMany(key, value)`](https://github.com/azurydev/cachu/blob/current/guide/features/updateMany)
+  - [`grab(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/grab)
+  - [`grabMany(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/grabMany)
+  - [`purge(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/purge)
+  - [`purgeMany(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/purgeMany)
+  - [`steal(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/steal)
+  - [`stealMany(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/stealMany)
+  - [`has(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/has)
+  - [`prune()`](https://github.com/azurydev/cachu/blob/current/guide/features/prune)
+  - [`destroy()`](https://github.com/azurydev/cachu/blob/current/guide/features/destroy)
+  - [`getAmountOfItems()`](https://github.com/azurydev/cachu/blob/current/guide/features/getAmountOfItems)
+  - [`getManyByCondition(condition)`](https://github.com/azurydev/cachu/blob/current/guide/features/getManyByCondition)
+  - [`purgeManyByCondition(condition)`](https://github.com/azurydev/cachu/blob/current/guide/features/purgeManyByCondition)
+  - [`getValuesOfItems()`](https://github.com/azurydev/cachu/blob/current/guide/features/getValuesOfItems)
+  - [`getKeysOfItems()`](https://github.com/azurydev/cachu/blob/current/guide/features/getKeysOfItems)
+  - [`dump()`](https://github.com/azurydev/cachu/blob/current/guide/features/dump)
+  - [`modifyMaxAge(maxAge)`](https://github.com/azurydev/cachu/blob/current/guide/features/modifyMaxAge)
+  - [`modifyMaxAmount(maxAmount)`](https://github.com/azurydev/cachu/blob/current/guide/features/modifyMaxAmount)
+  - [`each(action)`](https://github.com/azurydev/cachu/blob/current/guide/features/each)
