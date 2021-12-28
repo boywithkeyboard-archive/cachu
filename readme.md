@@ -8,6 +8,8 @@
 - small n' easy
 - zero dependencies
 
+###### Please read our 📊 [Comparison](https://github.com/azurydev/cachu/blob/current/comparison.md) or 📃 [Changelog](https://github.com/azurydev/cachu/blob/current/changelog.md)!
+
 ## Setup
 
 ### Install the Package
