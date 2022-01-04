@@ -53,6 +53,8 @@ const cache = new Cachu({
   - [`writeMany(key, value)`](https://github.com/azurydev/cachu/blob/current/guide/features/writeMany)
   - [`get(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/get)
   - [`getMany(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/getMany)
+  - [`getNewest()`](https://github.com/azurydev/cachu/blob/current/guide/features/getNewest)
+  - [`getOldest()`](https://github.com/azurydev/cachu/blob/current/guide/features/getOldest)
   - [`update(key, value)`](https://github.com/azurydev/cachu/blob/current/guide/features/update)
   - [`updateMany(key, value)`](https://github.com/azurydev/cachu/blob/current/guide/features/updateMany)
   - [`grab(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/grab)
