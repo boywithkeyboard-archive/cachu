@@ -2,8 +2,6 @@
 
 **Simple, minimalistic key-value cache, created by [Azury](https://azury.dev).**
 
-#### Why should you use cachu?
-
 - fully asynchronous
 - small n' easy
 - zero dependencies
