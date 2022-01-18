@@ -1,8 +1,7 @@
 {
   "name": "cachu",
   "version": "2.6.0",
-  "description": "Simple, Minimalistic KV Cache",
-  "main": "build/index.js",
+  "description": "🦝 Simple, Minimalistic KV Cache",
   "types": "types/index.d.ts",
   "scripts": {
     "dev": "tsc -w",
@@ -21,11 +20,12 @@
     "url": "git+https://github.com/azurydev/cachu.git"
   },
   "keywords": [
-    "cache",
-    "minimalistic",
     "kv",
+    "cache",
     "easy-to-use",
-    "asynchronous"
+    "minimalistic",
+    "async",
+    "modular"
   ],
   "author": "Azury <hello@azury.dev> (https://azury.dev)",
   "license": "Apache-2.0",
@@ -36,10 +36,12 @@
   "devDependencies": {
     "jest": "^27.4.2",
     "packu": "^2.0.2",
+    "redis": "^4.0.2",
     "typescript": "^4.4.4"
   },
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=8.0.0"
-  }
+  },
+  "type": "module"
 }
