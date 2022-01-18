@@ -3,6 +3,10 @@
   "version": "2.6.0",
   "description": "🦝 Simple, Minimalistic KV Cache",
   "types": "types/index.d.ts",
+  "exports": {
+    ".": "./build/index.js",
+    "./browser": "./build/browser.js"
+  },
   "scripts": {
     "dev": "tsc -w",
     "build": "packu --node -i src/index.ts -o build/index.js",
