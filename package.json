@@ -39,7 +39,7 @@
   "homepage": "https://github.com/azurydev/cachu#readme",
   "devDependencies": {
     "jest": "^27.4.7",
-    "packu": "^2.0.2",
+    "packu": "^2.1.0",
     "redis": "^4.0.2",
     "typescript": "^4.5.5"
   },
