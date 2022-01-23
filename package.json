@@ -1,19 +1,26 @@
 {
   "name": "cachu",
-  "version": "2.6.0",
+  "version": "3.6.0",
   "description": "🦝 Simple, Minimalistic KV Cache",
-  "types": "types/index.d.ts",
+  "types": "./types/index.d.ts",
   "exports": {
-    ".": "./build/index.js",
-    "./browser": "./build/browser.js"
+    ".": {
+      "import": "./build/node.js",
+      "types": "./types/node.d.ts"
+    },
+    "./browser": {
+      "import": "./build/browser.js",
+      "types": "./types/browser.d.ts"
+    }
   },
   "scripts": {
     "dev": "tsc -w",
-    "build": "packu --node -i src/index.ts -o build/index.js",
-    "publish:patch": "npm run build && npm version patch && npm publish",
-    "publish:minor": "npm run build && npm version minor && npm publish",
-    "publish:major": "npm run build && npm version major && npm publish",
-    "test": "jest --detectOpenHandles"
+    "build": "packu --node --esm -i src/node.ts -o build/node.js",
+    "build:browser": "packu --node --esm -i src/browser.ts -o build/browser.js",
+    "publish:patch": "tsc && npm run build && npm run build:browser && npm version patch && npm publish",
+    "publish:minor": "tsc && npm run build && npm run build:browser && npm version minor && npm publish",
+    "publish:major": "tsc && npm run build && npm run build:browser && npm version major && npm publish",
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest"
   },
   "funding": {
     "type": "individual",
