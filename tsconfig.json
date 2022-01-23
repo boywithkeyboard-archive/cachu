@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
     "target": "es2021",
-    "module": "commonjs",
+    "module": "es2020",
     "rootDir": "src",
     "moduleResolution": "node",
     "declaration": true,
     "outDir": "build",
     "declarationDir": "types",
     "esModuleInterop": true,
+    "emitDeclarationOnly": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true
