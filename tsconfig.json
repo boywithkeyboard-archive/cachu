@@ -5,7 +5,6 @@
     "rootDir": "src",
     "moduleResolution": "node",
     "declaration": true,
-    "outDir": "build",
     "declarationDir": "types",
     "esModuleInterop": true,
     "emitDeclarationOnly": true,
