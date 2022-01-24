@@ -1,16 +1,26 @@
-# cachu's changelog
+# changelog
 
 ### Available Releases:
 
-- #### v3
-  - [v3.0.0](#v300)
+- #### v4
+  - [v4.0.0](#v400)
 
-- #### [v2](https://github.com/azurydev/cachu/blob/canary/changelog/v2.md)
+[Outdated Releases](https://github.com/azurydev/cachu/tree/current/changelog)
 
 ## Releases
 
-### v3.0.0
+### v4.0.0
 
-- renamed `set()` function to [`write()`](https://github.com/azurydev/cachu/blob/current/guide/features/write) and `view()` to [`grab()`](https://github.com/azurydev/cachu/blob/current/guide/features/grab)
-- set individual maximum ages for items on `write()`ing
-- added [`writeMany()`](https://github.com/azurydev/cachu/blob/current/guide/features/writeMany), [`grabMany()`](https://github.com/azurydev/cachu/blob/current/guide/features/grabMany), [`updateMany()`](https://github.com/azurydev/cachu/blob/current/guide/features/updateMany), [`dump()`](https://github.com/azurydev/cachu/blob/current/guide/features/dump), [`modifyMaxAge()`](https://github.com/azurydev/cachu/blob/current/guide/features/modifyMaxAge), and [`modifyMaxAmount()`](https://github.com/azurydev/cachu/blob/current/guide/features/modifyMaxAmount) features
+#### Breaking Changes
+
+- renamed `set()` function to [`write()`](https://github.com/azurydev/cachu/blob/current/guide/features/write.md), `view()` to [`grab()`](https://github.com/azurydev/cachu/blob/current/guide/features/grab.md)
+
+#### Other Changes
+
+- updated year mentioned in license to `2022`
+- added `MiniCache`, `MemoryCache`
+
+#### New Features
+
+- added [`writeMany()`](https://github.com/azurydev/cachu/blob/current/guide/features/writeMany.md), [`grabMany()`](https://github.com/azurydev/cachu/blob/current/guide/features/grabMany.md) features
+- released **Hooks** for an easier way to extend cachu's functionality
