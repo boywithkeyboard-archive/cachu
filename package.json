@@ -1,22 +1,24 @@
 {
   "name": "cachu",
-  "version": "3.6.0",
+  "version": "4.0.0-canary.8",
   "description": "🦝 Simple, Minimalistic KV Cache",
-  "types": "./types/index.d.ts",
+  "types": "./types/node.d.ts",
   "exports": {
     ".": {
+      "types": "./types/node.d.ts",
       "import": "./build/node.js",
-      "types": "./types/node.d.ts"
+      "require": "./build/node.cjs"
     },
     "./browser": {
+      "types": "./types/browser.d.ts",
       "import": "./build/browser.js",
-      "types": "./types/browser.d.ts"
+      "require": "./build/browser.cjs"
     }
   },
   "scripts": {
     "dev": "tsc -w",
-    "build": "packu --node --esm -i src/node.ts -o build/node.js",
-    "build:browser": "packu --node --esm -i src/browser.ts -o build/browser.js",
+    "build": "packu --node --esm -i src/node.ts -o build/node.js && packu --node -i src/node.ts -o build/node.cjs",
+    "build:browser": "packu --node --esm -i src/browser.ts -o build/browser.js && packu --node -i src/browser.ts -o build/browser.cjs",
     "publish:patch": "tsc && npm run build && npm version patch && npm publish",
     "publish:minor": "tsc && npm run build && npm version minor && npm publish",
     "publish:major": "tsc && npm run build && npm version major && npm publish",
