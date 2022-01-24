@@ -49,8 +49,8 @@ export interface Hooks {
   }) => Promise<boolean>
 }
 
-export type Key = string | number | bigint | boolean | object | any[] | Buffer
-export type Value = string | number | bigint | boolean | object | any[] | Buffer
+export type Key = any
+export type Value = any
 
 export interface Entry {
   key: Key,
