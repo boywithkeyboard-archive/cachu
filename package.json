@@ -17,10 +17,10 @@
     "dev": "tsc -w",
     "build": "packu --node --esm -i src/node.ts -o build/node.js",
     "build:browser": "packu --node --esm -i src/browser.ts -o build/browser.js",
-    "publish:patch": "tsc && npm run build && npm run build:browser && npm version patch && npm publish",
-    "publish:minor": "tsc && npm run build && npm run build:browser && npm version minor && npm publish",
-    "publish:major": "tsc && npm run build && npm run build:browser && npm version major && npm publish",
-    "test": "node --experimental-vm-modules ./node_modules/.bin/jest"
+    "publish:patch": "tsc && npm run build && npm version patch && npm publish",
+    "publish:minor": "tsc && npm run build && npm version minor && npm publish",
+    "publish:major": "tsc && npm run build && npm version major && npm publish",
+    "test": "jest --detectOpenHandles"
   },
   "funding": {
     "type": "individual",
@@ -46,6 +46,7 @@
   "homepage": "https://github.com/azurydev/cachu#readme",
   "devDependencies": {
     "jest": "^27.4.7",
+    "jest-esm-transformer": "^1.0.0",
     "packu": "^2.1.0",
     "redis": "^4.0.2",
     "typescript": "^4.5.5"
