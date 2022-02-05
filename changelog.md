@@ -13,12 +13,14 @@
 
 #### Breaking Changes
 
-- renamed `set()` function to [`write()`](https://github.com/azurydev/cachu/blob/current/guide/features/write.md), `view()` to [`grab()`](https://github.com/azurydev/cachu/blob/current/guide/features/grab.md)
+- renamed `set()` function to [`write()`](https://github.com/azurydev/cachu/blob/current/guide/features/write.md) and `view()` to [`grab()`](https://github.com/azurydev/cachu/blob/current/guide/features/grab.md)
+- made package esm-only
+- migrated from Arrays to Maps for storing records
 
 #### Other Changes
 
 - updated year mentioned in license to `2022`
-- added `MiniCache`, `MemoryCache`
+- added `MiniCache` and `MemoryCache`
 
 #### New Features
 
