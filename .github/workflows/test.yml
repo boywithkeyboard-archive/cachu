@@ -24,4 +24,4 @@ jobs:
     - name: Build cachu
     - run: npm run build
     - name: Test Changes
-    - run: npm test --maxWorkers=2
+    - run: npm test
