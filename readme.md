@@ -1,74 +1,83 @@
 # cachu
 
-[![npm](https://img.shields.io/npm/v/cachu)](https://www.npmjs.com/package/cachu)
-[![npm](https://img.shields.io/npm/dt/cachu)](https://www.npmjs.com/package/cachu)
-[![GitHub last commit](https://img.shields.io/github/last-commit/azurystudios/cachu)](https://github.com/azurystudios/cachu)
-[![GitHub issues](https://img.shields.io/github/issues-raw/azurystudios/cachu)](https://github.com/azurystudios/cachu/issues)
-[![snyk vulnerabilities](https://snyk.io/test/github/azurystudios/cachu/badge.svg)](https://snyk.io/test/github/azurystudios/cachu)
-
-Simple, minimalistic key-value cache, created by [Azury](https://github.com/azurystudios).
-
-**Why should you use cachu?**
+**Simple, minimalistic key-value cache, created by [Azury](https://azury.dev).**
 
 - fully asynchronous
 - small n' easy
 - zero dependencies
 
-## Installation
+###### Make sure to read our 📃 [Changelog](https://github.com/azurydev/cachu/blob/current/changelog.md)
+
+## Setup
 
 ### Install the Package
 
-Install it using your favorite package manager.
+Install **cachu** using your favorite package manager.
 
 ```sh-session
 npm i cachu
 yarn add cachu
-pnpm add cachu
 ```
 
-### Create New Instance
+### Usage
 
 Just create a new instance, it's as easy as that!
 
 ```js
-import { Cachu } from 'cachu'
+import { MemoryCache } from 'cachu'
 
-const cache = new Cachu({
-  maxAmount: 10, // cache can contain up to 10 items
-  maxAge: 60 // delete items after a minute
+const cache = new MemoryCache({
+  maxAmount: 420, // cache can contain up to 420 records
+  maxAge: 60 // keep records for up to a minute
 })
 
-const demo = async () => {
-  await cache.set(123, 'hello world')
-  console.log(await cache.get(123))
-}
-demo()
+(async () => {
+  await cache.write(69, 'Hello World')
+  console.log(await cache.get(69)) // should give out 'Hello World'
+})()
 ```
+
+## Caches
+
+- [`MemoryCache`](https://github.com/azurydev/cachu/blob/current/guide/caches/MemoryCache.md)
+- [`MiniCache`](https://github.com/azurydev/cachu/blob/current/guide/caches/MiniCache.md)
 
 ## API
 
-### Configuration
+- ### Configuration
 
-- [`maxAge`](https://github.com/azurystudios/cachu/wiki/configuration#max-age) to set the **maximum age** for each item in the store
-- [`maxAmount`](https://github.com/azurystudios/cachu/wiki/configuration#max-amount) to set the **maximum size** for the store
+  - [`maxAge`](https://github.com/azurydev/cachu/blob/current/guide/configuration/maxAge.md) to set the **maximum age** for each record in the cache
+  - [`maxAmount`](https://github.com/azurydev/cachu/blob/current/guide/configuration/maxAmount.md) to set the **maximum size** for the cache
+  - [`overriding`](https://github.com/azurydev/cachu/blob/current/guide/configuration/overriding.md) to allow overriding of entries on reading
+  - [`hooks`](https://github.com/azurydev/cachu/blob/current/guide/configuration/hooks.md) to extend **cachu**'s functionality
 
-### Features
+- ### Features
 
-- [`set(key, value)`](https://github.com/azurystudios/cachu/wiki/features#set)
-- [`get(key)`](https://github.com/azurystudios/cachu/wiki/features#get)
-- [`update(key, value)`](https://github.com/azurystudios/cachu/wiki/features#update)
-- [`view(key)`](https://github.com/azurystudios/cachu/wiki/features#view)
-- [`purge(key)`](https://github.com/azurystudios/cachu/wiki/features#purge)
-- [`steal(key)`](https://github.com/azurystudios/cachu/wiki/features#steal)
-- [`has(key)`](https://github.com/azurystudios/cachu/wiki/features#has)
-- [`prune()`](https://github.com/azurystudios/cachu/wiki/features#prune)
-- [`destroy()`](https://github.com/azurystudios/cachu/wiki/features#destroy)
-- [`purgeMany(keys)`](https://github.com/azurystudios/cachu/wiki/features#purge-many)
-- [`getMany(keys)`](https://github.com/azurystudios/cachu/wiki/features#get-many)
-- [`stealMany(keys)`](https://github.com/azurystudios/cachu/wiki/features#steal-many)
-- [`getAmountOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-amount-of-items)
-- [`getManyByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#get-many-by-condition)
-- [`purgeManyByCondition(condition)`](https://github.com/azurystudios/cachu/wiki/features#purge-many-by-condition)
-- [`getValuesOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-values-of-items)
-- [`getKeysOfItems()`](https://github.com/azurystudios/cachu/wiki/features#get-keys-of-items)
-- [`each(action)`](https://github.com/azurystudios/cachu/wiki/features#each)
+  - [`write(key, value)`](https://github.com/azurydev/cachu/blob/current/guide/features/write.md)
+  - [`writeMany([{key, value}])`](https://github.com/azurydev/cachu/blob/current/guide/features/writeMany.md)
+  - [`get(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/get.md)
+  - [`getMany(keys)`](https://github.com/azurydev/cachu/blob/current/guide/features/getMany.md)
+  - [`update(key, value)`](https://github.com/azurydev/cachu/blob/current/guide/features/modify.md)
+  - [`updateMany([{key, value}])`](https://github.com/azurydev/cachu/blob/current/guide/features/modifyMany.md)
+  - [`grab(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/grab.md)
+  - [`grabMany(keys)`](https://github.com/azurydev/cachu/blob/current/guide/features/grabMany.md)
+  - [`purge(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/purge.md)
+  - [`purgeMany(keys)`](https://github.com/azurydev/cachu/blob/current/guide/features/purgeMany.md)
+  - [`steal(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/steal.md)
+  - [`stealMany(keys)`](https://github.com/azurydev/cachu/blob/current/guide/features/stealMany.md)
+  - [`has(key)`](https://github.com/azurydev/cachu/blob/current/guide/features/has.md)
+  - [`prune()`](https://github.com/azurydev/cachu/blob/current/guide/features/prune.md)
+  - [`getAmountOfEntries()`](https://github.com/azurydev/cachu/blob/current/guide/features/getAmountOfEntries.md)
+  - [`getValuesOfEntries()`](https://github.com/azurydev/cachu/blob/current/guide/features/getValuesOfEntries.md)
+  - [`getKeysOfEntries()`](https://github.com/azurydev/cachu/blob/current/guide/features/getKeysOfEntries.md)
+
+- ### Hooks
+
+  - [`preWriting`](https://github.com/azurydev/cachu/blob/current/guide/hooks/preWriting.md)
+  - [`preReading`](https://github.com/azurydev/cachu/blob/current/guide/hooks/preReading.md)
+  - [`preGrabbing`](https://github.com/azurydev/cachu/blob/current/guide/hooks/preGrabbing.md)
+  - [`preUpdating`](https://github.com/azurydev/cachu/blob/current/guide/hooks/preUpdating.md)
+  - [`preStealing`](https://github.com/azurydev/cachu/blob/current/guide/hooks/preStealing.md)
+  - [`prePurging`](https://github.com/azurydev/cachu/blob/current/guide/hooks/prePurging.md)
+  - [`prePruning`](https://github.com/azurydev/cachu/blob/current/guide/hooks/prePruning.md)
+  

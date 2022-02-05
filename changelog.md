@@ -1,126 +1,28 @@
-# cachu's changelog
+# changelog
 
-Available Releases:
+### Available Releases:
 
-- [v2.6.0](#v260)
-- [v2.5.0](#v250)
-- [v2.4.2](#v242)
-- [v2.4.1](#v241)
-- [v2.4.0](#v240)
-- [v2.3.0](#v230)
-- [v2.2.0](#v220)
-- [v2.1.1](#v211)
-- [v2.1.0](#v210)
-- [v2.0.3](#v203)
-- [v2.0.2](#v202)
-- [v2.0.1](#v201)
-- [v2.0.0](#v200)
+- #### v4
+  - [v4.0.0](#v400)
 
-## v2.6.1
+[Outdated Releases](https://github.com/azurydev/cachu/tree/current/changelog)
 
-- patched `jest` ***(dev-only)***
-- fixed typo in changelog ***(dev-only)***
-- removed types from github (again) ***(dev-only)***
-- added automated releases (just testing) ***(dev-only)***
+## Releases
 
-## v2.6.0
+### v4.0.0
 
-- removed `glob` dependency ***(dev-only)***
-- removed types from github ***(dev-only)***
-- edited ignored files
+#### Breaking Changes
 
-## v2.5.0
+- renamed `set()` function to [`write()`](https://github.com/azurydev/cachu/blob/current/guide/features/write.md) and `view()` to [`grab()`](https://github.com/azurydev/cachu/blob/current/guide/features/grab.md)
+- made package esm-only
+- migrated from Arrays to Maps for storing records
 
-- added `steal` and `stealMany` functions
-- removed `build` folder from github ***(dev-only)***
+#### Other Changes
 
-## v2.4.2
+- updated year mentioned in license to `2022`
+- added `MiniCache` and `MemoryCache`
 
-### Changes
+#### New Features
 
-- patched TypeScript
-- fixed changelog
-- edited package description
-
-## v2.4.1
-
-### Changes
-
-- changed build standard to `es2021` ***(results in less code)***
-- added `minify` script ***(dev-only)***
-- edited types ***(dev-only)***
-- renamed publish scripts ***(dev-only)***
-
-## v2.4.0
-
-### Changes
-
-- edited jsdoc declarations
-- edited unit tests
-- enhanced conditional querying
-- patched terser
-
-## v2.3.0
-
-### New
-
-- added jsdoc declarations
-- added unit tests
-
-## v2.2.0
-
-### Changes
-
-- removed global instance
-- edited engine requirements
-
-### Bug Fixes
-
-- made config optional
-
-## v2.1.1
-
-### Bug Fixes
-
-- fixed a minor issue
-
-## v2.1.0
-
-### Changes
-
-- added support for TypeScript
-- added type definitions
-
-## v2.0.3
-
-### Bug Fixes
-
-- fixed a small issue regarding default config
-
-## v2.0.2
-
-### Bug Fixes
-
-- fixed examples
-
-## v2.0.1
-
-### Changes
-
-- removed `jest`
-
-## v2.0.0
-
-### Changes
-
-- renamed functions
-- added global instance
-- added `purgeMany`, `getMany`, `purgeManyByCondition`, `getManyByCondition`, `getKeysOfItems`, `getValuesOfItems`, `getAmountOfItems`, and `each` functions
-- added engine requirements
-- added funding
-- minified package
-- made testing easier 
-
-### Bug Fixes
-
-- fixed deletion of expired items
+- added [`writeMany()`](https://github.com/azurydev/cachu/blob/current/guide/features/writeMany.md), [`grabMany()`](https://github.com/azurydev/cachu/blob/current/guide/features/grabMany.md) features
+- released **Hooks** for an easier way to extend cachu's functionality

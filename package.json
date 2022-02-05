@@ -1,16 +1,15 @@
 {
   "name": "cachu",
-  "version": "2.6.0",
-  "description": "Simple, Minimalistic KV Cache",
-  "main": "build/index.js",
-  "types": "types/index.d.ts",
+  "version": "4.0.0",
+  "description": "🦝 Simple, Minimalistic KV Cache",
+  "types": "./types/index.d.ts",
+  "exports": "./build/index.js",
   "scripts": {
-    "dev": "tsc -w",
-    "build": "esbuild src/index.ts --bundle --minify --platform=node --outfile=build/index.js",
-    "minify": "terser build/index.js --compress --mangle --output build/index.js",
-    "publish:patch": "npm run minify && npm version patch && npm publish",
-    "publish:minor": "npm run minify && npm version minor && npm publish",
-    "publish:major": "npm run minify && npm version major && npm publish",
+    "types": "tsc -w",
+    "build": "packu --node --esm -i src/index.ts -o build/index.js",
+    "publish:patch": "tsc && npm run build && npm version patch && npm publish",
+    "publish:minor": "tsc && npm run build && npm version minor && npm publish",
+    "publish:major": "tsc && npm run build && npm version major && npm publish",
     "test": "jest --detectOpenHandles"
   },
   "funding": {
@@ -19,29 +18,32 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azurystudios/cachu.git"
+    "url": "git+https://github.com/azurydev/cachu.git"
   },
   "keywords": [
-    "cache",
-    "minimalistic",
     "kv",
+    "cache",
     "easy-to-use",
-    "asynchronous"
+    "minimalistic",
+    "async",
+    "modules"
   ],
   "author": "Azury <hello@azury.dev> (https://azury.dev)",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/azurystudios/cachu/issues"
+    "url": "https://github.com/azurydev/cachu/issues"
   },
-  "homepage": "https://github.com/azurystudios/cachu#readme",
+  "homepage": "https://github.com/azurydev/cachu#readme",
   "devDependencies": {
-    "esbuild": "^0.14.1",
-    "jest": "^27.4.2",
-    "terser": "^5.9.0",
-    "typescript": "^4.4.4"
+    "jest": "^27.4.7",
+    "jest-esm-transformer": "^1.0.0",
+    "packu": "^2.1.0",
+    "redis": "^4.0.2",
+    "typescript": "^4.5.5"
   },
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=8.0.0"
-  }
+  },
+  "type": "module"
 }

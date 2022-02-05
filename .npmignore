@@ -1,6 +1,9 @@
-src
-test
-.github
+/src
+/test
+/.github
 .gitignore
 changelog.md
 tsconfig.json
+/changelog
+/guide
+jest.config.js
