@@ -2,8 +2,6 @@
 
 ## purgeMany()
 
-**Action:** `purge.many` *(passed by hooks)*
-
 #### Structure:
 
 ```js
@@ -17,7 +15,11 @@ purgeMany(keys)
 #### Example:
 
 ```js
+import { MemoryCache } from 'cachu'
+
 (async () => {
+  const cache = new MemoryCache()
+  
   // purge all entries
   await cache.purgeMany([])
   

@@ -5,23 +5,23 @@
 #### Structure:
 
 ```js
-write(key, value, maxAge)
+write(key, value)
 ```
 
 #### Attributes:
 
-- **`key`** - can be of any type except `undefined` or `null` and must be unique
-- **`value`** - can be of any type, except `undefined` or `null`
+- **`key`** - must be unique [(read more)](https://github.com/azurydev/cachu/blob/current/guide/types.md#key)
+- **`value`** [(read more)](https://github.com/azurydev/cachu/blob/current/guide/types.md#value)
 <!-- - **`maxAge`** - the maximum time in seconds the record should be queryable -->
 
 #### Example:
 
 ```js
-import Cachu from 'cachu'
-
-const cache = new Cachu()
+import { MemoryCache } from 'cachu'
 
 (async () => {
-  cache.write(123, 'Hello World', 60)
+  const cache = new MemoryCache()
+
+  cache.write(123, 'Hello World')
 })()
 ```
