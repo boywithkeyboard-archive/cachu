@@ -3,62 +3,59 @@ export interface Hooks {
    * A function getting fired before adding a new entry to the cache.
    */
   preWriting?: ({ entry }: {
-    entry: Entry
-  }) => Promise<Entry | null>
+    entry: RawEntry
+  }) => Promise<RawEntry | null>
 
   /**
    * A function getting fired before getting an entry from the cache.
    */
   preReading?: ({ keyOfTargetedEntry }: {
-    keyOfTargetedEntry: Key
+    keyOfTargetedEntry: any
   }) => Promise<boolean>
 
   /**
    * A function getting fired before getting an entry from the cache.
    */
   preGrabbing?: ({ keyOfTargetedEntry }: {
-    keyOfTargetedEntry: Key
+    keyOfTargetedEntry: any
   }) => Promise<boolean>
 
   /**
    * A function getting fired before updating an entry in the cache.
    */
   preUpdating?: ({ keyOfTargetedEntry }: {
-    keyOfTargetedEntry: Key
+    keyOfTargetedEntry: any
   }) => Promise<boolean>
 
   /**
    * A function getting fired before stealing an entry from the cache.
    */
   preStealing?: ({ keyOfTargetedEntry }: {
-    keyOfTargetedEntry: Key
+    keyOfTargetedEntry: any
   }) => Promise<boolean>
 
   /**
    * A function getting fired before purging an entry from the cache.
    */
   prePurging?: ({ keyOfTargetedEntry }: {
-    keyOfTargetedEntry: Key
+    keyOfTargetedEntry: any
   }) => Promise<boolean>
 
   /**
    * A function getting fired before pruning the cache.
    */
   prePruning?: ({ entries }: {
-    entries: Entry[]
+    entries: RawEntry[]
   }) => Promise<boolean>
 }
 
-export type Key = any
-export type Value = any
-
-export interface Entry {
-  key: Key,
-  value: Value,
+export interface RawEntry {
+  key: any,
+  value: any,
   createdAt: number
 }
 
-export interface KeyValue {
-  key: Key,
-  value: Value
+export interface Entry {
+  key: any,
+  value: any
 }
