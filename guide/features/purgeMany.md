@@ -2,6 +2,8 @@
 
 ## purgeMany()
 
+Purge many or all entries from the cache.
+
 #### Structure:
 
 ```js

@@ -2,6 +2,8 @@
 
 ## write()
 
+Create a new entry in the cache.
+
 #### Structure:
 
 ```js
