@@ -2,23 +2,11 @@
   "name": "cachu",
   "version": "4.0.0-canary.8",
   "description": "🦝 Simple, Minimalistic KV Cache",
-  "types": "./types/node.d.ts",
-  "exports": {
-    ".": {
-      "types": "./types/node.d.ts",
-      "import": "./build/node.js",
-      "require": "./build/node.cjs"
-    },
-    "./browser": {
-      "types": "./types/browser.d.ts",
-      "import": "./build/browser.js",
-      "require": "./build/browser.cjs"
-    }
-  },
+  "types": "./types/index.d.ts",
+  "exports": "./build/index.js",
   "scripts": {
     "types": "tsc -w",
-    "build": "packu --node --esm -i src/node.ts -o build/node.js && packu --node -i src/node.ts -o build/node.cjs",
-    "build:browser": "packu --node --esm -i src/browser.ts -o build/browser.js && packu --node -i src/browser.ts -o build/browser.cjs",
+    "build": "packu --node --esm -i src/index.ts -o build/index.js",
     "publish:patch": "tsc && npm run build && npm version patch && npm publish",
     "publish:minor": "tsc && npm run build && npm version minor && npm publish",
     "publish:major": "tsc && npm run build && npm version major && npm publish",
@@ -38,7 +26,7 @@
     "easy-to-use",
     "minimalistic",
     "async",
-    "modular"
+    "modules"
   ],
   "author": "Azury <hello@azury.dev> (https://azury.dev)",
   "license": "Apache-2.0",
