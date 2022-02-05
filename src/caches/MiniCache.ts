@@ -1,5 +1,3 @@
-import { Key, Value } from '../types'
-
 interface Configuration {
   /**
    * Set the maximum age for cache entries.
@@ -14,19 +12,19 @@ interface Configuration {
   /**
    * Allow overriding of entries on writing.
    */
-  overrideEntries?: boolean
+  overriding?: boolean
 }
 
-export default class MemoryCache {
+export default class MiniCache {
   private maxAge: number
   private maxAmount: number
-  private overrideEntries: boolean
-  private store: Map<Key, { value: Value, createdAt: number }>
+  private overriding: boolean
+  private store: Map<any, { value: any, createdAt: number }>
 
   /**
-   * Create a new `MemoryCache`.
+   * Create a new `MiniCache`.
    * 
-   * [📖 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/caches/MemoryCache.md)
+   * [📒 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/caches/MemoryCache.md)
    */
   constructor(config?: Configuration) {
     if (!config) config = {}
@@ -38,7 +36,7 @@ export default class MemoryCache {
     this.maxAmount = config.maxAmount ?? Infinity
 
     // if entry exists already, override existing one on writing
-    this.overrideEntries = (config.overrideEntries === true)
+    this.overriding = (config.overriding === true)
 
     // store (holding all entries)
     this.store = new Map()
@@ -52,7 +50,7 @@ export default class MemoryCache {
 
   private purgeOldestEntry = async () => {
     let oldestAge = 0
-    let keyOfOldestEntry: Key = 0
+    let keyOfOldestEntry: any
 
     this.store.forEach(async (value, key) => {
       if (value.createdAt > oldestAge) {
@@ -67,9 +65,9 @@ export default class MemoryCache {
   /**
    * Create a new entry in the cache.
    * 
-   * [📖 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/write.md)
+   * [📒 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/write.md)
    */
-  write = async (key: Key, value: Value) => {
+  write = async (key: any, value: any) => {
     // create new entry
     let newEntry: any = {
       key: key,
@@ -78,7 +76,7 @@ export default class MemoryCache {
     }
 
     // check uniqueness of key
-    if (this.store.has(key) && !this.overrideEntries) return
+    if (this.store.has(key) && !this.overriding) return
   
     // remove outdated entries
     await this.purgeOutdatedEntries()
@@ -93,9 +91,9 @@ export default class MemoryCache {
   /**
    * Read an entry from the cache.
    * 
-   * [📖 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/get.md)
+   * [📒 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/get.md)
    */
-  get = async (key: Key) => {
+  get = async (key: any) => {
     await this.purgeOutdatedEntries()
 
     const entry = this.store.get(key)
@@ -107,9 +105,9 @@ export default class MemoryCache {
   /**
    * Grab an entry from the cache.
    * 
-   * [📖 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/grab.md)
+   * [📒 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/grab.md)
    */
-  grab = async (key: Key) => {
+  grab = async (key: any) => {
     const entry = this.store.get(key)
   
     if (entry) return entry.value
@@ -119,9 +117,9 @@ export default class MemoryCache {
   /**
    * Steal an entry from the cache.
    * 
-   * [📖 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/steal.md)
+   * [📒 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/steal.md)
    */
-  steal = async (key: Key) => {
+  steal = async (key: any) => {
     await this.purgeOutdatedEntries()
 
     // get entry from cache
@@ -139,9 +137,9 @@ export default class MemoryCache {
   /**
    * Modify an entry in the cache.
    * 
-   * [📖 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/update.md)
+   * [📒 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/update.md)
    */
-  update = async (key: Key, value: Value) => { 
+  update = async (key: any, value: any) => { 
     if (!this.store.has(key)) return
 
     this.store.set(key, {
@@ -153,25 +151,25 @@ export default class MemoryCache {
   /**
    * Purge an entry from the cache.
    * 
-   * [📖 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/purge.md)
+   * [📒 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/purge.md)
    */
-  purge = async (key: Key) => {
+  purge = async (key: any) => {
     this.store.delete(key)
   }
 
   /**
    * Check whether the cache has a specific entry.
    * 
-   * [📖 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/has.md)
+   * [📒 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/has.md)
    */
-  has = async (key: Key) => {
+  has = async (key: any) => {
     return this.store.has(key)
   }
 
   /**
    * Purge all stale entries manually.
    * 
-   * [📖 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/prune.md)
+   * [📒 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/prune.md)
    */
   prune = async () => {
     await this.purgeOutdatedEntries()
@@ -180,7 +178,7 @@ export default class MemoryCache {
   /**
    * Calculates the amount of memory in bytes consumed by the cache.
    * 
-   * [📖 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/getConsumedMemory.md)
+   * [📒 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/getConsumedMemory.md)
    */
   getConsumedMemory = async () => {
     const values = [...this.store.values()].toString()
