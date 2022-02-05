@@ -1,4 +1,4 @@
-import { MiniCache } from '../build/node.js'
+import { MiniCache } from '../build/index.js'
 import { generateEntries } from './utilities'
 
 test('1. write, read and check for entries', async () => {

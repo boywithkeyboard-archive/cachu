@@ -1,4 +1,4 @@
-import { MemoryCache } from '../build/node.js'
+import { MemoryCache } from '../build/index.js'
 import { generateEntries } from './utilities'
 
 test('1. write (many), read (many) and check for entries', async () => {
