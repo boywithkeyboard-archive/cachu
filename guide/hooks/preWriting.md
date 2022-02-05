@@ -10,7 +10,7 @@ async ({ entry }) => Promise<RawEntry | null>
 
 #### Attributes:
 
-- **`entry`** - the [`raw entry`](https://github.com/azurydev/cachu/blob/current/guide/types.md#rawentry)
+- **`entry`** - the [`raw entry`](https://github.com/azurydev/cachu/blob/current/guide/types.md#rawentry) that should be added to the cache
 
 #### Example:
 
