@@ -3,7 +3,7 @@ import { generateEntries } from './utilities'
 
 test('1. write, read and check for entries', async () => {
   const cache = new MiniCache({
-    maxAge: 100 // 100 seconds
+    maxAge: 1 // a second
   })
 
   // GENERATE 2 ENTRIES
@@ -30,13 +30,11 @@ test('1. write, read and check for entries', async () => {
     expect(await cache.has('third')).toBe(true)
 
     expect(await cache.get('third')).toBe(69)
-  }, 101 * 1000)
+  }, 1 * 1001)
 })
 
 test('2. grab and steal entries', async () => {
-  const cache = new MiniCache({
-    maxAge: 100 // 100 seconds
-  })
+  const cache = new MiniCache()
 
   // GENERATE 2 ENTRIES
   await generateEntries(cache, 2)
@@ -72,7 +70,9 @@ test('3. update and purge entries', async () => {
 })
 
 test('4. prune cache', async () => {
-  const cache = new MiniCache()
+  const cache = new MiniCache({
+    maxAge: 1
+  })
 
   // GENERATE 6 ENTRIES
   await generateEntries(cache, 6)
@@ -98,7 +98,7 @@ test('4. prune cache', async () => {
     expect(await cache.has(5)).toBe(false)
     expect(await cache.has(6)).toBe(false)
     expect(await cache.has(7)).toBe(true)
-  }, 101 * 1000)
+  }, 1 * 1001)
 })
 
 test('5. get consumed memory', async () => {

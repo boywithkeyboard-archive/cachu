@@ -3,7 +3,7 @@ import { generateEntries } from './utilities'
 
 test('1. write (many), read (many) and check for entries', async () => {
   const cache = new MemoryCache({
-    maxAge: 100 // 100 seconds
+    maxAge: 1 // a second
   })
 
   // TEST OUT SOME DIFFERENT TYPES
@@ -38,13 +38,11 @@ test('1. write (many), read (many) and check for entries', async () => {
     expect(await cache.has('third')).toBe(true)
 
     expect(await cache.get('third')).toBe(69)
-  }, 101 * 1000)
+  }, 1 * 1001)
 })
 
 test('2. grab (many) and steal (many) entries', async () => {
-  const cache = new MemoryCache({
-    maxAge: 100 // 100 seconds
-  })
+  const cache = new MemoryCache()
 
   // GENERATE 8 ENTRIES
   await generateEntries(cache, 8)
@@ -160,7 +158,9 @@ test('4. get keys, values, and amount of entries', async () => {
 })
 
 test('5. prune cache', async () => {
-  const cache = new MemoryCache()
+  const cache = new MemoryCache({
+    maxAge: 1 // a second
+  })
 
   // GENERATE 6 ENTRIES
   await generateEntries(cache, 6)
@@ -176,7 +176,7 @@ test('5. prune cache', async () => {
     // ONLY THE ENTRY WITH KEY '7' SHOULD BE LEFT
     expect(await cache.getAmountOfEntries()).toBe(1)
     expect(await cache.has(7)).toBe(true)
-  }, 101 * 1000)
+  }, 1 * 1001)
 })
 
 test('6. get consumed memory', async () => {
