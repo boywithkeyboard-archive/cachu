@@ -2,6 +2,8 @@
 
 ## preWriting
 
+> ℹ️ The `preWriting` hook gets fired before the `write()` and `writeMany()` functions.
+
 #### Structure:
 
 ```js

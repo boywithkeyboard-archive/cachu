@@ -2,6 +2,8 @@
 
 ## preReading
 
+> ℹ️ The `preReading` hook gets fired before the `get()` and `getMany()` functions.
+
 #### Structure:
 
 ```js
@@ -19,7 +21,7 @@ import { MemoryCache } from 'cachu'
 
 const cache = new MemoryCache({
   hooks: {
-    preWriting: async ({ keyOfTargetedEntry }) => {
+    preReading: async ({ keyOfTargetedEntry }) => {
       // must return a boolean whether the entry should be returned
       return (typeof keyOfTargetedEntry === 'string') // only return entries with a string as their key on reading
     }
