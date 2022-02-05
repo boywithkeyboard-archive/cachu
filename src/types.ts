@@ -14,7 +14,7 @@ export interface Hooks {
   }) => Promise<boolean>
 
   /**
-   * A function getting fired before getting an entry from the cache.
+   * A function getting fired before grabbing an entry from the cache.
    */
   preGrabbing?: ({ keyOfTargetedEntry }: {
     keyOfTargetedEntry: any
