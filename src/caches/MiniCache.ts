@@ -24,7 +24,7 @@ export default class MiniCache {
   /**
    * Create a new `MiniCache`.
    * 
-   * [📒 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/caches/MemoryCache.md)
+   * [📒 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/caches/MiniCache.md)
    */
   constructor(config?: Configuration) {
     if (!config) config = {}
