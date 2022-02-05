@@ -1,4 +1,4 @@
-[**» Back to Overview**](https://github.com/azurydev/cachu/tree/current#features)
+[**» Back to Overview**](https://github.com/azurydev/cachu#features)
 
 ## write()
 
@@ -12,7 +12,7 @@ write(key, value, maxAge)
 
 - **`key`** - can be of any type except `undefined` or `null` and must be unique
 - **`value`** - can be of any type, except `undefined` or `null`
-- **`maxAge`** - the maximum time in seconds the record should be queryable
+<!-- - **`maxAge`** - the maximum time in seconds the record should be queryable -->
 
 #### Example:
 

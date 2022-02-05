@@ -1,4 +1,4 @@
-[**» Back to Overview**](https://github.com/azurydev/cachu/tree/current#caches)
+[**» Back to Overview**](https://github.com/azurydev/cachu#caches)
 
 ## Memory Cache
 
