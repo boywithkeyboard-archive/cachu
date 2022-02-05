@@ -392,7 +392,7 @@ export default class MemoryCache {
         })
       }
 
-      await this.hooks.prePruning({ entries: structuredEntries })
+      if (!(await this.hooks.prePruning({ entries: structuredEntries }))) return
     }
 
     await this.purgeOutdatedEntries()
