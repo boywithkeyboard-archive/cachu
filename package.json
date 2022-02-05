@@ -16,7 +16,7 @@
     }
   },
   "scripts": {
-    "dev": "tsc -w",
+    "types": "tsc -w",
     "build": "packu --node --esm -i src/node.ts -o build/node.js && packu --node -i src/node.ts -o build/node.cjs",
     "build:browser": "packu --node --esm -i src/browser.ts -o build/browser.js && packu --node -i src/browser.ts -o build/browser.cjs",
     "publish:patch": "tsc && npm run build && npm version patch && npm publish",
