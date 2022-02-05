@@ -12,7 +12,7 @@ purgeMany(keys)
 
 #### Attributes:
 
-- **`keys`** - an array of [`Keys`](https://github.com/azurydev/cachu/blob/current/guide/types/key.md)
+- **`keys`** - an array of [`keys`](https://github.com/azurydev/cachu/blob/current/guide/types.md#key)
 
 #### Example:
 
