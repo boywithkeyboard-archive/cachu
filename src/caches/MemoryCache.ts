@@ -404,8 +404,8 @@ export default class MemoryCache {
    * [📖 Read the Guide](https://github.com/azurydev/cachu/blob/current/guide/features/getConsumedMemory.md)
    */
   getConsumedMemory = async () => {
-    const values = [...this.store.values()].toString()
-    const buffer = Buffer.from(values)
+    const data = [...this.store.keys()].toString() + [...this.store.values()].toString()
+    const buffer = Buffer.from(data)
     return Buffer.byteLength(buffer)
   }
 }
