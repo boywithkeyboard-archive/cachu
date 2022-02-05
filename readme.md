@@ -48,7 +48,7 @@ const cache = new MemoryCache({
 
   - [`maxAge`](https://github.com/azurydev/cachu/blob/current/guide/configuration/maxAge.md) to set the **maximum age** for each record in the cache
   - [`maxAmount`](https://github.com/azurydev/cachu/blob/current/guide/configuration/maxAmount.md) to set the **maximum size** for the cache
-  - [`overrideEntries`](https://github.com/azurydev/cachu/blob/current/guide/configuration/overrideEntries.md) to allow overriding of entries on reading
+  - [`overriding`](https://github.com/azurydev/cachu/blob/current/guide/configuration/overriding.md) to allow overriding of entries on reading
   - [`hooks`](https://github.com/azurydev/cachu/blob/current/guide/configuration/hooks.md) to extend **cachu**'s functionality
 
 - ### Features
@@ -70,3 +70,14 @@ const cache = new MemoryCache({
   - [`getAmountOfEntries()`](https://github.com/azurydev/cachu/blob/current/guide/features/getAmountOfEntries.md)
   - [`getValuesOfEntries()`](https://github.com/azurydev/cachu/blob/current/guide/features/getValuesOfEntries.md)
   - [`getKeysOfEntries()`](https://github.com/azurydev/cachu/blob/current/guide/features/getKeysOfEntries.md)
+
+- ### Hooks
+
+  - [`preWriting`](https://github.com/azurydev/cachu/blob/current/guide/hooks/preWriting.md)
+  - [`preReading`](https://github.com/azurydev/cachu/blob/current/guide/hooks/preReading.md)
+  - [`preGrabbing`](https://github.com/azurydev/cachu/blob/current/guide/hooks/preGrabbing.md)
+  - [`preUpdating`](https://github.com/azurydev/cachu/blob/current/guide/hooks/preUpdating.md)
+  - [`preStealing`](https://github.com/azurydev/cachu/blob/current/guide/hooks/preStealing.md)
+  - [`prePurging`](https://github.com/azurydev/cachu/blob/current/guide/hooks/prePurging.md)
+  - [`prePruning`](https://github.com/azurydev/cachu/blob/current/guide/hooks/prePruning.md)
+  
