@@ -10,7 +10,7 @@ Create many new entries in the cache.
 writeMany(entries)
 ```
 
-#### Attributes:
+#### Parameters:
 
 - **`entries`** - an array of [entries](https://github.com/azurydev/cachu/blob/current/guide/types.md#entry)
 

@@ -10,7 +10,7 @@ Purge many or all entries from the cache.
 purgeMany(keys)
 ```
 
-#### Attributes:
+#### Parameters:
 
 - **`keys`** - an array of [`keys`](https://github.com/azurydev/cachu/blob/current/guide/types.md#key)
 

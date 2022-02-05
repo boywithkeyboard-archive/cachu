@@ -10,7 +10,7 @@ Create a new entry in the cache.
 write(key, value)
 ```
 
-#### Attributes:
+#### Parameters:
 
 - **`key`** - must be unique [(read more)](https://github.com/azurydev/cachu/blob/current/guide/types.md#key)
 - **`value`** [(read more)](https://github.com/azurydev/cachu/blob/current/guide/types.md#value)

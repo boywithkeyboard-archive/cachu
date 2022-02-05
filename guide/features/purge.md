@@ -10,7 +10,7 @@ Purge an entry from the cache.
 purge(key)
 ```
 
-#### Attributes:
+#### Parameters:
 
 - **`key`** - the [`key`](https://github.com/azurydev/cachu/blob/current/guide/types.md#key) of the targeted entry
 
