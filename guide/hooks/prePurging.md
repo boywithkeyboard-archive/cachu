@@ -23,7 +23,7 @@ const cache = new MemoryCache({
   hooks: {
     prePurging: async ({ keyOfTargetedEntry }) => {
       // must return a boolean whether the entry should be purged from the cache
-      return (typeof keyOfTargetedEntry === 'string') // only return entries with a string as their key on reading
+      return (typeof keyOfTargetedEntry === 'string') // only purge entries with a string as their key
     }
   }
 })
