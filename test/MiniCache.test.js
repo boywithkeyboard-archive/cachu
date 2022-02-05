@@ -71,7 +71,7 @@ test('3. update and purge entries', async () => {
   await cache.update(99, 'lol')
 })
 
-test('5. prune cache', async () => {
+test('4. prune cache', async () => {
   const cache = new MiniCache()
 
   // GENERATE 6 ENTRIES
@@ -101,7 +101,7 @@ test('5. prune cache', async () => {
   }, 101 * 1000)
 })
 
-test('6. get consumed memory', async () => {
+test('5. get consumed memory', async () => {
   const cache = new MiniCache()
   expect(typeof (await cache.getConsumedMemory())).toBe('number')
 })
