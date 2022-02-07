@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/azurydev/cachu#readme",
   "devDependencies": {
-    "jest": "^27.4.7",
+    "jest": "^27.5.0",
     "jest-esm-transformer": "^1.0.0",
     "packu": "^2.1.0",
     "redis": "^4.0.2",
