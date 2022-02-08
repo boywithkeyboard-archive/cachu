@@ -1,6 +1,6 @@
 {
   "name": "cachu",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "🦝 Simple, Minimalistic KV Cache",
   "types": "./types/index.d.ts",
   "exports": "./build/index.js",
