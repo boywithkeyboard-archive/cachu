@@ -1,12 +1,12 @@
 # changelog
 
-### Available Releases:
+#### Available Releases:
 
-- #### v4
-  - [v4.0.1](#v401)
-  - [v4.0.0](#v400)
+- ### v4
+  - [**v4.0.1**](#v401)
+  - [**v4.0.0**](#v400)
 
-[Outdated Releases](https://github.com/azurydev/cachu/tree/current/changelog)
+###### [» Archived Releases «](https://github.com/azurydev/cachu/tree/current/changelog)
 
 ## Releases
 
@@ -14,7 +14,7 @@
 
 #### New Features:
 
-- added ci via github actions
+- added CI via Github Actions
 
 #### Changes:
 
