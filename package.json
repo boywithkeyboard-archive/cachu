@@ -39,7 +39,7 @@
     "jest-esm-transformer": "^1.0.0",
     "packu": "^2.1.0",
     "redis": "^4.0.4",
-    "typescript": "^4.5.5"
+    "typescript": "^4.6.2"
   },
   "engines": {
     "node": ">=16.0.0",
