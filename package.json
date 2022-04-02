@@ -22,6 +22,7 @@
   },
   "keywords": [
     "kv",
+    "asynchronous",
     "cache",
     "easy-to-use",
     "modules"
