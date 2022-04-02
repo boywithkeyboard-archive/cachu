@@ -17,6 +17,11 @@ npm i cachu
 yarn add cachu
 ```
 
+Alternatively, you can also install one of our other packages:
+
+- [**@cachu/ts**](https://npm.im/@cachu/ts)
+- [**@cachu/esm**](https://npm.im/@cachu/esm)
+
 ### Usage
 
 Just create a new cache, it's as easy as that!
