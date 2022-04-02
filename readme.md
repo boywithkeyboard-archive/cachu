@@ -45,7 +45,6 @@ import { MemoryCache } from 'cachu'
 - [`MemoryCache`](/guide/caches/MemoryCache.md)
 - [`BrowserCache`](/guide/caches/BrowserCache.md)
 - [`DiskCache`](/guide/caches/DiskCache.md)
-- [`FileCache`](/guide/caches/FileCache.md)
 
 ## API
 
