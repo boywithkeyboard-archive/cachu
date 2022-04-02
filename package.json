@@ -1,12 +1,12 @@
 {
   "name": "cachu",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "🦝 Simple, Minimalistic KV Cache",
   "types": "./types/index.d.ts",
-  "exports": "./build/index.js",
+  "exports": "./dist/index.js",
   "scripts": {
     "types": "tsc -w",
-    "build": "packu --node --esm -i src/index.ts -o build/index.js",
+    "build": "esbuild src/index.ts --bundle --minify --format=cjs --outfile=dist/index.js",
     "publish:patch": "tsc && npm run build && npm version patch && npm publish",
     "publish:minor": "tsc && npm run build && npm version minor && npm publish",
     "publish:major": "tsc && npm run build && npm version major && npm publish",
@@ -24,8 +24,6 @@
     "kv",
     "cache",
     "easy-to-use",
-    "minimalistic",
-    "async",
     "modules"
   ],
   "author": "Azury <hello@azury.dev> (https://azury.dev)",
@@ -36,16 +34,15 @@
   "homepage": "https://github.com/azurydev/cachu#readme",
   "devDependencies": {
     "@types/ms": "^0.7.31",
+    "esbuild": "^0.14.30",
     "jest": "^27.5.1",
     "jest-esm-transformer": "^1.0.0",
     "ms": "^2.1.3",
-    "packu": "^2.1.0",
-    "redis": "^4.0.4",
-    "typescript": "^4.5.5"
+    "redis": "^4.0.6",
+    "typescript": "^4.6.3"
   },
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=8.0.0"
-  },
-  "type": "module"
+    "node": ">=16",
+    "npm": ">=8"
+  }
 }
