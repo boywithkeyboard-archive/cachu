@@ -1,5 +1,4 @@
-export default {
-  transform: {
-    '\\.m?jsx?$': 'jest-esm-transformer'
-  }
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
 }
