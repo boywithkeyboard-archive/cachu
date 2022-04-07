@@ -13,6 +13,7 @@
 #### New Features:
 
 - added `recent()` feature to retrieve the most recently modified/added record
+- added `ms` for milliseconds conversion
 
 ## v4
 
