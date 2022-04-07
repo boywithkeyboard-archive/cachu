@@ -14,6 +14,13 @@
 
 - added `recent()` feature to retrieve the most recently modified/added record
 - added `ms` for milliseconds conversion
+- added a `BrowserCache` for simplified dealing with session storage
+
+#### Changes:
+
+- upgraded all dependencies to their latest release
+- replaced `packu` with `esbuild`
+- migrated to `ts-jest` for testing
 
 ## v4
 
