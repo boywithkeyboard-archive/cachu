@@ -3,13 +3,17 @@
   "version": "5.0.0",
   "description": "🦝 Simple, Minimalistic KV Cache",
   "types": "./types/index.d.ts",
-  "exports": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./browser": "./dist/browser.js"
+  },
   "scripts": {
     "types": "tsc -w",
-    "build": "esbuild src/index.ts --bundle --minify --format=cjs --outfile=dist/index.js",
-    "publish:patch": "tsc && npm run build && npm version patch && npm publish",
-    "publish:minor": "tsc && npm run build && npm version minor && npm publish",
-    "publish:major": "tsc && npm run build && npm version major && npm publish",
+    "build:node": "esbuild src/node.ts --bundle --minify --format=cjs --outfile=dist/node.js",
+    "build:browser": "esbuild src/browser.ts --bundle --minify --format=cjs --outfile=dist/browser.js",
+    "publish:patch": "tsc && npm run build:node && npm run build:browser && npm version patch && npm publish",
+    "publish:minor": "tsc && npm run build:node && npm run build:browser && npm version minor && npm publish",
+    "publish:major": "tsc && npm run build:node && npm run build:browser && npm version major && npm publish",
     "test": "jest --detectOpenHandles"
   },
   "funding": {
