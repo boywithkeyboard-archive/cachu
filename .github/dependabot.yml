@@ -4,6 +4,6 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
-    open-pull-requests-limit: 100
-    target-branch: 'canary'
+    open-pull-requests-limit: 99
+    target-branch: 'dev'
     versioning-strategy: 'increase'
