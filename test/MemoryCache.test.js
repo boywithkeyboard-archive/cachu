@@ -117,10 +117,13 @@ test('update and updateMany', async () => {
   expect((await cache.get(3)).value).toBe('unicorn')
 
   const oldAge = (await cache.get(4)).age
-  await cache.update(4, 'something different', {
-    updateAge: true
-  })
-  expect((await cache.get(4)).age !== oldAge).toBe(true)
+  
+  setTimeout(async () => {
+    await cache.update(4, 'something different', {
+      updateAge: true
+    })
+    expect((await cache.get(4)).age !== oldAge).toBe(true)
+  }, 5) // 5 ms
 })
 
 test('delete and deleteMany', async () => {
