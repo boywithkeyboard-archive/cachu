@@ -14,8 +14,6 @@
 
 - added `recent()` feature to retrieve the most recently modified/added record
 - added `ms` for milliseconds conversion
-- added a `BrowserCache` for simplified dealing with session storage
-- added a `RedisCache` for simplified dealing with redis
 
 #### Changes:
 
