@@ -2,34 +2,26 @@
 
 ## update()
 
-Modify an entry in the cache.
+Update a record in the cache.
 
 #### Structure:
 
 ```js
-update(key, value)
+update(key, value, config)
 ```
 
 #### Parameters:
 
-- **`key`** - the [key](https://github.com/azurydev/cachu/blob/current/guide/types.md#key) of the targeted entry
-- **`value`** some new [value](https://github.com/azurydev/cachu/blob/current/guide/types.md#value)
+- `key` - the key of the target
+- `value` the new value
+- `config` *(optional)*
+  - `updateAge` - update the age of the record accordingly
 
 #### Example:
 
 ```js
-import { MemoryCache } from 'cachu'
-
-(async () => {
-  const cache = new MemoryCache()
-
-  // create a entry
-  await cache.write(1, 'Hello World')
-
-  // modify the entry
-  await cache.update(1, 'Hello Earth')
-
-  // should give out 'Hello Earth' on console
-  console.log(await cache.get(1))
-})()
+// update the value and age of a record
+await cache.update(123, 'New Value', {
+  updateAge: true
+})
 ```

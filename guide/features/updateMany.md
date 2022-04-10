@@ -2,51 +2,29 @@
 
 ## updateMany()
 
-Modify many entries in the cache.
+Update many records in the cache.
 
 #### Structure:
 
 ```js
-updateMany(entries)
+updateMany([[key, value]], config)
 ```
 
 #### Parameters:
 
-- **`entries`** - an array of [entries](https://github.com/azurydev/cachu/blob/current/guide/types.md#entry)
+- `key` - the key of the target
+- `value` the new value
+- `config` *(optional)*
+  - `updateAge` - update the age of the records accordingly
 
 #### Example:
 
 ```js
-import { MemoryCache } from 'cachu'
-
-(async () => {
-  const cache = new MemoryCache()
-
-  // write some entries
-  await cache.writeMany([
-    {
-      key: 1,
-      value: 'Hello World'
-    },
-    {
-      key: 2,
-      value: 'Hello Earth'
-    }
-  ])
-
-  // modify the entries
-  await cache.updateMany([
-    {
-      key: 1,
-      value: 'Hello Programmers'
-    },
-    {
-      key: 2,
-      value: 'Hello Github'
-    }
-  ])
-
-  // should return ['Hello Programmers', 'Hello Github']
-  await cache.getMany([1, 2])
-})()
+// update the value and age of many records
+await cache.updateMany([
+  [123, 'New Value'],
+  [456, 'Another New Value']
+], {
+  updateAge: true
+})
 ```
