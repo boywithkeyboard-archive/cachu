@@ -1,19 +1,10 @@
 {
   "name": "cachu",
-  "version": "5.0.0-canary.1",
+  "version": "5.0.0-canary.2",
   "description": "🦝 Simple, Minimalistic KV Cache",
+  "types": "./types/node.d.ts",
   "exports": {
-    ".": {
-      "require": "./dist/node.js",
-      "import": "./dist/node.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "exported": [
-        "types/node"
-      ]
-    }
+    ".": "./dist/node.js"
   },
   "scripts": {
     "types": "tsc -w",
