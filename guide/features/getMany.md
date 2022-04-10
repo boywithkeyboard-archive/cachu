@@ -16,6 +16,7 @@ getMany([keys], config)
 - `config`
   - `validate` - validate age of records
   - `delete` - delete records afterwards
+  - `reverse` - read records in reverse order
 
 ### Response:
 
