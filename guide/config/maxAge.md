@@ -2,20 +2,28 @@
 
 ## maxAge
 
-Set the maximum age for cache entries (in seconds).
+Set the global age limit for cache records (in seconds).
 
-By default, `maxAge` is **600**.
+**Default Value:** `600`
 
-#### Example:
+### Examples:
 
 ```js
 import { MemoryCache } from 'cachu'
 
 const cache = MemoryCache({
-  maxAge: 600 // 10 minutes
-})
-
-const cache = MemoryCache({
-  maxAge: '10m' // 10 minutes
+  maxAge: 15 * 60 // 15 minutes
 })
 ```
+
+Alternatively, you can also use a readable time format.
+
+```js
+import { MemoryCache } from 'cachu'
+
+const cache = MemoryCache({
+  maxAge: '15m' // 15 minutes
+})
+```
+
+Check out [vercel/ms](https://github.com/vercel/ms) for more examples.
