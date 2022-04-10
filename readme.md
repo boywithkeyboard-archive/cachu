@@ -17,11 +17,6 @@ npm i cachu
 yarn add cachu
 ```
 
-Alternatively, you can also install one of our other packages:
-
-- [**@cachu/ts**](https://npm.im/@cachu/ts)
-- [**@cachu/esm**](https://npm.im/@cachu/esm)
-
 ### Usage
 
 Just create a new cache, it's as easy as that!
@@ -36,7 +31,7 @@ import { MemoryCache } from 'cachu'
   })
 
   await cache.set(69, 'Hello World')
-  console.log(await cache.get(69)) // gives out 'Hello World'
+  console.log((await cache.get(69)).value) // gives out 'Hello World'
 })()
 ```
 
