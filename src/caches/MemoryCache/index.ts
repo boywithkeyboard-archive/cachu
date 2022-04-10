@@ -73,6 +73,11 @@ const MemoryCache: MemoryCache = async (config = {}) => {
 
     store.set(key, data)
 
+    recentRecord = {
+      key,
+      ...data
+    }
+
     return {
       key,
       ...data
@@ -105,6 +110,11 @@ const MemoryCache: MemoryCache = async (config = {}) => {
       if (store.size > maxAmount) await deleteOldestEntry()
   
       store.set(key, data)
+
+      recentRecord = {
+        key,
+        ...data
+      }
   
       addedRecords.push({
         key,
@@ -121,7 +131,7 @@ const MemoryCache: MemoryCache = async (config = {}) => {
     const record = store.get(key)
 
     if (!record) return undefined
-    if (config.validate !== false && ((Date.now() - record.age > maxAge) || (config.validate && record.maxAge && (Date.now() - record.age > record.maxAge)))) {
+    if (config.validate !== false && (record.maxAge ? (Date.now() - record.age > record.maxAge) : (Date.now() - record.age > maxAge))) {
       store.delete(key)
       return undefined
     }
@@ -146,7 +156,7 @@ const MemoryCache: MemoryCache = async (config = {}) => {
         continue
       }
 
-      if (config.validate !== false && ((Date.now() - record.age > maxAge) || (config.validate && record.maxAge && (Date.now() - record.age > record.maxAge)))) {
+      if (config.validate !== false && (record.maxAge ? (Date.now() - record.age > record.maxAge) : (Date.now() - record.age > maxAge))) {
         store.delete(key)
         records.push(undefined)
         continue
@@ -170,11 +180,18 @@ const MemoryCache: MemoryCache = async (config = {}) => {
     const oldRecord = store.get(key)
     if (!oldRecord) return
 
-    store.set(key, {
+    const data = {
       value,
       age: (config && config.updateAge) ? Date.now() : oldRecord.age,
       ...(oldRecord.maxAge && { maxAge: oldRecord.maxAge })
-    })
+    }
+
+    store.set(key, data)
+
+    recentRecord = {
+      key,
+      ...data
+    }
   }
 
   const updateMany: UpdateManyMethod = async (records, config) => {
@@ -183,12 +200,19 @@ const MemoryCache: MemoryCache = async (config = {}) => {
     for (const record of records) {
       const oldRecord = store.get(record[0])
       if (!oldRecord) return
-  
-      store.set(record[0], {
+
+      const data = {
         value: record[1],
         age: (config && config.updateAge) ? Date.now() : oldRecord.age,
         ...(oldRecord.maxAge && { maxAge: oldRecord.maxAge })
-      })
+      }
+  
+      store.set(record[0], data)
+
+      recentRecord = {
+        key: record[0],
+        ...data
+      }
     }
   }
 
@@ -229,7 +253,7 @@ const MemoryCache: MemoryCache = async (config = {}) => {
   const keys: KeysMethod = async () => {
     if (hooks.keys) await hooks.keys()
 
-    return [...store.keys()].reverse()
+    return [...store.keys()]
   }
 
   const values: ValuesMethod = async () => {
@@ -240,7 +264,7 @@ const MemoryCache: MemoryCache = async (config = {}) => {
     // get values without age and maxAge properties
     for (const value of [...store.values()]) values.push(value.value)
 
-    return values.reverse()
+    return values
   }
 
   const memory: MemoryMethod = async () => {
