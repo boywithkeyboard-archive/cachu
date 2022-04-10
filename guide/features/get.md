@@ -13,7 +13,7 @@ get(key, config)
 ### Parameters:
 
 - `key` - the key of the target
-- `config`
+- `config` *(optional)*
   - `validate` - validate age of record
   - `delete` - delete record afterwards
 

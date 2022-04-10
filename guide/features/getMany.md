@@ -13,7 +13,7 @@ getMany([keys], config)
 ### Parameters:
 
 - `keys` - an array of keys of the targets
-- `config`
+- `config` *(optional)*
   - `validate` - validate age of records
   - `delete` - delete records afterwards
   - `reverse` - read records in reverse order
