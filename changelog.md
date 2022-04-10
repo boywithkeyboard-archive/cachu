@@ -13,6 +13,8 @@
 #### New Features:
 
 - added `recent()` feature to retrieve the most recently modified/added record
+- added `maxAge()` and `maxAmount()` methods to update the global limits
+- set custom age limits for each record
 - added `ms` for milliseconds conversion
 
 #### Changes:
