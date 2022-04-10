@@ -1,4 +1,4 @@
-const { MemoryCache } = require('../src/node')
+const { MemoryCache } = require('../src')
 
 test('set, setMany and has', async () => {
   const cache = MemoryCache()
