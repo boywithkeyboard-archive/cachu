@@ -2,7 +2,7 @@ import ms from 'ms'
 import { Record } from '../../types'
 import { MemoryCache, ClearMethod, MaxAgeMethod, MaxAmountMethod, SetMethod, GetMethod, GetManyMethod, KeysMethod, ValuesMethod, MemoryMethod, RecentMethod, SizeMethod, HasMethod, DeleteMethod, DeleteManyMethod, UpdateMethod, UpdateManyMethod, SetManyMethod, OnMethod } from './types'
 
-const MemoryCache: MemoryCache = async (config = {}) => {
+const MemoryCache: MemoryCache = (config = {}) => {
   const store: Map<any, { value: {}, age: number, maxAge?: number }> = new Map()
   const hooks: { [key: string]: any } = {}
   let recentRecord: Record | undefined

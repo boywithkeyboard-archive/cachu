@@ -1,7 +1,7 @@
 const { MemoryCache } = require('../src/node')
 
 test('set, setMany and has', async () => {
-  const cache = await MemoryCache()
+  const cache = MemoryCache()
 
   expect(await cache.has(1)).toBe(false)
   await cache.set(1, 'Hello')
@@ -20,7 +20,7 @@ test('set, setMany and has', async () => {
 })
 
 test('get and getMany', async () => {
-  const cache = await MemoryCache({
+  const cache = MemoryCache({
     maxAge: 5/1000 // 5ms
   })
 
@@ -92,7 +92,7 @@ test('get and getMany', async () => {
 })
 
 test('update and updateMany', async () => {
-  const cache = await MemoryCache()
+  const cache = MemoryCache()
 
   const valueOfFirstRecord = [1, 2, 3]
   const keyOfSecondRecord = { someKey: 'two' }
@@ -124,7 +124,7 @@ test('update and updateMany', async () => {
 })
 
 test('delete and deleteMany', async () => {
-  const cache = await MemoryCache()
+  const cache = MemoryCache()
 
   await cache.setMany([
     [1, 'one'],
@@ -154,7 +154,7 @@ test('delete and deleteMany', async () => {
 })
 
 test('size, keys and values', async () => {
-  const cache = await MemoryCache()
+  const cache = MemoryCache()
 
   await cache.setMany([
     [1, 'one'],
@@ -169,7 +169,7 @@ test('size, keys and values', async () => {
 })
 
 test('clear', async () => {
-  const cache = await MemoryCache({
+  const cache = MemoryCache({
     maxAge: 5/1000 // 5ms
   })
 
@@ -193,7 +193,7 @@ test('clear', async () => {
 })
 
 test('recent', async () => {
-  const cache = await MemoryCache()
+  const cache = MemoryCache()
 
   expect(await cache.recent()).toBe(undefined)
 
@@ -237,7 +237,7 @@ test('recent', async () => {
 })
 
 test('maxAge and maxAmount', async () => {
-  const cache = await MemoryCache()
+  const cache = MemoryCache()
 
   expect(await cache.maxAge()).toBe(600000)
   expect(await cache.maxAmount()).toBe(10000)
@@ -250,7 +250,7 @@ test('maxAge and maxAmount', async () => {
 })
 
 test('memory', async () => {
-  const cache = await MemoryCache()
+  const cache = MemoryCache()
 
   expect(await cache.memory()).toBeCloseTo(0)
 

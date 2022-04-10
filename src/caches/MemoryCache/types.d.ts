@@ -6,7 +6,7 @@ import { Key, Record, Value } from '../../types'
 type MemoryCache = (config: {
   maxAge?: string | number,
   maxAmount?: number
-}) => Promise<{
+}) => {
   set: SetMethod,
   setMany: SetManyMethod,
   get: GetMethod,
@@ -25,7 +25,7 @@ type MemoryCache = (config: {
   maxAge: MaxAgeMethod,
   maxAmount: MaxAmountMethod,
   on: OnMethod
-}>
+}
 
 type Event =
   | 'set'
