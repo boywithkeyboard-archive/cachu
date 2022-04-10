@@ -25,50 +25,43 @@ Just create a new cache, it's as easy as that!
 import { MemoryCache } from 'cachu'
 
 (async () => {
-  const cache = await MemoryCache({
-    maxAmount: 10000, // cache can contain up to 10000 records
-    maxAge: 600 // keep records for up to 10 minutes
-  })
+  const cache = MemoryCache()
 
-  await cache.set(69, 'Hello World')
-  console.log((await cache.get(69)).value) // gives out 'Hello World'
+  // add a new record
+  await cache.set('one', 'Hello Github')
+
+  // retrieve the value of a record
+  const { value } = await cache.get('one')
 })()
 ```
 
 ## Caches
 
 - [`MemoryCache`](/guide/caches/MemoryCache.md)
-- [`BrowserCache`](/guide/caches/BrowserCache.md)
-- [`DiskCache`](/guide/caches/DiskCache.md)
 
 ## API
 
 - ### Configuration
 
-  - [`maxAge`](/guide/configuration/maxAge.md) to set the **maximum age** for each record in the cache
-  - [`maxAmount`](/guide/configuration/maxAmount.md) to set the **maximum size** for the cache
+  - [`maxAge`](/guide/config/maxAge.md) to set the **maximum age** for each record in the cache
+  - [`maxAmount`](/guide/config/maxAmount.md) to set the **maximum size** for the cache
 
 - ### Features
 
-  - [`set(key, value, age)`](/guide/features/set.md)
-  - [`setMany([[key, value, age]])`](/guide/features/setMany.md)
-  - [`get(key, options)`](/guide/features/get.md)
-  - [`getMany([key], options)`](/guide/features/getMany.md)
-  - [`update(key, value, age)`](/guide/features/update.md)
-  - [`updateMany([[key, value, age]])`](/guide/features/updateMany.md)
+  - [`set(key, value, maxAge)`](/guide/features/set.md)
+  - [`setMany([[key, value, maxAge]])`](/guide/features/setMany.md)
+  - [`get(key, config)`](/guide/features/get.md)
+  - [`getMany([keys], config)`](/guide/features/getMany.md)
+  - [`update(key, value, config)`](/guide/features/update.md)
+  - [`updateMany([[key, value]], config)`](/guide/features/updateMany.md)
   - [`delete(key)`](/guide/features/delete.md)
-  - [`deleteMany([key])`](/guide/features/deleteMany.md)
+  - [`deleteMany([keys])`](/guide/features/deleteMany.md)
   - [`has(key)`](/guide/features/has.md)
-  - [`clear()`](/guide/features/clear.md)
   - [`size()`](/guide/features/size.md)
-  - [`values()`](/guide/features/values.md)
   - [`keys()`](/guide/features/keys.md)
-
-- ### Hooks
-
-  - [`preWriting`](/guide/hooks/preWriting.md)
-  - [`preReading`](/guide/hooks/preReading.md)
-  - [`preUpdating`](/guide/hooks/preUpdating.md)
-  - [`preDeleting`](/guide/hooks/preDeleting.md)
-  - [`preClearing`](/guide/hooks/preClearing.md)
-  - [`prePruning`](/guide/hooks/prePruning.md)
+  - [`values()`](/guide/features/values.md)
+  - [`clear()`](/guide/features/clear.md)
+  - [`recent()`](/guide/features/recent.md)
+  - [`maxAge(age)`](/guide/features/maxAge.md)
+  - [`maxAmount(amount)`](/guide/features/maxAmount.md)
+  - [`on(event, action)`](/guide/features/on.md)
