@@ -5,8 +5,12 @@
   "exports": {
     ".": {
       "require": "./dist/node.js",
-      "import": "./dist/node.js",
-      "types": "./types/node.d.ts"
+      "import": "./dist/node.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "exported": ["types/node"]
     }
   },
   "scripts": {
