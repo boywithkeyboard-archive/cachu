@@ -7,12 +7,15 @@ Read a record from the cache.
 ### Structure:
 
 ```js
-getMany([keys])
+getMany([keys], config)
 ```
 
 ### Parameters:
 
 - `keys` - an array of keys of the targets
+- `config`
+  - `validate` - validate age of records
+  - `delete` - delete records afterwards
 
 ### Response:
 

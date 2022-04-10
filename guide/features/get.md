@@ -7,12 +7,15 @@ Read a record from the cache.
 ### Structure:
 
 ```js
-get(key)
+get(key, config)
 ```
 
 ### Parameters:
 
 - `key` - the key of the target
+- `config`
+  - `validate` - validate age of record
+  - `delete` - delete record afterwards
 
 ### Response:
 
