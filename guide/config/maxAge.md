@@ -2,7 +2,7 @@
 
 ## maxAge
 
-Set the global age limit for cache records (in seconds).
+Set the global age limit for cache records *(in seconds)*.
 
 **Default Value:** `600`
 
