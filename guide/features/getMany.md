@@ -2,27 +2,35 @@
 
 ## getMany()
 
-Read many entries from the cache.
+Read a record from the cache.
 
-#### Structure:
+### Structure:
 
 ```js
-getMany(keys)
+getMany([keys])
 ```
 
-#### Parameters:
+### Parameters:
 
-- **`keys`** - an array of [`keys`](https://github.com/azurydev/cachu/blob/current/guide/types.md#key)
+- `keys` - an array of keys of the targets
 
-#### Example:
+### Response:
 
 ```js
-import { MemoryCache } from 'cachu'
+[
+  {
+    key: Key,
+    value: Value,
+    age: Number,
+    maxAge: Number || undefined
+  },
+  ...
+]
+```
 
-(async () => {
-  const cache = new MemoryCache()
-  
-  // returns an array of values
-  await cache.getMany(['some key', 'another key']) 
-})()
+### Example:
+
+```js
+// get three existent records
+await cache.getMany([1, 2, 3]) // returns an array of records
 ```
