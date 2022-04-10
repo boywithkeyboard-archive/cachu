@@ -1,22 +1,22 @@
-type Key = {}
+export type Key = {}
+export type Value = {}
 
-type Value = {}
-
-type Record = {
+export type Record = {
   key: Key,
   value: Value,
-  age: number
+  age: number,
+  maxAge?: number
 }
 
-type Trigger = 'preWriting' | 'preReading' | 'preUpdating' | 'preDeleting' | 'preClearing' | 'prePruning'
+export type Trigger = 'set' | 'setMany' | 'get' | 'getMany' | 'update' | 'updateMany' | 'delete' | 'deleteMany' | 'has' | 'size' | 'keys' | 'values' | ''
 
-type Action = Function
+export type Action = Function
 
-type Hooks = {
-  preWriting?: Function,
-  preReading?: Function,
-  preUpdating?: Function,
-  preDeleting?: Function,
-  preClearing?: Function,
-  prePruning?: Function
+export type Hooks = {
+  writing?: Function,
+  onReading?: Function,
+  onUpdating?: Function,
+  onDeleting?: Function,
+  onClearing?: Function,
+  onPruning?: Function
 }
