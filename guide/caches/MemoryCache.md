@@ -2,21 +2,17 @@
 
 ## Memory Cache
 
-#### Usage:
-
 ```js
 import { MemoryCache } from 'cachu'
 
-const cache = new MemoryCache()
+const cache = MemoryCache()
 ```
 
-#### Configuration:
+### Configuration:
 
-- [`hooks`](https://github.com/azurydev/cachu/blob/current/guide/configuration/hooks.md)
-- [`maxAge`](https://github.com/azurydev/cachu/blob/current/guide/configuration/maxAge.md)
-- [`maxAmount`](https://github.com/azurydev/cachu/blob/current/guide/configuration/maxAmount.md)
-- [`overriding`](https://github.com/azurydev/cachu/blob/current/guide/configuration/overriding.md)
+- [`maxAge`](https://github.com/azurydev/cachu/guide/config/maxAge.md)
+- [`maxAmount`](https://github.com/azurydev/cachu/guide/config/maxAmount.md)
 
-#### Exclusive Features:
+### Exclusive Features:
 
-- [`getConsumedMemory`](https://github.com/azurydev/cachu/blob/current/guide/features/getConsumedMemory.md)
+- [`memory`](https://github.com/azurydev/cachu/guide/features/memory.md)
