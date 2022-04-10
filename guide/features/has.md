@@ -2,7 +2,7 @@
 
 ## has()
 
-Check whether the cache has a specific entry.
+Check whether the cache holds a specific record.
 
 #### Structure:
 
@@ -12,17 +12,11 @@ has(key)
 
 #### Parameters:
 
-- **`key`** - the [`key`](https://github.com/azurydev/cachu/blob/current/guide/types.md#key) of the targeted entry
+- **`key`** - the key of the target
 
 #### Example:
 
 ```js
-import { MemoryCache } from 'cachu'
-
-(async () => {
-  const cache = new MemoryCache()
-  
-  // returns a boolean
-  await cache.has(123)
-})()
+// get either true or false
+const boolean = await cache.has(123)
 ```
