@@ -1,6 +1,6 @@
 {
   "name": "cachu",
-  "version": "5.2.0-canary.1",
+  "version": "5.2.0-canary.2",
   "description": "🦝 Simple, Minimalistic KV Cache",
   "types": "./types/index.d.ts",
   "main": "./dist/index.js",
