@@ -80,6 +80,8 @@ declare type Event =
 
 declare type OnMethod = (event: Event, action: Function) => Promise<void>
 
+declare type DumpMethod = () => Promise<Record[]>
+
 declare type MemoryCache = (config: {
   maxAge?: string | number,
   maxAmount?: number
@@ -103,7 +105,8 @@ declare type MemoryCache = (config: {
   maxAmount: MaxAmountMethod,
   newest: NewestMethod,
   oldest: OldestMethod,
-  on: OnMethod
+  on: OnMethod,
+  dump: DumpMethod
 }
 
 declare const memoryCache: MemoryCache
@@ -132,6 +135,7 @@ export {
   NewestMethod,
   OldestMethod,
   OnMethod,
+  DumpMethod,
   MemoryCache,
   memoryCache as default
 }
