@@ -1,8 +1,8 @@
 {
   "name": "cachu",
-  "version": "5.0.0",
+  "version": "5.1.1",
   "description": "🦝 Simple, Minimalistic KV Cache",
-  "types": "./types/index.d.ts",
+  "types": "./types/src/index.d.ts",
   "main": "./dist/index.js",
   "scripts": {
     "types": "tsc",
