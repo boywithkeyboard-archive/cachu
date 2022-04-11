@@ -7,6 +7,7 @@
 #### Changes:
 
 - replaced auto-generated types with manually written ones
+- added `dump()` feature to export all records
 
 ### v5.1.0 & v5.1.1
 
