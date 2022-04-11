@@ -80,15 +80,15 @@ test('get and getMany', async () => {
     }
   ])
 
-  // without validation
-  setTimeout(async () => {
-    expect(await cache.get(keyOfSecondRecord, {
-      validate: false
-    })).toBeDefined()
+  await new Promise((r) => setTimeout(r, 10))
 
-    expect(await cache.get(keyOfSecondRecord)).toBeUndefined()
-    expect(await cache.get('one')).toBeDefined()
-  }, 10) // 10ms
+  // without validation
+  expect(await cache.get(keyOfSecondRecord, {
+    validate: false
+  })).toBeDefined()
+
+  expect(await cache.get(keyOfSecondRecord)).toBeUndefined()
+  expect(await cache.get('one')).toBeDefined()
 })
 
 test('update and updateMany', async () => {
@@ -117,13 +117,13 @@ test('update and updateMany', async () => {
   expect((await cache.get(3)).value).toBe('unicorn')
 
   const oldAge = (await cache.get(4)).age
+
+  await new Promise((r) => setTimeout(r, 10))
   
-  setTimeout(async () => {
-    await cache.update(4, 'something different', {
-      updateAge: true
-    })
-    expect((await cache.get(4)).age !== oldAge).toBe(true)
-  }, 5) // 5 ms
+  await cache.update(4, 'something different', {
+    updateAge: true
+  })
+  expect((await cache.get(4)).age !== oldAge).toBe(true)
 })
 
 test('delete and deleteMany', async () => {
@@ -184,15 +184,15 @@ test('clear', async () => {
   expect(await cache.has(1)).toBe(true)
   expect(await cache.has(2)).toBe(true)
 
-  setTimeout(async () => {
-    expect(await cache.has(1)).toBe(true)
-    expect(await cache.has(2)).toBe(true)
+  await new Promise((r) => setTimeout(r, 10))
 
-    await cache.clear()
+  expect(await cache.has(1)).toBe(true)
+  expect(await cache.has(2)).toBe(true)
 
-    expect(await cache.has(1)).toBe(false)
-    expect(await cache.has(2)).toBe(false)
-  }, 10)
+  await cache.clear()
+
+  expect(await cache.has(1)).toBe(false)
+  expect(await cache.has(2)).toBe(false)
 })
 
 test('recent', async () => {
@@ -265,4 +265,17 @@ test('memory', async () => {
   ])
 
   expect(await cache.memory()).toBeGreaterThan(10)
+})
+
+test('oldest and newest', async () => {
+  const cache = MemoryCache()
+
+  await cache.set(1, 'one')
+
+  await new Promise((r) => setTimeout(r, 5))
+
+  await cache.set(2, 'two')
+
+  expect((await cache.oldest()).key).toBe(1)
+  expect((await cache.newest()).key).toBe(2)
 })
