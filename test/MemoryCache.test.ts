@@ -270,6 +270,9 @@ test('memory', async () => {
 test('oldest and newest', async () => {
   const cache = MemoryCache()
 
+  expect(await cache.oldest()).toBe(undefined)
+  expect(await cache.newest()).toBe(undefined)
+
   await cache.set(1, 'one')
 
   await new Promise((r) => setTimeout(r, 5))
