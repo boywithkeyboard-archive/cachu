@@ -3,16 +3,9 @@
     "target": "esnext",
     "module": "commonjs",
     "moduleResolution": "node",
-    "declaration": true,
-    "declarationDir": "types",
     "esModuleInterop": true,
-    "emitDeclarationOnly": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true
-  },
-  "include": [
-    "src",
-    "test"
-  ]
+  }
 }
