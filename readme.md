@@ -62,6 +62,8 @@ import { MemoryCache } from 'cachu'
   - [`values()`](/guide/features/values.md)
   - [`clear()`](/guide/features/clear.md)
   - [`recent()`](/guide/features/recent.md)
+  - [`oldest()`](/guide/features/oldest.md)
+  - [`newest()`](/guide/features/newest.md)
   - [`maxAge(age)`](/guide/features/maxAge.md)
   - [`maxAmount(amount)`](/guide/features/maxAmount.md)
   - [`on(event, action)`](/guide/features/on.md)
