@@ -21,7 +21,8 @@ import {
   MaxAmountMethod,
   NewestMethod,
   OldestMethod,
-  OnMethod
+  OnMethod,
+  DumpMethod
 } from '../../types/caches/MemoryCache'
 
 const memoryCache: MemoryCache = (config = {}) => {
@@ -345,6 +346,25 @@ const memoryCache: MemoryCache = (config = {}) => {
     return record
   }
 
+  const dump: DumpMethod = async () => {
+    if (store.size === 0) return []
+
+    const records: Record[] = []
+    const keys = [...store.keys()]
+
+    for (const key of keys) {
+      const record = store.get(key)
+      if (!record) continue
+
+      records.push({
+        key,
+        ...record
+      })
+    }
+
+    return records
+  }
+
   return {
     set,
     setMany,
@@ -365,7 +385,8 @@ const memoryCache: MemoryCache = (config = {}) => {
     maxAmount: modifyMaxAmount,
     newest,
     oldest,
-    on
+    on,
+    dump
   }
 }
 
