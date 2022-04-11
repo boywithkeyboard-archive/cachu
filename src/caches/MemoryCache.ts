@@ -22,7 +22,7 @@ import {
   NewestMethod,
   OldestMethod,
   OnMethod
-} from '../../../types/caches/MemoryCache'
+} from '../../types/caches/MemoryCache'
 
 const memoryCache: MemoryCache = (config = {}) => {
   const store: Map<any, { value: {}, age: number, maxAge?: number }> = new Map()
