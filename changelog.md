@@ -2,6 +2,13 @@
 
 ## v5
 
+### v5.1.0
+
+#### New Features:
+
+- added `oldest()` feature to retrieve the oldest record
+- added `newest()` feature to retrieve the newest record
+
 ### v5.0.0
 
 #### Breaking Changes:
