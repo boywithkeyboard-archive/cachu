@@ -1,15 +1,14 @@
 {
   "name": "cachu",
-  "version": "5.1.1",
+  "version": "5.2.0-canary.0",
   "description": "🦝 Simple, Minimalistic KV Cache",
-  "types": "./types/src/index.d.ts",
+  "types": "./types/index.d.ts",
   "main": "./dist/index.js",
   "scripts": {
-    "types": "tsc",
     "build": "esbuild src/index.ts --bundle --minify --format=cjs --outfile=dist/index.js",
-    "publish:patch": "tsc && npm run build && npm version patch && npm publish",
-    "publish:minor": "tsc && npm run build && npm version minor && npm publish",
-    "publish:major": "tsc && npm run build && npm version major && npm publish",
+    "publish:patch": "npm run build && npm version patch && npm publish",
+    "publish:minor": "npm run build && npm version minor && npm publish",
+    "publish:major": "npm run build && npm version major && npm publish",
     "test": "jest --detectOpenHandles"
   },
   "funding": {
