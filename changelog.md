@@ -2,7 +2,13 @@
 
 ## v5
 
-### v5.1.0
+### canary
+
+#### Changes:
+
+- replaced auto-generated types with manually written ones
+
+### v5.1.0 & v5.1.1
 
 #### New Features:
 
