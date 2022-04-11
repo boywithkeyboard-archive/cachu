@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "rootDir": "src",
     "moduleResolution": "node",
     "declaration": true,
     "declarationDir": "types",
@@ -11,5 +10,9 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true
-  }
+  },
+  "include": [
+    "src",
+    "test"
+  ]
 }

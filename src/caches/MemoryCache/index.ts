@@ -1,5 +1,5 @@
 import ms from 'ms'
-import { Record, MemoryCache, ClearMethod, MaxAgeMethod, MaxAmountMethod, SetMethod, GetMethod, GetManyMethod, KeysMethod, ValuesMethod, MemoryMethod, RecentMethod, SizeMethod, HasMethod, DeleteMethod, DeleteManyMethod, UpdateMethod, UpdateManyMethod, SetManyMethod, OnMethod } from './types'
+import { Record, MemoryCache, ClearMethod, MaxAgeMethod, MaxAmountMethod, SetMethod, GetMethod, GetManyMethod, KeysMethod, ValuesMethod, MemoryMethod, RecentMethod, SizeMethod, HasMethod, DeleteMethod, DeleteManyMethod, UpdateMethod, UpdateManyMethod, SetManyMethod, OnMethod, NewestMethod, OldestMethod } from './types'
 
 const memoryCache: MemoryCache = (config = {}) => {
   const store: Map<any, { value: {}, age: number, maxAge?: number }> = new Map()
@@ -280,6 +280,48 @@ const memoryCache: MemoryCache = (config = {}) => {
     return recentRecord
   }
 
+  const newest: NewestMethod = async () => {
+    if (store.size === 0) return undefined
+
+    let newestAge = 0
+    let record
+
+    store.forEach(async (value, key) => {
+      if (value.age > newestAge) {
+        newestAge = value.age
+        record = {
+          key,
+          value: value.value,
+          age: value.age,
+          ...(value.maxAge && { maxAge: value.maxAge })
+        }
+      }
+    })
+
+    return record
+  }
+
+  const oldest: OldestMethod = async () => {
+    if (store.size === 0) return undefined
+
+    let oldestAge = 0
+    let record
+
+    store.forEach(async (value, key) => {
+      if ((oldestAge === 0) || (value.age < oldestAge)) {
+        oldestAge = value.age
+        record = {
+          key,
+          value: value.value,
+          age: value.age,
+          ...(value.maxAge && { maxAge: value.maxAge })
+        }
+      }
+    })
+
+    return record
+  }
+
   return {
     set,
     setMany,
@@ -298,6 +340,8 @@ const memoryCache: MemoryCache = (config = {}) => {
     recent,
     maxAge: modifyMaxAge,
     maxAmount: modifyMaxAmount,
+    newest,
+    oldest,
     on
   }
 }
