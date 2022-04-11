@@ -1,5 +1,28 @@
 import ms from 'ms'
-import { Record, MemoryCache, ClearMethod, MaxAgeMethod, MaxAmountMethod, SetMethod, GetMethod, GetManyMethod, KeysMethod, ValuesMethod, MemoryMethod, RecentMethod, SizeMethod, HasMethod, DeleteMethod, DeleteManyMethod, UpdateMethod, UpdateManyMethod, SetManyMethod, OnMethod, NewestMethod, OldestMethod } from './types'
+import {
+  MemoryCache,
+  Record,
+  SetMethod,
+  SetManyMethod,
+  GetMethod,
+  GetManyMethod,
+  UpdateMethod,
+  UpdateManyMethod,
+  DeleteMethod,
+  DeleteManyMethod,
+  HasMethod,
+  SizeMethod,
+  KeysMethod,
+  ValuesMethod,
+  ClearMethod,
+  MemoryMethod,
+  RecentMethod,
+  MaxAgeMethod,
+  MaxAmountMethod,
+  NewestMethod,
+  OldestMethod,
+  OnMethod
+} from '../../../types/caches/MemoryCache'
 
 const memoryCache: MemoryCache = (config = {}) => {
   const store: Map<any, { value: {}, age: number, maxAge?: number }> = new Map()
