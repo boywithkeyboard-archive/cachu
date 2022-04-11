@@ -282,3 +282,25 @@ test('oldest and newest', async () => {
   expect((await cache.oldest()).key).toBe(1)
   expect((await cache.newest()).key).toBe(2)
 })
+
+test('dump', async () => {
+  const cache = MemoryCache()
+
+  await cache.setMany([
+    [1, 'one'],
+    [2, 'two']
+  ])
+
+  expect(await cache.dump()).toStrictEqual([
+    {
+      key: 1,
+      value: 'one',
+      age: expect.any(Number)
+    },
+    {
+      key: 2,
+      value: 'two',
+      age: expect.any(Number)
+    }
+  ])
+})
