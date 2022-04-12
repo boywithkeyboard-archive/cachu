@@ -1,5 +1,7 @@
 # cachu
 
+> 👀 **v6** goes public on August 1st and it'll come with a dashboard for a visual insight into your cachu instance. Of course, the feature will be fully optional.
+
 **Simple, minimalistic key-value cache, created by [Azury](https://azury.dev).**
 
 - fully asynchronous
