@@ -82,7 +82,7 @@ declare type OnMethod = (event: Event, action: Function) => Promise<void>
 
 declare type DumpMethod = () => Promise<Record[]>
 
-declare type MemoryCache = (config: {
+declare type MemoryCache = (config?: {
   maxAge?: string | number,
   maxAmount?: number
 }) => {
