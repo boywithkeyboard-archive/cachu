@@ -2,6 +2,12 @@
 
 ## v5
 
+### canary
+
+#### Changes:
+
+- patched `esbuild`
+
 ### v5.2.0
 
 #### New Features:
