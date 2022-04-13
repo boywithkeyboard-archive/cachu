@@ -7,6 +7,8 @@
 #### Changes:
 
 - patched `esbuild`
+- added a `RedisCache` for a much more convenient way to integrate Redis
+- fixed requirement of config for `MemoryCache` in type declarations
 
 ### v5.2.0
 
