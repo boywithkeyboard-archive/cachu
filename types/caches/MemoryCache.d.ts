@@ -1,6 +1,6 @@
-declare type Key = {}
+declare type Key = any
 
-declare type Value = {}
+declare type Value = any
 
 declare type Record = {
   key: Key,
