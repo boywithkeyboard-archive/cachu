@@ -69,11 +69,14 @@ const memoryCache: MemoryCache = (config = {}) => {
   const modifyMaxAge: MaxAgeMethod = async newAge => {
     if (hooks.maxAge) await hooks.maxAge(newAge)
 
-    if (newAge) {
-      maxAge = typeof newAge === 'number' ? newAge * 1000 : typeof newAge === 'string' ? ms(newAge) : 600000
+    if (!newAge) return maxAge
 
-      await prune()
-    }
+    maxAge =
+      typeof newAge === 'number' ? newAge * 1000 :
+      typeof newAge === 'string' ? ms(newAge) :
+      600000 // 10 minutes
+
+    await prune()
 
     return maxAge
   }
@@ -81,11 +84,11 @@ const memoryCache: MemoryCache = (config = {}) => {
   const modifyMaxAmount: MaxAmountMethod = async newAmount => {
     if (hooks.maxAmount) await hooks.maxAmount(newAmount)
 
-    if (newAmount) {
-      maxAmount = newAmount ?? 10000
+    if (!newAmount) return maxAmount
 
-      await prune()
-    }
+    maxAmount = newAmount ?? 10000
+
+    await prune()
 
     return maxAmount
   }
@@ -340,11 +343,12 @@ const memoryCache: MemoryCache = (config = {}) => {
     if (store.size === 0) return undefined
 
     let oldestAge = 0
-    let record
+    , record
 
     store.forEach(async (value, key) => {
-      if ((oldestAge === 0) || (value.age < oldestAge)) {
+      if (oldestAge === 0 || value.age < oldestAge) {
         oldestAge = value.age
+        
         record = {
           key,
           value: value.value,
