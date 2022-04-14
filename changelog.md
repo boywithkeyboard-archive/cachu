@@ -1,14 +1,16 @@
 # changelog
 
-## v5
+## v5.3.0
 
-### canary
+#### New Features:
+
+- added hooks to `oldest`, `newest`, and `dump` methods
 
 #### Changes:
 
 - patched `esbuild`
-- added a `RedisCache` for a much more convenient way to integrate Redis
 - fixed requirement of config for `MemoryCache` in type declarations
+- changed `Key` and `Value` types to `any`
 
 ### v5.2.0
 
