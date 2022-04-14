@@ -76,7 +76,10 @@ declare type Event =
   | 'recent'
   | 'maxAge'
   | 'maxAmount'
+  | 'newest'
+  | 'oldest'
   | 'on'
+  | 'dump'
 
 declare type OnMethod = (event: Event, action: Function) => Promise<void>
 

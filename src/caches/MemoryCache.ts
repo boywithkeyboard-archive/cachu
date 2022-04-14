@@ -305,6 +305,7 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const newest: NewestMethod = async () => {
+    if (hooks.newest) await hooks.newest()
     if (store.size === 0) return undefined
 
     let newestAge = 0
@@ -326,6 +327,7 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const oldest: OldestMethod = async () => {
+    if (hooks.oldest) await hooks.oldest()
     if (store.size === 0) return undefined
 
     let oldestAge = 0
@@ -347,6 +349,8 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const dump: DumpMethod = async () => {
+    if (hooks.dump) await hooks.dump()
+
     if (store.size === 0) return []
 
     const records: Record[] = []
