@@ -28,10 +28,15 @@ import {
 const memoryCache: MemoryCache = (config = {}) => {
   const store: Map<any, { value: {}, age: number, maxAge?: number }> = new Map()
   const hooks: { [key: string]: any } = {}
+
   let recentRecord: Record | undefined
 
-  let maxAge = typeof config.maxAge === 'number' ? config.maxAge * 1000 : typeof config.maxAge === 'string' ? ms(config.maxAge) : 600000 // 10 minutes
-  let maxAmount = config.maxAmount ?? 10000
+  , maxAge =
+    typeof config.maxAge === 'number' ? config.maxAge * 1000 :
+    typeof config.maxAge === 'string' ? ms(config.maxAge) :
+    600000 // 10 minutes
+
+  , maxAmount = config.maxAmount ?? 10000
 
   const prune = async () => {
     store.forEach(async (value, key) => {
