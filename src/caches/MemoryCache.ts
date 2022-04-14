@@ -38,6 +38,8 @@ const memoryCache: MemoryCache = (config = {}) => {
 
   , maxAmount = config.maxAmount ?? 10000
 
+  // internal functions
+
   const prune = async () => {
     store.forEach(async (value, key) => {
       if (Date.now() - value.age > maxAge) store.delete(key)
@@ -57,6 +59,8 @@ const memoryCache: MemoryCache = (config = {}) => {
 
     store.delete(keyOfOldestEntry)
   }
+
+  // public functions
 
   const on: OnMethod = async (event, action) => {
     hooks[event] = action
