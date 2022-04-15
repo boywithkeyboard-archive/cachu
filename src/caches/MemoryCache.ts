@@ -22,7 +22,8 @@ import {
   NewestMethod,
   OldestMethod,
   OnMethod,
-  DumpMethod
+  DumpMethod,
+  Value
 } from '../../types/caches/MemoryCache'
 
 const memoryCache: MemoryCache = (config = {}) => {
@@ -264,7 +265,8 @@ const memoryCache: MemoryCache = (config = {}) => {
     if (keys.length === 0) store.clear()
 
     // delete many
-    for (const key of keys) store.delete(key)
+    for (const key of keys)
+      store.delete(key)
   }
 
   const has: HasMethod = async key => {
@@ -294,10 +296,10 @@ const memoryCache: MemoryCache = (config = {}) => {
   const values: ValuesMethod = async () => {
     if (hooks.values) await hooks.values()
 
-    const values = []
+    let values: Value[] = []
 
-    // get values without age and maxAge properties
-    for (const value of [...store.values()]) values.push(value.value)
+    for (let [key, value] of store)
+      values = [...values, value.value]
 
     return values
   }
@@ -318,45 +320,44 @@ const memoryCache: MemoryCache = (config = {}) => {
 
   const newest: NewestMethod = async () => {
     if (hooks.newest) await hooks.newest()
+
     if (store.size === 0) return undefined
 
     let newestAge = 0
-    let record
+    , record
 
-    store.forEach(async (value, key) => {
+    for (let [key, value] of store) {
       if (value.age > newestAge) {
         newestAge = value.age
+
         record = {
           key,
-          value: value.value,
-          age: value.age,
-          ...(value.maxAge && { maxAge: value.maxAge })
+          ...value
         }
       }
-    })
+    }
 
     return record
   }
 
   const oldest: OldestMethod = async () => {
     if (hooks.oldest) await hooks.oldest()
+
     if (store.size === 0) return undefined
 
     let oldestAge = 0
     , record
 
-    store.forEach(async (value, key) => {
+    for (let [key, value] of store) {
       if (oldestAge === 0 || value.age < oldestAge) {
         oldestAge = value.age
-        
+
         record = {
           key,
-          value: value.value,
-          age: value.age,
-          ...(value.maxAge && { maxAge: value.maxAge })
+          ...value
         }
       }
-    })
+    }
 
     return record
   }
@@ -366,17 +367,13 @@ const memoryCache: MemoryCache = (config = {}) => {
 
     if (store.size === 0) return []
 
-    const records: Record[] = []
-    const keys = [...store.keys()]
+    let records: Record[] = []
 
-    for (const key of keys) {
-      const record = store.get(key)
-      if (!record) continue
-
-      records.push({
+    for (let [key, value] of store) {
+      records = [...records, {
         key,
-        ...record
-      })
+        ...value
+      }] 
     }
 
     return records
