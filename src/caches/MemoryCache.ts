@@ -235,7 +235,7 @@ const memoryCache: MemoryCache = (config = {}) => {
 
     for (const record of records) {
       const oldRecord = store.get(record[0])
-      if (!oldRecord) return
+      if (!oldRecord) continue
 
       const data = {
         value: record[1],
