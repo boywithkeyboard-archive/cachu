@@ -42,23 +42,25 @@ const memoryCache: MemoryCache = (config = {}) => {
   // internal functions
 
   const prune = async () => {
-    store.forEach(async (value, key) => {
-      if (Date.now() - value.age > maxAge) store.delete(key)
-    })
+    for (let [key, value] of store) {
+      if (Date.now() - value.age > maxAge)
+        store.delete(key)
+    }
   }
 
-  const deleteOldestEntry = async () => {
+  , deleteOldestEntry = async () => {
     let oldestAge = 0
-    let keyOfOldestEntry: any = 0
+    , keyOfOldestRecord
 
-    store.forEach(async (value, key) => {
+    for (let [key, value] of store) {
       if (value.age > oldestAge) {
         oldestAge = value.age
-        keyOfOldestEntry = key
+        keyOfOldestRecord = key
       }
-    })
+    }
 
-    store.delete(keyOfOldestEntry)
+    if (keyOfOldestRecord)
+      store.delete(keyOfOldestRecord)
   }
 
   // public functions
@@ -68,9 +70,11 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const modifyMaxAge: MaxAgeMethod = async newAge => {
-    if (hooks.maxAge) await hooks.maxAge(newAge)
+    if (hooks.maxAge)
+      await hooks.maxAge(newAge)
 
-    if (!newAge) return maxAge
+    if (!newAge)
+      return maxAge
 
     maxAge =
       typeof newAge === 'number' ? newAge * 1000 :
@@ -83,9 +87,11 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const modifyMaxAmount: MaxAmountMethod = async newAmount => {
-    if (hooks.maxAmount) await hooks.maxAmount(newAmount)
+    if (hooks.maxAmount)
+      await hooks.maxAmount(newAmount)
 
-    if (!newAmount) return maxAmount
+    if (!newAmount)
+      return maxAmount
 
     maxAmount = newAmount ?? 10000
 
@@ -95,11 +101,17 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const set: SetMethod = async (key, value, customMaxAge) => {
-    if (hooks.set) await hooks.set(key, value, customMaxAge)
+    if (hooks.set)
+      await hooks.set(key, value, customMaxAge)
 
-    if (store.has(key)) return undefined
-    if (maxAge !== Infinity) await prune()
-    if (store.size > maxAmount) await deleteOldestEntry()
+    if (store.has(key))
+      return undefined
+
+    if (maxAge !== Infinity)
+      await prune()
+
+    if (store.size > maxAmount)
+      await deleteOldestEntry()
 
     const data = {
       value,
@@ -121,16 +133,18 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const setMany: SetManyMethod = async records => {
-    if (hooks.setMany) await hooks.setMany(records)
+    if (hooks.setMany)
+      await hooks.setMany(records)
 
-    if (maxAge !== Infinity) await prune()
+    if (maxAge !== Infinity)
+      await prune()
 
-    const addedRecords: any[] = []
+    const addedRecords = []
 
-    for (const record of records) {
+    for (let record of records) {
       const key = record[0]
-      const value = record[1]
-      const customMaxAge = record[2]
+      , value = record[1]
+      , customMaxAge = record[2]
 
       if (store.has(key)) {
         addedRecords.push(undefined)
@@ -143,7 +157,8 @@ const memoryCache: MemoryCache = (config = {}) => {
         ...(typeof customMaxAge === 'string' ? { maxAge: ms(customMaxAge) } : typeof customMaxAge === 'number' && { maxAge: customMaxAge * 1000 })
       }
 
-      if (store.size > maxAmount) await deleteOldestEntry()
+      if (store.size > maxAmount)
+        await deleteOldestEntry()
   
       store.set(key, data)
 
@@ -162,16 +177,21 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const get: GetMethod = async (key, config = {}) => {
-    if (hooks.get) await hooks.get(key, config)
+    if (hooks.get)
+      await hooks.get(key, config)
 
     const record = store.get(key)
 
-    if (!record) return undefined
+    if (!record)
+      return undefined
+
     if (config.validate !== false && (record.maxAge ? (Date.now() - record.age > record.maxAge) : (Date.now() - record.age > maxAge))) {
       store.delete(key)
       return undefined
     }
-    if (config.delete) store.delete(key)
+
+    if (config.delete)
+      store.delete(key)
 
     return {
       key,
@@ -180,38 +200,45 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const getMany: GetManyMethod = async (keys, config = {}) => {
-    if (hooks.getMany) await hooks.getMany(keys, config)
+    if (hooks.getMany)
+      await hooks.getMany(keys, config)
 
-    const records: any[] = []
+    let records: (Record | undefined)[] = []
 
-    for (const key of keys) {
+    for (let key of keys) {
       const record = store.get(key)
 
       if (!record) {
-        records.push(undefined)
+        records = [...records, undefined]
         continue
       }
 
       if (config.validate !== false && (record.maxAge ? (Date.now() - record.age > record.maxAge) : (Date.now() - record.age > maxAge))) {
         store.delete(key)
-        records.push(undefined)
+        
+        records = [...records, undefined]
+
         continue
       }
 
-      if (config.delete) store.delete(key)
+      if (config.delete)
+        store.delete(key)
 
-      records.push({
+      records = [...records, {
         key,
         ...record
-      })
+      }]
     }
 
-    if (config.reverse) return records.reverse()
+    if (config.reverse)
+      return records.reverse()
+
     return records
   }
 
   const update: UpdateMethod = async (key, value, config) => {
-    if (hooks.update) await hooks.update(key, value, config ?? {})
+    if (hooks.update)
+      await hooks.update(key, value, config ?? {})
 
     const oldRecord = store.get(key)
     if (!oldRecord) return
@@ -231,9 +258,10 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const updateMany: UpdateManyMethod = async (records, config) => {
-    if (hooks.updateMany) await hooks.updateMany(records, config ?? {})
+    if (hooks.updateMany)
+      await hooks.updateMany(records, config ?? {})
 
-    for (const record of records) {
+    for (let record of records) {
       const oldRecord = store.get(record[0])
       if (!oldRecord) continue
 
@@ -253,16 +281,19 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const _delete: DeleteMethod = async key => {
-    if (hooks.delete) await hooks.delete(key)
+    if (hooks.delete)
+      await hooks.delete(key)
 
     store.delete(key)
   }
 
   const deleteMany: DeleteManyMethod = async keys => {
-    if (hooks.deleteMany) await hooks.deleteMany(keys)
+    if (hooks.deleteMany)
+      await hooks.deleteMany(keys)
 
     // delete all
-    if (keys.length === 0) store.clear()
+    if (keys.length === 0)
+      store.clear()
 
     // delete many
     for (const key of keys)
@@ -270,31 +301,36 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const has: HasMethod = async key => {
-    if (hooks.has) await hooks.has(key)
+    if (hooks.has)
+      await hooks.has(key)
 
     return store.has(key)
   }
 
   const size: SizeMethod = async () => {
-    if (hooks.size) await hooks.size()
+    if (hooks.size)
+      await hooks.size()
 
     return store.size
   }
 
   const clear: ClearMethod = async () => {
-    if (hooks.clear) await hooks.clear()
+    if (hooks.clear)
+      await hooks.clear()
 
     return await prune()
   }
 
   const keys: KeysMethod = async () => {
-    if (hooks.keys) await hooks.keys()
+    if (hooks.keys)
+      await hooks.keys()
 
     return [...store.keys()]
   }
 
   const values: ValuesMethod = async () => {
-    if (hooks.values) await hooks.values()
+    if (hooks.values)
+      await hooks.values()
 
     let values: Value[] = []
 
@@ -305,28 +341,33 @@ const memoryCache: MemoryCache = (config = {}) => {
   }
 
   const memory: MemoryMethod = async () => {
-    if (hooks.memory) await hooks.memory()
+    if (hooks.memory)
+      await hooks.memory()
 
     const data = [...store.keys()].toString() + [...store.values()].toString()
-    const buffer = Buffer.from(data)
+    , buffer = Buffer.from(data)
+
     return Buffer.byteLength(buffer)
   }
 
   const recent: RecentMethod = async () => {
-    if (hooks.recent) await hooks.recent()
+    if (hooks.recent)
+      await hooks.recent()
 
     return recentRecord
   }
 
   const newest: NewestMethod = async () => {
-    if (hooks.newest) await hooks.newest()
+    if (hooks.newest)
+      await hooks.newest()
 
-    if (store.size === 0) return undefined
+    if (store.size === 0)
+      return undefined
 
     let newestAge = 0
     , record
 
-    for (let [key, value] of store) {
+    for (let [key, value] of store)
       if (value.age > newestAge) {
         newestAge = value.age
 
@@ -335,20 +376,21 @@ const memoryCache: MemoryCache = (config = {}) => {
           ...value
         }
       }
-    }
 
     return record
   }
 
   const oldest: OldestMethod = async () => {
-    if (hooks.oldest) await hooks.oldest()
+    if (hooks.oldest)
+      await hooks.oldest()
 
-    if (store.size === 0) return undefined
+    if (store.size === 0)
+      return undefined
 
     let oldestAge = 0
     , record
 
-    for (let [key, value] of store) {
+    for (let [key, value] of store)
       if (oldestAge === 0 || value.age < oldestAge) {
         oldestAge = value.age
 
@@ -357,24 +399,24 @@ const memoryCache: MemoryCache = (config = {}) => {
           ...value
         }
       }
-    }
 
     return record
   }
 
   const dump: DumpMethod = async () => {
-    if (hooks.dump) await hooks.dump()
+    if (hooks.dump)
+      await hooks.dump()
 
-    if (store.size === 0) return []
+    if (store.size === 0)
+      return []
 
     let records: Record[] = []
 
-    for (let [key, value] of store) {
+    for (let [key, value] of store)
       records = [...records, {
         key,
         ...value
-      }] 
-    }
+      }]
 
     return records
   }
