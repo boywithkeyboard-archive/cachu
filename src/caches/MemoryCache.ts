@@ -1,4 +1,5 @@
 import ms from 'ms'
+import { readFile, writeFile } from 'fs/promises'
 import {
   MemoryCache,
   Record,
@@ -23,12 +24,17 @@ import {
   OldestMethod,
   OnMethod,
   DumpMethod,
-  Value
+  Value,
+  Key,
+  ImportMethod,
+  ExportMethod
 } from '../../types/caches/MemoryCache'
+import encrypt from '../modules/encrypt'
+import decrypt from '../modules/decrypt'
 
 const memoryCache: MemoryCache = (config = {}) => {
-  const store: Map<any, { value: {}, age: number, maxAge?: number }> = new Map()
-  const hooks: { [key: string]: any } = {}
+  const store: Map<Key, { value: {}, age: number, maxAge?: number }> = new Map()
+  const hooks: { [key: string]: Function } = {}
 
   let recentRecord: Record | undefined
 
@@ -42,22 +48,20 @@ const memoryCache: MemoryCache = (config = {}) => {
   // internal functions
 
   const prune = async () => {
-    for (let [key, value] of store) {
+    for (let [key, value] of store)
       if (Date.now() - value.age > maxAge)
         store.delete(key)
-    }
   }
 
   , deleteOldestEntry = async () => {
     let oldestAge = 0
     , keyOfOldestRecord
 
-    for (let [key, value] of store) {
+    for (let [key, value] of store)
       if (value.age > oldestAge) {
         oldestAge = value.age
         keyOfOldestRecord = key
       }
-    }
 
     if (keyOfOldestRecord)
       store.delete(keyOfOldestRecord)
@@ -421,6 +425,75 @@ const memoryCache: MemoryCache = (config = {}) => {
     return records
   }
 
+  const _import: ImportMethod = async (path, key) => {
+    try {
+      const file = await readFile(path, { encoding: 'utf-8' })
+
+      , raw = await decrypt(file, key)
+      , data = JSON.parse(raw) as {
+        records: Record[],
+        metadata: {
+          exportedAt: Date,
+          version: number
+        }
+      }
+
+      for (let record of data.records)
+        store.set(record.key, {
+          value: record.value,
+          age: record.age,
+          ...(record.maxAge && { maxAge: record.maxAge })
+        })
+
+      return true
+    } catch (err) {
+      console.log(err)
+      return false
+    }
+  }
+
+  const _export: ExportMethod = async (path, key) => {
+    try {
+      let records: Record[] = []
+
+      for (let [key, value] of store)
+        records = [...records, {
+          key,
+          ...value
+        }]
+
+      const date = new Date()
+
+      , data = {
+        records,
+        metadata: {
+          exportedAt: date,
+          version: 5
+        }
+      }
+
+      , randomId = Math.floor(Math.random() * 100000000)
+
+      , exportPath = `${path}/${date.getUTCMonth() < 10 ? '0' : ''}${date.getUTCMonth() + 1}-${date.getUTCDate() < 10 ? '0' : ''}${date.getUTCDate()}-${date.getUTCFullYear()} #${randomId}.cachu`
+
+      await writeFile(exportPath, await encrypt(JSON.stringify(data), key), { encoding: 'utf-8' })
+
+      return {
+        path: exportPath,
+        success: true,
+        exportedAt: date,
+        version: 5
+      }
+    } catch (err) {
+      return {
+        path: undefined,
+        success: false,
+        exportedAt: undefined,
+        version: 5
+      }
+    }
+  }
+
   return {
     set,
     setMany,
@@ -442,7 +515,9 @@ const memoryCache: MemoryCache = (config = {}) => {
     newest,
     oldest,
     on,
-    dump
+    dump,
+    import: _import,
+    export: _export
   }
 }
 
