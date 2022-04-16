@@ -70,3 +70,5 @@ import { MemoryCache } from 'cachu'
   - [`newest()`](/guide/features/newest.md)
   - [`on(event, action)`](/guide/features/on.md)
   - [`dump()`](/guide/features/newest.md)
+  - [`import()`](/guide/features/import.md)
+  - [`export()`](/guide/features/export.md)
