@@ -1,4 +1,5 @@
-const { MemoryCache } = require('../src')
+import { MemoryCache } from '../src'
+import { unlink } from 'fs/promises'
 
 test('set, setMany and has', async () => {
   const cache = MemoryCache()
@@ -103,27 +104,27 @@ test('update and updateMany', async () => {
     [4, 'four']
   ])
 
-  expect((await cache.get('one')).value).toStrictEqual(valueOfFirstRecord)
+  expect((await cache.get('one'))?.value).toStrictEqual(valueOfFirstRecord)
   await cache.update('one', 'new value')
-  expect((await cache.get('one')).value).toBe('new value')
+  expect((await cache.get('one'))?.value).toBe('new value')
 
-  expect((await cache.get(keyOfSecondRecord)).value).toBe(123)
-  expect((await cache.get(3)).value).toBe('three')
+  expect((await cache.get(keyOfSecondRecord))?.value).toBe(123)
+  expect((await cache.get(3))?.value).toBe('three')
   await cache.updateMany([
     [keyOfSecondRecord, 345],
     [3, 'unicorn']
   ])
-  expect((await cache.get(keyOfSecondRecord)).value).toBe(345)
-  expect((await cache.get(3)).value).toBe('unicorn')
+  expect((await cache.get(keyOfSecondRecord))?.value).toBe(345)
+  expect((await cache.get(3))?.value).toBe('unicorn')
 
-  const oldAge = (await cache.get(4)).age
+  const oldAge = (await cache.get(4))?.age
 
   await new Promise((r) => setTimeout(r, 10))
   
   await cache.update(4, 'something different', {
     updateAge: true
   })
-  expect((await cache.get(4)).age !== oldAge).toBe(true)
+  expect((await cache.get(4))?.age !== oldAge).toBe(true)
 })
 
 test('delete and deleteMany', async () => {
@@ -279,8 +280,8 @@ test('oldest and newest', async () => {
 
   await cache.set(2, 'two')
 
-  expect((await cache.oldest()).key).toBe(1)
-  expect((await cache.newest()).key).toBe(2)
+  expect((await cache.oldest())?.key).toBe(1)
+  expect((await cache.newest())?.key).toBe(2)
 })
 
 test('dump', async () => {
@@ -303,4 +304,29 @@ test('dump', async () => {
       age: expect.any(Number)
     }
   ])
+})
+
+test('export and import', async () => {
+  const cache = MemoryCache()
+
+  await cache.setMany([
+    [1, 'one'],
+    [2, 'two']
+  ])
+
+  const { path, success, exportedAt, version } = await cache.export(__dirname, 'this is a 32 characters string !')
+
+  expect(success).toBe(true)
+  expect(typeof exportedAt).toBe('object')
+  expect(typeof version).toBe('number')
+
+  await cache.deleteMany([])
+
+  expect(await cache.import(path as string, 'this is a 32 characters string !')).toBe(true)
+
+  expect(await cache.has(1)).toBe(true)
+  expect(await cache.has(2)).toBe(true)
+
+  // remove file
+  await unlink(path as string)
 })
