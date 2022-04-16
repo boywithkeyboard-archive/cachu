@@ -1,6 +1,19 @@
 # changelog
 
-## v5.3.0
+### v5.4.0
+
+#### New Features:
+
+- added `export()` feature to export all records as a .cachu file
+- added `import()` feature to import records from a .cachu file
+
+#### Changes:
+
+- fixed typos in types
+- patched `updatedMany()` method
+- enhanced code style and performance
+
+### v5.3.0
 
 #### New Features:
 
