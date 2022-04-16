@@ -11,7 +11,7 @@ declare type Record = {
 
 declare type SetMethod = (key: Key, value: Value, maxAge?: number | string) => Promise<Record | undefined>
 
-declare type SetManyMethod = (records: [Key, Value, number | string | undefined][]) => Promise<(Record | undefined)[]>
+declare type SetManyMethod = (records: ([Key, Value, number | string] | [Key, Value])[]) => Promise<(Record | undefined)[]>
 
 declare type GetMethod = (key: Key, config?: {
   validate?: boolean,
@@ -28,7 +28,7 @@ declare type UpdateMethod = (key: Key, value: Value, config?: {
   updateAge: boolean
 }) => Promise<void>
 
-declare type UpdateManyMethod = (records: [Key, Value][], config: {
+declare type UpdateManyMethod = (records: [Key, Value][], config?: {
   updateAge: boolean
 }) => Promise<void>
 
@@ -85,6 +85,10 @@ declare type OnMethod = (event: Event, action: Function) => Promise<void>
 
 declare type DumpMethod = () => Promise<Record[]>
 
+declare type ImportMethod = (path: string, key: string) => Promise<boolean>
+
+declare type ExportMethod = (path: string, key: string) => Promise<{ path: string | undefined, success: boolean, exportedAt: Date | undefined, version: number }>
+
 declare type MemoryCache = (config?: {
   maxAge?: string | number,
   maxAmount?: number
@@ -109,7 +113,9 @@ declare type MemoryCache = (config?: {
   newest: NewestMethod,
   oldest: OldestMethod,
   on: OnMethod,
-  dump: DumpMethod
+  dump: DumpMethod,
+  import: ImportMethod,
+  export: ExportMethod
 }
 
 declare const memoryCache: MemoryCache
@@ -139,6 +145,8 @@ export {
   OldestMethod,
   OnMethod,
   DumpMethod,
+  ImportMethod,
+  ExportMethod,
   MemoryCache,
   memoryCache as default
 }
