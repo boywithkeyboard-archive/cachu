@@ -1,5 +1,14 @@
 # changelog
 
+### v5.4.1
+
+#### Changes:
+
+- added **Node.js v18** to tests
+- removed **Node.js v17** from tests
+- set a specific time for dependabot updates
+- upgraded `esbuild`
+
 ### v5.4.0
 
 #### New Features:
