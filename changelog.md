@@ -1,5 +1,11 @@
 # changelog
 
+### v5.4.2
+
+#### Changes:
+
+- upgraded `esbuild`
+
 ### v5.4.1
 
 #### Changes:
