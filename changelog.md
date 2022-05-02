@@ -1,5 +1,13 @@
 # changelog
 
+### v5.4.3
+
+#### Changes:
+
+- upgraded `typescript`
+- edited `tsconfig.json`
+- edited feature list
+
 ### v5.4.2
 
 #### Changes:
