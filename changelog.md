@@ -1,5 +1,12 @@
 # changelog
 
+### v5.4.4
+
+#### Changes:
+
+- upgraded `ts-jest`
+- upgraded `@types/jest`
+
 ### v5.4.3
 
 #### Changes:
