@@ -1,5 +1,26 @@
 # changelog
 
+### v6.0.0 (canary)
+
+#### Breaking Changes:
+
+- [ ] changed functionality of `get()` and `getMany()` methods
+
+#### New Features:
+
+- [ ] added a `DiskCache` and a `HybridCache`, a mixture of `MemoryCache` and `DiskCache`
+- [ ] added a `RedisCache`
+- [ ] added a option to limit the memory usage of your `MemoryCache` instance (and added built-in limitations for more security)
+
+#### Changes:
+
+- [ ] removed encryption used in `export()` and `import()` methods
+- [x] patched `esbuild`
+- [x] patched `@types/jest`
+- [x] patched `ts-jest`
+
+## v5
+
 ### v5.4.4
 
 #### Changes:
