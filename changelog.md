@@ -5,6 +5,7 @@
 #### Breaking Changes:
 
 - [ ] changed functionality of `get()` and `getMany()` methods
+- [ ] removed encryption used in `export()` and `import()` methods
 
 #### New Features:
 
@@ -14,7 +15,6 @@
 
 #### Changes:
 
-- [ ] removed encryption used in `export()` and `import()` methods
 - [x] patched `esbuild`
 - [x] patched `@types/jest`
 - [x] patched `ts-jest`
