@@ -4,20 +4,24 @@
 
 #### Breaking Changes:
 
-- [ ] changed functionality of `get()` and `getMany()` methods
-- [ ] removed encryption used in `export()` and `import()` methods
+[x] changed functionality of `get()` and `getMany()` methods
+[x] removed `export()` and `import()` methods
+[x] cachu is now a **object-oriented** library
+[x] cachu is now a **esm-only** package and **Node.js v18**
 
 #### New Features:
 
-- [ ] added a `DiskCache` and a `HybridCache`, a mixture of `MemoryCache` and `DiskCache`
-- [ ] added a `RedisCache`
+- [ ] added a `DiskCache` and a `BigCache`, a mixture of `MemoryCache` and `DiskCache`
 - [ ] added a option to limit the memory usage of your `MemoryCache` instance (and added built-in limitations for more security)
+- [ ] added a option to retrieve events via a webhook
+- [x] added `each()` method
 
 #### Changes:
 
-- [x] patched `esbuild`
-- [x] patched `@types/jest`
-- [x] patched `ts-jest`
+- **Patched dependencies.**
+  - patched `esbuild`
+  - patched `@types/jest`
+  - patched `ts-jest`
 
 ## v5
 
