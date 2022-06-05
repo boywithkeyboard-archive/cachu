@@ -1,8 +1,7 @@
 import { MemoryCache } from '../src'
-import { unlink } from 'fs/promises'
 
 test('set, setMany and has', async () => {
-  const cache = MemoryCache()
+  const cache = new MemoryCache()
 
   expect(await cache.has(1)).toBe(false)
   await cache.set(1, 'Hello')
@@ -21,7 +20,7 @@ test('set, setMany and has', async () => {
 })
 
 test('get and getMany', async () => {
-  const cache = MemoryCache({
+  const cache = new MemoryCache({
     maxAge: 5/1000 // 5ms
   })
 
@@ -33,53 +32,19 @@ test('get and getMany', async () => {
     [3, 'three']
   ])
 
-  expect(await cache.get('one')).toStrictEqual({
-    key: 'one',
-    value: valueOfFirstRecord,
-    age: expect.any(Number),
-    maxAge: 20000 // 20s
-  })
-  expect(await cache.get(keyOfSecondRecord)).toStrictEqual({
-    key: keyOfSecondRecord,
-    value: 123,
-    age: expect.any(Number)
-  })
+  expect(await cache.get('one')).toStrictEqual(valueOfFirstRecord)
+  expect(await cache.get(keyOfSecondRecord)).toStrictEqual(123)
   expect(await cache.getMany(['one', keyOfSecondRecord])).toStrictEqual([
-    {
-      key: 'one',
-      value: valueOfFirstRecord,
-      age: expect.any(Number),
-      maxAge: 20000 // 20s
-    },
-    {
-      key: keyOfSecondRecord,
-      value: 123,
-      age: expect.any(Number)
-    }
+    valueOfFirstRecord,
+    123
   ])
 
   // with removal
   expect(await cache.get(3, {
     delete: true
   })).toBeDefined()
-  expect(await cache.get(3)).toBeUndefined()
 
-  // in reverse order
-  expect(await cache.getMany(['one', keyOfSecondRecord], {
-    reverse: true
-  })).toStrictEqual([
-    {
-      key: keyOfSecondRecord,
-      value: 123,
-      age: expect.any(Number)
-    },
-    {
-      key: 'one',
-      value: valueOfFirstRecord,
-      age: expect.any(Number),
-      maxAge: 20000 // 20s
-    }
-  ])
+  expect(await cache.get(3)).toBeUndefined()
 
   await new Promise((r) => setTimeout(r, 10))
 
@@ -88,12 +53,11 @@ test('get and getMany', async () => {
     validate: false
   })).toBeDefined()
 
-  expect(await cache.get(keyOfSecondRecord)).toBeUndefined()
   expect(await cache.get('one')).toBeDefined()
 })
 
 test('update and updateMany', async () => {
-  const cache = MemoryCache()
+  const cache = new MemoryCache()
 
   const valueOfFirstRecord = [1, 2, 3]
   const keyOfSecondRecord = { someKey: 'two' }
@@ -104,31 +68,22 @@ test('update and updateMany', async () => {
     [4, 'four']
   ])
 
-  expect((await cache.get('one'))?.value).toStrictEqual(valueOfFirstRecord)
+  expect(await cache.get('one')).toStrictEqual(valueOfFirstRecord)
   await cache.update('one', 'new value')
-  expect((await cache.get('one'))?.value).toBe('new value')
+  expect(await cache.get('one')).toBe('new value')
 
-  expect((await cache.get(keyOfSecondRecord))?.value).toBe(123)
-  expect((await cache.get(3))?.value).toBe('three')
+  expect(await cache.get(keyOfSecondRecord)).toBe(123)
+  expect(await cache.get(3)).toBe('three')
   await cache.updateMany([
     [keyOfSecondRecord, 345],
     [3, 'unicorn']
   ])
-  expect((await cache.get(keyOfSecondRecord))?.value).toBe(345)
-  expect((await cache.get(3))?.value).toBe('unicorn')
-
-  const oldAge = (await cache.get(4))?.age
-
-  await new Promise((r) => setTimeout(r, 10))
-  
-  await cache.update(4, 'something different', {
-    updateAge: true
-  })
-  expect((await cache.get(4))?.age !== oldAge).toBe(true)
+  expect(await cache.get(keyOfSecondRecord)).toBe(345)
+  expect(await cache.get(3)).toBe('unicorn')
 })
 
 test('delete and deleteMany', async () => {
-  const cache = MemoryCache()
+  const cache = new MemoryCache()
 
   await cache.setMany([
     [1, 'one'],
@@ -158,7 +113,7 @@ test('delete and deleteMany', async () => {
 })
 
 test('size, keys and values', async () => {
-  const cache = MemoryCache()
+  const cache = new MemoryCache()
 
   await cache.setMany([
     [1, 'one'],
@@ -173,7 +128,7 @@ test('size, keys and values', async () => {
 })
 
 test('clear', async () => {
-  const cache = MemoryCache({
+  const cache = new MemoryCache({
     maxAge: 5/1000 // 5ms
   })
 
@@ -197,7 +152,7 @@ test('clear', async () => {
 })
 
 test('recent', async () => {
-  const cache = MemoryCache()
+  const cache = new MemoryCache()
 
   expect(await cache.recent()).toBe(undefined)
 
@@ -209,7 +164,7 @@ test('recent', async () => {
   expect(await cache.recent()).toStrictEqual({
     key: 2,
     value: 'two',
-    age: expect.any(Number)
+    expiresAt: expect.any(Number)
   })
 
   await cache.set(3, 'three')
@@ -217,7 +172,7 @@ test('recent', async () => {
   expect(await cache.recent()).toStrictEqual({
     key: 3,
     value: 'three',
-    age: expect.any(Number)
+    expiresAt: expect.any(Number)
   })
 
   await cache.update(1, 'something different')
@@ -225,7 +180,7 @@ test('recent', async () => {
   expect(await cache.recent()).toStrictEqual({
     key: 1,
     value: 'something different',
-    age: expect.any(Number)
+    expiresAt: expect.any(Number)
   })
 
   await cache.updateMany([
@@ -236,12 +191,12 @@ test('recent', async () => {
   expect(await cache.recent()).toStrictEqual({
     key: 2,
     value: 'something different',
-    age: expect.any(Number)
+    expiresAt: expect.any(Number)
   })
 })
 
 test('maxAge and maxAmount', async () => {
-  const cache = MemoryCache()
+  const cache = new MemoryCache()
 
   expect(await cache.maxAge()).toBe(600000)
   expect(await cache.maxAmount()).toBe(10000)
@@ -254,7 +209,7 @@ test('maxAge and maxAmount', async () => {
 })
 
 test('memory', async () => {
-  const cache = MemoryCache()
+  const cache = new MemoryCache()
 
   expect(await cache.memory()).toBeCloseTo(0)
 
@@ -266,67 +221,4 @@ test('memory', async () => {
   ])
 
   expect(await cache.memory()).toBeGreaterThan(10)
-})
-
-test('oldest and newest', async () => {
-  const cache = MemoryCache()
-
-  expect(await cache.oldest()).toBe(undefined)
-  expect(await cache.newest()).toBe(undefined)
-
-  await cache.set(1, 'one')
-
-  await new Promise((r) => setTimeout(r, 5))
-
-  await cache.set(2, 'two')
-
-  expect((await cache.oldest())?.key).toBe(1)
-  expect((await cache.newest())?.key).toBe(2)
-})
-
-test('dump', async () => {
-  const cache = MemoryCache()
-
-  await cache.setMany([
-    [1, 'one'],
-    [2, 'two']
-  ])
-
-  expect(await cache.dump()).toStrictEqual([
-    {
-      key: 1,
-      value: 'one',
-      age: expect.any(Number)
-    },
-    {
-      key: 2,
-      value: 'two',
-      age: expect.any(Number)
-    }
-  ])
-})
-
-test('export and import', async () => {
-  const cache = MemoryCache()
-
-  await cache.setMany([
-    [1, 'one'],
-    [2, 'two']
-  ])
-
-  const { path, success, exportedAt, version } = await cache.export(__dirname, 'this is a 32 characters string !')
-
-  expect(success).toBe(true)
-  expect(typeof exportedAt).toBe('object')
-  expect(typeof version).toBe('number')
-
-  await cache.deleteMany([])
-
-  expect(await cache.import(path as string, 'this is a 32 characters string !')).toBe(true)
-
-  expect(await cache.has(1)).toBe(true)
-  expect(await cache.has(2)).toBe(true)
-
-  // remove file
-  await unlink(path as string)
 })
