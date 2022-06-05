@@ -1,59 +1,56 @@
-# cachu
+## cachu
 
-**Simple, minimalistic key-value cache, created by [Azury](https://azury.dev).**
+> **Warning**  
+> cachu v6 is **not yet production-ready** and may contain bugs causing memory leaks.
 
-- fully asynchronous
-- small n' easy
-- zero dependencies
+### Setup
 
-## Setup
+#### Installation
 
-### Installation
-
-Install **cachu** using your favorite package manager.
-
-```sh-session
+```bash
+# Install the latest (stable) release.
 npm i cachu
-yarn add cachu
+
+# Try out new features before they hit our stable release.
+npm i cachu@canary
 ```
 
-### Usage
-
-Just create a new cache, it's as easy as that!
+#### Usage
 
 ```js
 import { MemoryCache } from 'cachu'
 
 (async () => {
-  const cache = MemoryCache()
+  const cache = new MemoryCache()
 
-  // add a new record
-  await cache.set('one', 'Hello Github')
+  // Set a new entry.
+  await cache.set('one', 'Hello World')
 
-  // retrieve the value of a record
-  const { value } = await cache.get('one')
+  console.log(await cache.get('one')) // Gives out "Hello World" on console.
 })()
 ```
 
-## Caches
+### Caches
 
+- [`BigCache`](/guide/caches/BigCache.md) *(coming soon)*
 - [`MemoryCache`](/guide/caches/MemoryCache.md)
+- [`DiskCache`](/guide/caches/DiskCache.md) *(coming soon)*
 
-## API
+### API
 
-- ### Configuration
+- #### Configuration
 
   - [`maxAge`](/guide/config/maxAge.md) to set the **maximum age** for each record in the cache
   - [`maxAmount`](/guide/config/maxAmount.md) to set the **maximum size** for the cache
 
-- ### Features
+- #### Features
 
   - [`set(key, value, maxAge)`](/guide/features/set.md)
   - [`setMany([[key, value, maxAge]])`](/guide/features/setMany.md)
   - [`get(key, config)`](/guide/features/get.md)
   - [`getMany([keys], config)`](/guide/features/getMany.md)
-  - [`update(key, value, config)`](/guide/features/update.md)
-  - [`updateMany([[key, value]], config)`](/guide/features/updateMany.md)
+  - [`update(key, value)`](/guide/features/update.md)
+  - [`updateMany([[key, value]])`](/guide/features/updateMany.md)
   - [`delete(key)`](/guide/features/delete.md)
   - [`deleteMany([keys])`](/guide/features/deleteMany.md)
   - [`has(key)`](/guide/features/has.md)
@@ -62,11 +59,6 @@ import { MemoryCache } from 'cachu'
   - [`values()`](/guide/features/values.md)
   - [`clear()`](/guide/features/clear.md)
   - [`recent()`](/guide/features/recent.md)
-  - [`maxAge(age)`](/guide/features/maxAge.md)
-  - [`maxAmount(amount)`](/guide/features/maxAmount.md)
-  - [`oldest()`](/guide/features/oldest.md)
-  - [`newest()`](/guide/features/newest.md)
+  - [`maxAge(maxAge)`](/guide/features/maxAge.md)
+  - [`maxAmount(maxAmount)`](/guide/features/maxAmount.md)
   - [`on(event, action)`](/guide/features/on.md)
-  - [`dump()`](/guide/features/newest.md)
-  - [`import(path, key)`](/guide/features/import.md)
-  - [`export(path, key)`](/guide/features/export.md)
