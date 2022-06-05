@@ -1,14 +1,26 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
+    "module": "es2020",
+    "lib": [
+      "esnext"
+    ],
+    "rootDir": "src",
+    "outDir": "types",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "alwaysStrict": true,
     "strict": true,
+    "noImplicitOverride": true,
+    "removeComments": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
     "skipLibCheck": true,
-    "types": [
-      "node", "jest"
-    ]
-  }
+    "newLine": "crlf"
+  },
+  "exclude": [
+    "test"
+  ]
 }
