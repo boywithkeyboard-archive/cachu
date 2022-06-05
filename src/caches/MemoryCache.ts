@@ -1,524 +1,308 @@
 import ms from 'ms'
-import { readFile, writeFile } from 'fs/promises'
-import {
-  MemoryCache,
-  Record,
-  SetMethod,
-  SetManyMethod,
-  GetMethod,
-  GetManyMethod,
-  UpdateMethod,
-  UpdateManyMethod,
-  DeleteMethod,
-  DeleteManyMethod,
-  HasMethod,
-  SizeMethod,
-  KeysMethod,
-  ValuesMethod,
-  ClearMethod,
-  MemoryMethod,
-  RecentMethod,
-  MaxAgeMethod,
-  MaxAmountMethod,
-  NewestMethod,
-  OldestMethod,
-  OnMethod,
-  DumpMethod,
-  Value,
-  Key,
-  ImportMethod,
-  ExportMethod
-} from '../../types/caches/MemoryCache'
-import encrypt from '../modules/encrypt'
-import decrypt from '../modules/decrypt'
+import { Action } from '../types'
+import Cache from './Cache'
 
-const memoryCache: MemoryCache = (config = {}) => {
-  const store: Map<Key, { value: {}, age: number, maxAge?: number }> = new Map()
-  const hooks: { [key: string]: Function } = {}
+class MemoryCache extends Cache {
+  private store: Map<any, { value: any, expiresAt?: number }>
+  private consumedMemory: number
 
-  let recentRecord: Record | undefined
+  constructor(config?: {
+    maxAge?: string | number
+    maxAmount?: number
+    maxMemory?: number
+    webhook?: string
+    autoclear?: boolean
+  }) {
+    super(config)
 
-  , maxAge =
-    typeof config.maxAge === 'number' ? config.maxAge * 1000 :
-    typeof config.maxAge === 'string' ? ms(config.maxAge) :
-    600000 // 10 minutes
-
-  , maxAmount = config.maxAmount ?? 10000
-
-  // internal functions
-
-  const prune = async () => {
-    for (let [key, value] of store)
-      if (Date.now() - value.age > maxAge)
-        store.delete(key)
+    this.store = new Map()
+    this.consumedMemory = 0
   }
 
-  , deleteOldestEntry = async () => {
-    let oldestAge = 0
-    , keyOfOldestRecord
-
-    for (let [key, value] of store)
-      if (value.age > oldestAge) {
-        oldestAge = value.age
-        keyOfOldestRecord = key
-      }
-
-    if (keyOfOldestRecord)
-      store.delete(keyOfOldestRecord)
+  private async deleteOutdated(amount?: number) {
+    
   }
 
-  // public functions
+  async set(key: any, value: any, maxAge?: string | number) {
+    if (this.__eventListeners.set)
+      await this.__eventListeners.set(key, value, maxAge)
 
-  const on: OnMethod = async (event, action) => {
-    hooks[event] = action
-  }
+    if (this.store.has(key)) return
 
-  const modifyMaxAge: MaxAgeMethod = async newAge => {
-    if (hooks.maxAge)
-      await hooks.maxAge(newAge)
+    if (this.__autoclear && this.__maxAge !== Infinity)
+      await this.deleteOutdated()
 
-    if (!newAge)
-      return maxAge
-
-    maxAge =
-      typeof newAge === 'number' ? newAge * 1000 :
-      typeof newAge === 'string' ? ms(newAge) :
-      600000 // 10 minutes
-
-    await prune()
-
-    return maxAge
-  }
-
-  const modifyMaxAmount: MaxAmountMethod = async newAmount => {
-    if (hooks.maxAmount)
-      await hooks.maxAmount(newAmount)
-
-    if (!newAmount)
-      return maxAmount
-
-    maxAmount = newAmount ?? 10000
-
-    await prune()
-
-    return maxAmount
-  }
-
-  const set: SetMethod = async (key, value, customMaxAge) => {
-    if (hooks.set)
-      await hooks.set(key, value, customMaxAge)
-
-    if (store.has(key))
-      return undefined
-
-    if (maxAge !== Infinity)
-      await prune()
-
-    if (store.size > maxAmount)
-      await deleteOldestEntry()
+    if (this.__autoclear && this.store.size + 1 > this.__maxAmount)
+      await this.deleteOutdated(1)
 
     const data = {
       value,
-      age: Date.now(),
-      ...(typeof customMaxAge === 'string' ? { maxAge: ms(customMaxAge) } : typeof customMaxAge === 'number' && { maxAge: customMaxAge * 1000 })
-    }
-
-    store.set(key, data)
-
-    recentRecord = {
-      key,
-      ...data
-    }
-
-    return {
-      key,
-      ...data
-    }
-  }
-
-  const setMany: SetManyMethod = async records => {
-    if (hooks.setMany)
-      await hooks.setMany(records)
-
-    if (maxAge !== Infinity)
-      await prune()
-
-    const addedRecords = []
-
-    for (let record of records) {
-      const key = record[0]
-      , value = record[1]
-      , customMaxAge = record[2]
-
-      if (store.has(key)) {
-        addedRecords.push(undefined)
-        continue
-      }
-  
-      const data = {
-        value,
-        age: Date.now(),
-        ...(typeof customMaxAge === 'string' ? { maxAge: ms(customMaxAge) } : typeof customMaxAge === 'number' && { maxAge: customMaxAge * 1000 })
-      }
-
-      if (store.size > maxAmount)
-        await deleteOldestEntry()
-  
-      store.set(key, data)
-
-      recentRecord = {
-        key,
-        ...data
-      }
-  
-      addedRecords.push({
-        key,
-        ...data
+      ...(typeof maxAge === 'string' ? {
+        expiresAt: Date.now() + ms(maxAge)
+      } : typeof maxAge === 'number' ? {
+        expiresAt: Date.now() + maxAge * 1000
+      } : this.__maxAge !== Infinity && {
+        expiresAt: Date.now() + this.__maxAge
       })
     }
 
-    return addedRecords
-  }
+    this.store.set(key, data)
 
-  const get: GetMethod = async (key, config = {}) => {
-    if (hooks.get)
-      await hooks.get(key, config)
-
-    const record = store.get(key)
-
-    if (!record)
-      return undefined
-
-    if (config.validate !== false && (record.maxAge ? (Date.now() - record.age > record.maxAge) : (Date.now() - record.age > maxAge))) {
-      store.delete(key)
-      return undefined
-    }
-
-    if (config.delete)
-      store.delete(key)
-
-    return {
-      key,
-      ...record
-    }
-  }
-
-  const getMany: GetManyMethod = async (keys, config = {}) => {
-    if (hooks.getMany)
-      await hooks.getMany(keys, config)
-
-    let records: (Record | undefined)[] = []
-
-    for (let key of keys) {
-      const record = store.get(key)
-
-      if (!record) {
-        records = [...records, undefined]
-        continue
-      }
-
-      if (config.validate !== false && (record.maxAge ? (Date.now() - record.age > record.maxAge) : (Date.now() - record.age > maxAge))) {
-        store.delete(key)
-        
-        records = [...records, undefined]
-
-        continue
-      }
-
-      if (config.delete)
-        store.delete(key)
-
-      records = [...records, {
-        key,
-        ...record
-      }]
-    }
-
-    if (config.reverse)
-      return records.reverse()
-
-    return records
-  }
-
-  const update: UpdateMethod = async (key, value, config) => {
-    if (hooks.update)
-      await hooks.update(key, value, config ?? {})
-
-    const oldRecord = store.get(key)
-    if (!oldRecord) return
-
-    const data = {
-      value,
-      age: (config && config.updateAge) ? Date.now() : oldRecord.age,
-      ...(oldRecord.maxAge && { maxAge: oldRecord.maxAge })
-    }
-
-    store.set(key, data)
-
-    recentRecord = {
+    this.__recentEntry = {
       key,
       ...data
     }
   }
 
-  const updateMany: UpdateManyMethod = async (records, config) => {
-    if (hooks.updateMany)
-      await hooks.updateMany(records, config ?? {})
+  async setMany(entries: ([any, any, number | string] | [any, any])[]) {
+    if (this.__eventListeners.setMany)
+      await this.__eventListeners.setMany(entries)
 
-    for (let record of records) {
-      const oldRecord = store.get(record[0])
-      if (!oldRecord) continue
+    if (this.__autoclear && this.__maxAge !== Infinity)
+      await this.deleteOutdated()
 
+    if (this.__autoclear && this.store.size + entries.length > this.__maxAmount)
+      await this.deleteOutdated((this.store.size + entries.length) - this.__maxAmount)
+
+    for (let e of entries) {
+      if (this.store.has(e[0])) continue
+  
       const data = {
-        value: record[1],
-        age: (config && config.updateAge) ? Date.now() : oldRecord.age,
-        ...(oldRecord.maxAge && { maxAge: oldRecord.maxAge })
+        value: e[1],
+        ...(typeof e[2] === 'string' ? {
+          expiresAt: Date.now() + ms(e[2])
+        } : typeof e[2] === 'number' ? {
+          expiresAt: Date.now() + e[2] * 1000
+        } : this.__maxAge !== Infinity && {
+          expiresAt: Date.now() + this.__maxAge
+        })
       }
   
-      store.set(record[0], data)
-
-      recentRecord = {
-        key: record[0],
+      this.store.set(e[0], data)
+  
+      this.__recentEntry = {
+        key: e[0],
         ...data
       }
     }
   }
 
-  const _delete: DeleteMethod = async key => {
-    if (hooks.delete)
-      await hooks.delete(key)
+  async get(key: any, config?: {
+    validate?: boolean
+    delete?: boolean
+  }) {
+    config = config ?? {}
 
-    store.delete(key)
+    if (this.__eventListeners.get)
+      await this.__eventListeners.get(key, config)
+
+    const entry = this.store.get(key)
+    
+    if (!entry) return
+
+    if (config.validate && entry.expiresAt && Date.now() >= entry.expiresAt) {
+      this.store.delete(key)
+      return
+    }
+
+    if (config.delete)
+      this.store.delete(key)
+
+    return entry.value
   }
 
-  const deleteMany: DeleteManyMethod = async keys => {
-    if (hooks.deleteMany)
-      await hooks.deleteMany(keys)
+  async getMany(keys: any[], config?: {
+    validate?: boolean
+    delete?: boolean
+  }) {
+    config = config ?? {}
 
-    // delete all
+    if (this.__eventListeners.getMany)
+      await this.__eventListeners.getMany(keys, config)
+
+    let values: any[] = []
+
+    for (let k of keys) {
+      const entry = this.store.get(k)
+    
+      if (!entry) {
+        values = [...values, undefined]
+        continue
+      }
+  
+      if (config.validate && entry.expiresAt && Date.now() >= entry.expiresAt) {
+        this.store.delete(k)
+
+        values = [...values, undefined]
+        continue
+      }
+  
+      if (config.delete)
+        this.store.delete(k)
+  
+      values = [...values, entry.value]
+    }
+
+    return values
+  }
+
+  async update(key: any, value: any) {
+    if (this.__eventListeners.update)
+      await this.__eventListeners.update(key, value)
+
+    const entry = this.store.get(key)
+
+    if (!entry) return
+
+    const data = {
+      value,
+      ...(entry.expiresAt && { expiresAt: entry.expiresAt })
+    }
+
+    this.store.set(key, data)
+
+    this.__recentEntry = {
+      key,
+      ...data
+    }
+  }
+
+  async updateMany(entries: [any, any][]) {
+    if (this.__eventListeners.updateMany)
+      await this.__eventListeners.updateMany(entries)
+
+    for (let e of entries) {
+      const entry = this.store.get(e[0])
+
+      if (!entry) continue
+  
+      const data = {
+        value: e[1],
+        ...(entry.expiresAt && { expiresAt: entry.expiresAt })
+      }
+  
+      this.store.set(e[0], data)
+  
+      this.__recentEntry = {
+        key: e[0],
+        ...data
+      }
+    }
+  }
+
+  async delete(key: any) {
+    if (this.__eventListeners.delete)
+      await this.__eventListeners.delete(key)
+
+    this.store.delete(key)
+  }
+
+  async deleteMany(keys: any[]) {
+    if (this.__eventListeners.deleteMany)
+      await this.__eventListeners.deleteMany(keys)
+
     if (keys.length === 0)
-      store.clear()
+      this.store.clear()
 
-    // delete many
-    for (const key of keys)
-      store.delete(key)
+    for (let k of keys)
+      this.store.delete(k)
   }
 
-  const has: HasMethod = async key => {
-    if (hooks.has)
-      await hooks.has(key)
+  async has(key: any) {
+    if (this.__eventListeners.has)
+      await this.__eventListeners.has(key)
 
-    return store.has(key)
+    return this.store.has(key)
   }
 
-  const size: SizeMethod = async () => {
-    if (hooks.size)
-      await hooks.size()
+  async size() {
+    if (this.__eventListeners.size)
+      await this.__eventListeners.size()
 
-    return store.size
+    return this.store.size
   }
 
-  const clear: ClearMethod = async () => {
-    if (hooks.clear)
-      await hooks.clear()
+  async keys() {
+    if (this.__eventListeners.keys)
+      await this.__eventListeners.keys()
 
-    return await prune()
+    return [...this.store.keys()]
   }
 
-  const keys: KeysMethod = async () => {
-    if (hooks.keys)
-      await hooks.keys()
+  async values() {
+    if (this.__eventListeners.values)
+      await this.__eventListeners.values()
 
-    return [...store.keys()]
-  }
+    let values: any[] = []
 
-  const values: ValuesMethod = async () => {
-    if (hooks.values)
-      await hooks.values()
-
-    let values: Value[] = []
-
-    for (let [key, value] of store)
+    for (let [key, value] of this.store)
       values = [...values, value.value]
 
     return values
   }
 
-  const memory: MemoryMethod = async () => {
-    if (hooks.memory)
-      await hooks.memory()
+  async clear() {
+    if (this.__eventListeners.clear)
+      await this.__eventListeners.clear()
 
-    const data = [...store.keys()].toString() + [...store.values()].toString()
+    for (let [key, value] of this.store)
+      if (value.expiresAt && Date.now() >= value.expiresAt)
+        this.store.delete(key)
+  }
+
+  async memory() {
+    if (this.__eventListeners.memory)
+      await this.__eventListeners.memory()
+
+    const data = [...this.store.keys()].toString() + [...this.store.values()].toString()
     , buffer = Buffer.from(data)
 
     return Buffer.byteLength(buffer)
   }
 
-  const recent: RecentMethod = async () => {
-    if (hooks.recent)
-      await hooks.recent()
+  async recent() {
+    if (this.__eventListeners.recent)
+      await this.__eventListeners.recent()
 
-    return recentRecord
+    return this.__recentEntry
   }
 
-  const newest: NewestMethod = async () => {
-    if (hooks.newest)
-      await hooks.newest()
+  async maxAge(maxAge?: string | number) {
+    if (this.__eventListeners.maxAge)
+      await this.__eventListeners.maxAge()
 
-    if (store.size === 0)
-      return undefined
+    if (!maxAge)
+      return this.__maxAge
 
-    let newestAge = 0
-    , record
+    this.__maxAge = typeof maxAge === 'number' ? maxAge * 1000 : ms(maxAge)
 
-    for (let [key, value] of store)
-      if (value.age > newestAge) {
-        newestAge = value.age
-
-        record = {
-          key,
-          ...value
-        }
-      }
-
-    return record
+    return this.__maxAge
   }
 
-  const oldest: OldestMethod = async () => {
-    if (hooks.oldest)
-      await hooks.oldest()
+  async maxAmount(maxAmount?: number) {
+    if (this.__eventListeners.maxAmount)
+      await this.__eventListeners.maxAmount()
 
-    if (store.size === 0)
-      return undefined
+    if (!maxAmount)
+      return this.__maxAmount
 
-    let oldestAge = 0
-    , record
+    this.__maxAmount = maxAmount
 
-    for (let [key, value] of store)
-      if (oldestAge === 0 || value.age < oldestAge) {
-        oldestAge = value.age
-
-        record = {
-          key,
-          ...value
-        }
-      }
-
-    return record
+    return maxAmount
   }
 
-  const dump: DumpMethod = async () => {
-    if (hooks.dump)
-      await hooks.dump()
+  async each(action: Action) {
+    if (this.__eventListeners.each)
+      await this.__eventListeners.each()
 
-    if (store.size === 0)
-      return []
-
-    let records: Record[] = []
-
-    for (let [key, value] of store)
-      records = [...records, {
-        key,
-        ...value
-      }]
-
-    return records
+    for (let [key, value] of this.store)
+      await action(key, value)
   }
 
-  const _import: ImportMethod = async (path, key) => {
-    try {
-      const file = await readFile(path, { encoding: 'utf-8' })
-
-      , raw = await decrypt(file, key)
-      , data = JSON.parse(raw) as {
-        records: Record[],
-        metadata: {
-          exportedAt: Date,
-          version: number
-        }
-      }
-
-      for (let record of data.records)
-        store.set(record.key, {
-          value: record.value,
-          age: record.age,
-          ...(record.maxAge && { maxAge: record.maxAge })
-        })
-
-      return true
-    } catch (err) {
-      console.log(err)
-      return false
-    }
-  }
-
-  const _export: ExportMethod = async (path, key) => {
-    try {
-      let records: Record[] = []
-
-      for (let [key, value] of store)
-        records = [...records, {
-          key,
-          ...value
-        }]
-
-      const date = new Date()
-
-      , data = {
-        records,
-        metadata: {
-          exportedAt: date,
-          version: 5
-        }
-      }
-
-      , randomId = Math.floor(Math.random() * 100000000)
-
-      , exportPath = `${path}/${date.getUTCMonth() < 10 ? '0' : ''}${date.getUTCMonth() + 1}-${date.getUTCDate() < 10 ? '0' : ''}${date.getUTCDate()}-${date.getUTCFullYear()} #${randomId}.cachu`
-
-      await writeFile(exportPath, await encrypt(JSON.stringify(data), key), { encoding: 'utf-8' })
-
-      return {
-        path: exportPath,
-        success: true,
-        exportedAt: date,
-        version: 5
-      }
-    } catch (err) {
-      return {
-        path: undefined,
-        success: false,
-        exportedAt: undefined,
-        version: 5
-      }
-    }
-  }
-
-  return {
-    set,
-    setMany,
-    get,
-    getMany,
-    update,
-    updateMany,
-    delete: _delete,
-    deleteMany,
-    has,
-    size,
-    keys,
-    values,
-    clear,
-    memory,
-    recent,
-    maxAge: modifyMaxAge,
-    maxAmount: modifyMaxAmount,
-    newest,
-    oldest,
-    on,
-    dump,
-    import: _import,
-    export: _export
+  async on() {
+    if (this.__eventListeners.on)
+      await this.__eventListeners.on()
   }
 }
 
-export default memoryCache
+export default MemoryCache
