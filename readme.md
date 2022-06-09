@@ -1,7 +1,7 @@
 ## cachu
 
 > **Warning**  
-> cachu v6 is **not yet production-ready** and may contain bugs causing memory leaks.
+> cachu v6 is **not yet production-ready** and may contain bugs causing memory leaks. Check out the docs for our stable version [here](https://github.com/azurydev/cachu/tree/v5.x).
 
 ### Setup
 
