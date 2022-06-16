@@ -44,15 +44,19 @@ jobs:
         with:
           script: |
             const { exec } = require('child_process')
-            if (/[0-9]+$/.test(process.env.VERSION))
-              exec('npm publish --access public')
-            else
+            const containsAnyLetter = str => /[a-zA-Z]/.test(str)
+
+            if (containsAnyLetter(process.env.VERSION.replace('v', '')))
               exec(`npm publish --access public --tag ${process.env.VERSION.substring(0, process.env.VERSION.length - 2).substring(process.env.VERSION.indexOf('-') + 1)}`)
+            else
+              exec('npm publish --access public')
       
       - name: Publish Release
         uses: actions/github-script@v6
         with:
           script: |
+            const containsAnyLetter = str => /[a-zA-Z]/.test(str)
+
             github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -60,5 +64,5 @@ jobs:
               name: process.env.VERSION,
               body: process.env.CHANGELOG,
               draft: false,
-              prerelease: /[0-9]+$/.test(process.env.VERSION) === false
+              prerelease: containsAnyLetter(process.env.VERSION.replace('v', ''))
             })
