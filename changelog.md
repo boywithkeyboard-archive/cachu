@@ -15,7 +15,7 @@
 - added a option to limit the memory usage of your `MemoryCache` instance (and added built-in limitations for more security)
 - added a option to retrieve events via a webhook
 
-## v6.0.0-canary.2
+## v6.0.0-canary.3
 
 > **Warning**
 > This release is for test purposes only.
