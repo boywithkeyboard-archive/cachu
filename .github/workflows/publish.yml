@@ -43,13 +43,12 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           script: |
-            const { exec } = require('child_process')
             const containsAnyLetter = str => /[a-zA-Z]/.test(str)
 
             if (containsAnyLetter(process.env.VERSION.replace('v', '')))
-              exec(`npm publish --access public --tag ${process.env.VERSION.substring(0, process.env.VERSION.length - 2).substring(process.env.VERSION.indexOf('-') + 1)}`)
+              await exec.exec(`npm publish --access public --tag ${process.env.VERSION.substring(0, process.env.VERSION.length - 2).substring(process.env.VERSION.indexOf('-') + 1)}`)
             else
-              exec('npm publish --access public')
+              await exec.exec('npm publish --access public')
       
       - name: Publish Release
         uses: actions/github-script@v6
