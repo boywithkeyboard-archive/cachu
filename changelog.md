@@ -1,27 +1,24 @@
 # changelog
 
-### v6.0.0 (canary)
+## Unpublished
 
 #### Breaking Changes:
 
-[x] changed functionality of `get()` and `getMany()` methods
-[x] removed `export()` and `import()` methods
-[x] cachu is now a **object-oriented** library
-[x] cachu is now a **esm-only** package and **Node.js v18**
+- changed functionality of `get()` and `getMany()` methods
+- removed `export()`, `import()` and `dump()` methods
+- cachu is now a **object-oriented** library
+- cachu is now a **esm-only** package and requires **Node.js v18**
 
 #### New Features:
 
-- [ ] added a `DiskCache` and a `BigCache`, a mixture of `MemoryCache` and `DiskCache`
-- [ ] added a option to limit the memory usage of your `MemoryCache` instance (and added built-in limitations for more security)
-- [ ] added a option to retrieve events via a webhook
-- [x] added `each()` method
+- added a `DiskCache` and a `BigCache`, a mixture of `MemoryCache` and `DiskCache`
+- added a option to limit the memory usage of your `MemoryCache` instance (and added built-in limitations for more security)
+- added a option to retrieve events via a webhook
 
-#### Changes:
+## v6.0.0-canary.2
 
-- **Patched dependencies.**
-  - patched `esbuild`
-  - patched `@types/jest`
-  - patched `ts-jest`
+> **Warning**
+> This release is for test purposes only.
 
 ## v5
 
