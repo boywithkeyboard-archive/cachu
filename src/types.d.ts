@@ -1,1 +1,17 @@
-export type Action = (key?: any, value?: any) => Promise<void>
+export type Event =
+  | 'set'
+  | 'setMany'
+  | 'get'
+  | 'getMany'
+  | 'update'
+  | 'updateMany'
+  | 'delete'
+  | 'deleteMany'
+  | 'has'
+  | 'size'
+  | 'keys'
+  | 'values'
+  | 'clear'
+  | 'recent'
+  | 'maxAge'
+  | 'maxAmount'

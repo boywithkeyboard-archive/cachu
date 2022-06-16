@@ -1,5 +1,5 @@
 import ms from 'ms'
-import { Action } from '../types'
+import { Event } from '../types'
 import Cache from './Cache'
 
 class MemoryCache extends Cache {
@@ -26,8 +26,6 @@ class MemoryCache extends Cache {
   async set(key: any, value: any, maxAge?: string | number) {
     if (this.__eventListeners.set)
       await this.__eventListeners.set(key, value, maxAge)
-
-    if (this.store.has(key)) return
 
     if (this.__autoclear && this.__maxAge !== Infinity)
       await this.deleteOutdated()
@@ -149,6 +147,9 @@ class MemoryCache extends Cache {
   async update(key: any, value: any) {
     if (this.__eventListeners.update)
       await this.__eventListeners.update(key, value)
+
+    if (this.__autoclear && this.__maxAge !== Infinity)
+      await this.deleteOutdated()
 
     const entry = this.store.get(key)
 
@@ -291,17 +292,8 @@ class MemoryCache extends Cache {
     return maxAmount
   }
 
-  async each(action: Action) {
-    if (this.__eventListeners.each)
-      await this.__eventListeners.each()
-
-    for (let [key, value] of this.store)
-      await action(key, value)
-  }
-
-  async on() {
-    if (this.__eventListeners.on)
-      await this.__eventListeners.on()
+  async on(event: Event | 'memory', action: Function) {
+    this.__eventListeners[event] = action
   }
 }
 

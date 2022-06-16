@@ -1,5 +1,4 @@
 import ms from 'ms'
-import { Action } from '../types'
 
 abstract class Cache {
   protected __eventListeners: { [key: string]: Function }
@@ -70,9 +69,7 @@ abstract class Cache {
 
   abstract maxAmount(maxAmount?: number): Promise<number>
 
-  abstract each(action: Action): Promise<void>
-
-  abstract on(): Promise<void>
+  abstract on(event: string, action: Function): Promise<void>
 }
 
 export default Cache
