@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/azurydev/cachu#readme",
   "devDependencies": {
-    "@types/jest": "^28.1.1",
+    "@types/jest": "^28.1.2",
     "@types/ms": "^0.7.31",
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
