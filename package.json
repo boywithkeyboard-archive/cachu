@@ -6,10 +6,10 @@
   "exports": "./dist/index.js",
   "scripts": {
     "build": "rimraf dist && rimraf types && tsc && esbuild src/index.ts --bundle --minify --format=esm --legal-comments=none --platform=node --outfile=dist/index.js",
-    "publish:canary": "npm run build && npm version prerelease --preid=canary && npm publish --tag canary",
-    "publish:patch": "npm run build && npm version patch && npm publish",
-    "publish:minor": "npm run build && npm version minor && npm publish",
-    "publish:major": "npm run build && npm version major && npm publish",
+    "version:canary": "npm version prerelease --preid=canary",
+    "version:patch": "npm version patch",
+    "version:minor": "npm version minor",
+    "version:major": "npm version major",
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
   },
   "repository": {
