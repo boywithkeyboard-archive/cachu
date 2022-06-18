@@ -22,9 +22,6 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      #- name: Lint Package
-      #  run: npm run lint
-
       - name: Build Package
         run: npm run build
 
@@ -43,9 +40,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           script: |
-            const containsAnyLetter = str => /[a-zA-Z]/.test(str)
-
-            if (containsAnyLetter(process.env.VERSION.replace('v', '')))
+            if (/[a-zA-Z]/.test(process.env.VERSION.replace('v', '').replaceAll('.', '')))
               await exec.exec(`npm publish --access public --tag ${process.env.VERSION.substring(0, process.env.VERSION.length - 2).substring(process.env.VERSION.indexOf('-') + 1)}`)
             else
               await exec.exec('npm publish --access public')
@@ -54,8 +49,6 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const containsAnyLetter = str => /[a-zA-Z]/.test(str)
-
             github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -63,5 +56,5 @@ jobs:
               name: process.env.VERSION,
               body: process.env.CHANGELOG,
               draft: false,
-              prerelease: containsAnyLetter(process.env.VERSION.replace('v', ''))
+              prerelease: /[a-zA-Z]/.test(process.env.VERSION.replace('v', '').replaceAll('.', ''))
             })
