@@ -1,6 +1,6 @@
 {
   "name": "cachu",
-  "version": "6.0.0-canary.3",
+  "version": "6.0.0-canary.4",
   "description": "A modern and simple key-value cache for Node.js.",
   "types": "types/index.d.ts",
   "exports": "./dist/index.js",
