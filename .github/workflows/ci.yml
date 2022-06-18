@@ -1,0 +1,25 @@
+name: 'CI'
+
+on:
+  push:
+    branches: [ 'canary' ]
+  pull_request:
+    branches: [ 'canary' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [ '16.x', '18.x' ]
+        
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: |
+        npm ci
+        npm test
