@@ -49,12 +49,14 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            const prerelease = /[a-zA-Z]/.test(process.env.VERSION.replace('v', '').replaceAll('.', ''))
+
             github.rest.repos.createRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
               tag_name: process.env.VERSION,
               name: process.env.VERSION,
-              body: process.env.CHANGELOG,
+              body: prerelease ? '> **Warning**\n>This is a development release!' : process.env.CHANGELOG,
               draft: false,
-              prerelease: /[a-zA-Z]/.test(process.env.VERSION.replace('v', '').replaceAll('.', ''))
+              prerelease
             })
