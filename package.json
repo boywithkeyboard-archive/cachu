@@ -24,7 +24,7 @@
     "modules",
     "simple"
   ],
-  "author": "Azury <hello@azury.dev> (https://azury.dev)",
+  "author": "Samuel Kopp <opensource@azury.dev> (https://azury.dev)",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/azurydev/cachu/issues"
