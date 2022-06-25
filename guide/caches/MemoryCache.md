@@ -5,14 +5,12 @@
 ```js
 import { MemoryCache } from 'cachu'
 
-const cache = MemoryCache()
+const cache = new MemoryCache()
 ```
 
 ### Configuration:
 
-- [`maxAge`](https://github.com/azurydev/cachu/guide/config/maxAge.md)
-- [`maxAmount`](https://github.com/azurydev/cachu/guide/config/maxAmount.md)
-
-### Exclusive Features:
-
-- [`memory`](https://github.com/azurydev/cachu/guide/features/memory.md)
+- [`maxAge`](https://github.com/azurydev/cachu/guide/configuration/maxAge.md)
+- [`maxAmount`](https://github.com/azurydev/cachu/guide/configuration/maxAmount.md)
+- [`maxStorage`](https://github.com/azurydev/cachu/guide/configuration/maxStorage.md)
+- [`autoclear`](https://github.com/azurydev/cachu/guide/configuration/autoclear.md)
