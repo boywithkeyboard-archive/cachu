@@ -2,23 +2,44 @@
 
 ## Unpublished
 
-#### Breaking Changes:
+### Breaking Changes:
 
-- changed functionality of `get()` and `getMany()` methods
-- removed `export()`, `import()` and `dump()` methods
-- cachu is now a **object-oriented** library
-- cachu is now a **esm-only** package and requires **Node.js v18**
+- Changed functionality of `get()` and `getMany()`.
 
-#### New Features:
+  ```js
+  // with v5
+  const entry = await cache.get('something')
 
-- added a `DiskCache` and a `BigCache`, a mixture of `MemoryCache` and `DiskCache`
-- added a option to limit the memory usage of your `MemoryCache` instance (and added built-in limitations for more security)
-- added a option to retrieve events via a webhook
+  let value
+  
+  if (!entry)
+    value = entry.value
 
-## v6.0.0-canary.4
+  // with v6
+  const value = await cache.get('something')
+  ```
 
-> **Warning**
-> This release is for test purposes only.
+- Removed `export()`, `import()` and `dump()` functions.
+
+- cachu is now a **object-oriented** library.
+
+  ```js
+  import { MemoryCache } from 'cachu'
+
+  // with v5
+  const cache = MemoryCache()
+
+  // with v6
+  const cache = new MemoryCache()
+  ```
+
+- cachu is now a [**esm-only package**](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) and requires at least **Node.js v18**.
+
+### New Features:
+
+- Added a `DiskCache` and a `BigCache`, a mixture of `MemoryCache` and `DiskCache`.
+- Introduced **webhooks** to listen for events.
+- Added a option to limit the memory usage of `MemoryCache` instances *(and added built-in limitations for additional safety)*.
 
 ## v5
 
