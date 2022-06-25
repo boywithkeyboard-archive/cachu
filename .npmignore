@@ -4,5 +4,5 @@ test
 .gitignore
 changelog.md
 tsconfig.json
-/guide
+guide
 jest.config.js
