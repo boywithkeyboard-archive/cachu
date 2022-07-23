@@ -1,10 +1,10 @@
-name: 'CI'
+name: CI
 
 on:
   push:
-    branches: [ 'canary' ]
+    branches: [ dev ]
   pull_request:
-    branches: [ 'canary' ]
+    branches: [ dev ]
 
 jobs:
   build:

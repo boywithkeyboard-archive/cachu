@@ -1,15 +1,22 @@
 {
   "name": "cachu",
-  "version": "6.0.0-canary.4",
-  "description": "A modern and simple key-value cache for Node.js.",
+  "version": "5.4.4",
+  "description": "A simple key-value cache for Node.js, Deno, and browsers.",
+  "main": "./dist/index.js",
+  "browser": "./dist/browser.js",
   "types": "types/index.d.ts",
-  "exports": "./dist/index.js",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js"
+    },
+    "./browser": {
+      "default": "./dist/browser.js"
+    }
+  },
   "scripts": {
-    "build": "rimraf dist && rimraf types && tsc && esbuild src/index.ts --bundle --minify --format=esm --legal-comments=none --platform=node --outfile=dist/index.js",
-    "version:canary": "npm version prerelease --preid=canary",
-    "version:patch": "npm version patch",
-    "version:minor": "npm version minor",
-    "version:major": "npm version major",
+    "build:node": "esbuild src/node.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
+    "build:browser": "esbuild src/deno.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/browser.js",
+    "build": "rimraf dist && npm run build:node && npm run build:browser",
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
   },
   "repository": {
