@@ -6,12 +6,8 @@
   "browser": "./dist/browser.js",
   "types": "types/index.d.ts",
   "exports": {
-    ".": {
-      "default": "./dist/index.js"
-    },
-    "./browser": {
-      "default": "./dist/browser.js"
-    }
+    ".": "./dist/index.js",
+    "./browser": "./dist/browser.js"
   },
   "scripts": {
     "build:node": "esbuild src/node.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
