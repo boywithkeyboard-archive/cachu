@@ -29,13 +29,13 @@ const entry = await cache.get('one') // 'Hello World'
 
 ### Deno
 
-```typescript
+```js
 import { useCache } from 'https://deno.land/x/cachu@v6.0.0/mod.ts'
 ```
 
 ### Browser
 
-```typescript
+```js
 import { useCache } from 'cachu/browser'
 
 // Alternatively, you might want to use a CDN.
@@ -46,21 +46,27 @@ import { useCache } from 'https://cdn.jsdelivr.net/npm/cachu@6'
 
 * #### Configuration
 
-  * [`maxAge`](/guide/config/maxAge.md) to set the **maximum age** for each record in the cache
-  * [`maxAmount`](/guide/config/maxAmount.md) to set the **maximum size** for the cache
+  * [`maxAge`](https://github.com/azurydev/cachu/blob/dev/guide/guide/config/maxAge.md) to set the **maximum age** for each record in the cache
+  * [`maxAmount`](https://github.com/azurydev/cachu/blob/dev/guide/config/maxAmount.md) to set the **maximum size** for the cache
+  * [`autodelete`](https://github.com/azurydev/cachu/blob/dev/guide/config/autodelete.md) to **delete overaged entries** on adding/updating
 
 * #### Features
 
-  * [`add()`](/guide/features/add.md)
-  * [`addMany()`](/guide/features/addMany.md)
-  * [`get()`](/guide/features/get.md)
-  * [`getMany()`](/guide/features/getMany.md)
-  * [`update()`](/guide/features/update.md)
-  * [`updateMany()`](/guide/features/updateMany.md)
-  * [`remove()`](/guide/features/remove.md)
-  * [`removeMany()`](/guide/features/removeMany.md)
-  * [`has()`](/guide/features/has.md)
-  * [`size()`](/guide/features/size.md)
-  * [`keys()`](/guide/features/keys.md)
-  * [`values()`](/guide/features/values.md)
-  * [`clear()`](/guide/features/clear.md)
+  * [`add()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/add.md)
+  * [`addMany()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/addMany.md)
+  * [`get()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/get.md)
+  * [`getMany()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/getMany.md)
+  * [`update()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/update.md)
+  * [`updateMany()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/updateMany.md)
+  * [`remove()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/remove.md)
+  * [`removeMany()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/removeMany.md)
+  * [`has()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/has.md)
+  * [`size()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/size.md)
+  * [`keys()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/keys.md)
+  * [`values()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/values.md)
+  * [`clear()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/clear.md)
+
+<hr>
+<h3>Chat with us</h3>
+<a href='https://azury.dev/discord'><b>Join our Discord :D</b></a>
+<hr>
