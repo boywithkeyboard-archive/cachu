@@ -6,7 +6,7 @@
   "types": "types/index.d.ts",
   "exports": "./dist/index.js",
   "scripts": {
-    "build": "rimraf dist && esbuild src/node.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
+    "build": "rimraf dist && esbuild src/index.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
     "test": "jest"
   },
   "repository": {
