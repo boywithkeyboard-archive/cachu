@@ -5,16 +5,11 @@
 ```bash
 # Get the latest release.
 npm i cachu
-
-# Try the latest commit.
-npm i cachu@dev
 ```
 
 ## Usage
 
 > **Note** - Need an introduction to v6? [Here](https://gist.github.com/unvented/dab8d3e987cfdd79f68e715d29c1ee17) you go!
-
-### Node.js
 
 ```js
 import { useCache } from 'cachu'
@@ -25,21 +20,6 @@ const cache = useCache()
 await cache.add('one', 'Hello World')
   
 const entry = await cache.get('one') // 'Hello World'
-```
-
-### Deno
-
-```js
-import { useCache } from 'https://deno.land/x/cachu@v6.0.0/mod.ts'
-```
-
-### Browser
-
-```js
-import { useCache } from 'cachu/browser'
-
-// Alternatively, you might want to use a CDN.
-import { useCache } from 'https://cdn.jsdelivr.net/npm/cachu@6'
 ```
 
 ## API
@@ -67,6 +47,8 @@ import { useCache } from 'https://cdn.jsdelivr.net/npm/cachu@6'
   * [`clear()`](https://github.com/azurydev/cachu/blob/dev/guide/guide/features/clear.md)
 
 <hr>
-<h3>Chat with us</h3>
-<a href='https://azury.dev/discord'><b>Join our Discord :D</b></a>
+<div align='center'>
+  <h3>Chat with us</h3>
+  <a href='https://azury.dev/discord'><b>Join our Discord</b></a>
+</div>
 <hr>
