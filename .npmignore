@@ -1,8 +1,7 @@
-src
-test
-.github
-.gitignore
-changelog.md
-tsconfig.json
-guide
-jest.config.js
+*
+!dist/**/*
+!types/**/*
+!LICENSE
+!package-lock.json
+!package.json
+!README.md
