@@ -1,19 +1,13 @@
 {
   "name": "cachu",
   "version": "5.4.4",
-  "description": "A simple key-value cache for Node.js, Deno, and browsers.",
+  "description": "A simple key-value cache for Node.js.",
   "main": "./dist/index.js",
-  "browser": "./dist/browser.js",
   "types": "types/index.d.ts",
-  "exports": {
-    ".": "./dist/index.js",
-    "./browser": "./dist/browser.js"
-  },
+  "exports": "./dist/index.js",
   "scripts": {
-    "build:node": "esbuild src/node.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
-    "build:browser": "esbuild src/deno.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/browser.js",
-    "build": "rimraf dist && npm run build:node && npm run build:browser",
-    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"
+    "build": "rimraf dist && esbuild src/node.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,9 +16,7 @@
   "keywords": [
     "kv",
     "cache",
-    "production-ready",
     "asynchronous",
-    "modules",
     "simple"
   ],
   "author": "Samuel Kopp <opensource@azury.dev> (https://azury.dev)",

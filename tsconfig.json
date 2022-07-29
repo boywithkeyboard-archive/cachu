@@ -2,11 +2,6 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "es2020",
-    "lib": [
-      "esnext"
-    ],
-    "rootDir": "src",
-    "outDir": "types",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -20,7 +15,8 @@
     "skipLibCheck": true,
     "newLine": "crlf"
   },
-  "exclude": [
-    "test"
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.test.ts"
   ]
 }
