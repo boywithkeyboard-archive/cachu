@@ -1,6 +1,6 @@
 {
   "name": "cachu",
-  "version": "5.4.4",
+  "version": "6.0.0",
   "description": "A simple key-value cache for Node.js.",
   "main": "./dist/index.js",
   "types": "types/index.d.ts",
