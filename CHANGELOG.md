@@ -1,5 +1,15 @@
 # cachu
 
+## 6.0.1
+
+### Patch Changes
+
+- [#117](https://github.com/azurydev/cachu/pull/117) [`a300b51`](https://github.com/azurydev/cachu/commit/a300b51bc265fb4c5c37c8fbc5b7d17b05a61b67) Thanks [@unvented](https://github.com/unvented)! - ci: remove broken `test` workflow
+
+* [#118](https://github.com/azurydev/cachu/pull/118) [`f82db5b`](https://github.com/azurydev/cachu/commit/f82db5b73d0234ead2d03c6d7549e3090832284d) Thanks [@unvented](https://github.com/unvented)! - docs: fix file name of code of conduct
+
+- [#115](https://github.com/azurydev/cachu/pull/115) [`9a1c1b9`](https://github.com/azurydev/cachu/commit/9a1c1b9f7e1bcf2af2551d7567668d599c4c5dbb) Thanks [@unvented](https://github.com/unvented)! - style: remove unnecessary quotes in workflow file
+
 ## 6.0.0
 
 ### Major Changes
