@@ -1,5 +1,13 @@
 # cachu
 
+## 6.0.2
+
+### Patch Changes
+
+- [#119](https://github.com/azurystudio/cachu/pull/119) [`9dcb388`](https://github.com/azurystudio/cachu/commit/9dcb388ba6cb89ce586b77423c227c6a1313b806) Thanks [@unvented](https://github.com/unvented)! - refactor: migrate to azury's style guide
+
+* [#121](https://github.com/azurystudio/cachu/pull/121) [`f8913b1`](https://github.com/azurystudio/cachu/commit/f8913b1fe2ce6dbb9dc9f697a16791b05e959255) Thanks [@unvented](https://github.com/unvented)! - refactor: rename org
+
 ## 6.0.1
 
 ### Patch Changes
