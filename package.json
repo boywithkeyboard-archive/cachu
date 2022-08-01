@@ -1,6 +1,6 @@
 {
   "name": "cachu",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "A simple key-value cache for Node.js.",
   "author": "Samuel Kopp <opensource@azury.dev> (https://azury.dev)",
   "exports": "./dist/index.js",
