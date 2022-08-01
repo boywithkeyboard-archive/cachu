@@ -12,9 +12,9 @@
     "test": "jest"
   },
   "license": "Apache-2.0",
-  "repository": "azurydev/cachu",
-  "bugs": "https://github.com/azurydev/cachu/issues",
-  "homepage": "https://github.com/azurydev/cachu#readme",
+  "repository": "azurystudio/cachu",
+  "bugs": "https://github.com/azurystudio/cachu/issues",
+  "homepage": "https://github.com/azurystudio/cachu#readme",
   "devDependencies": {
     "@azury/eslint-config": "^1.0.1",
     "@changesets/changelog-github": "^0.4.6",
