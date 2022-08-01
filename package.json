@@ -6,7 +6,7 @@
   "exports": "./dist/index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "lint": "eslint src --ext .ts",
+    "lint": "eslint src",
     "format": "eslint src --fix",
     "build": "rimraf dist && esbuild src/index.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
     "test": "jest"
