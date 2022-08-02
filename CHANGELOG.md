@@ -1,5 +1,17 @@
 # cachu
 
+## 6.0.4
+
+### Patch Changes
+
+- [`d2c5409`](https://github.com/azurystudio/cachu/commit/d2c5409d5be944fa5c6ea0b143a7716c1cb5bbf1) Thanks [@unvented](https://github.com/unvented)! - refactor: edit testing
+
+  Edit Jest config and test script, and add a `test` workflow.
+
+* [`5401b53`](https://github.com/azurystudio/cachu/commit/5401b536256eff72d6050e1115bced730abdf076) Thanks [@unvented](https://github.com/unvented)! - refactor: replace `rimraf` with `@unvented/empty`
+
+- [`3b42753`](https://github.com/azurystudio/cachu/commit/3b427532cd17bcaf3ba9a680a24c1e43f95cbead) Thanks [@unvented](https://github.com/unvented)! - fix: add missing `main` field to package.json
+
 ## 6.0.3
 
 ### Patch Changes
