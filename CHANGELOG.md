@@ -1,5 +1,11 @@
 # cachu
 
+## 6.0.3
+
+### Patch Changes
+
+- [`8d04665`](https://github.com/azurystudio/cachu/commit/8d04665d30ef5288607ef6be52cdfdd9d836abbd) Thanks [@unvented](https://github.com/unvented)! - refactor: migrate to azury's style guide (tsconfig)
+
 ## 6.0.2
 
 ### Patch Changes
