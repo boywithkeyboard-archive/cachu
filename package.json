@@ -24,7 +24,7 @@
     "@types/jest": "^28.1.6",
     "@types/ms": "^0.7.31",
     "@types/node": "^18.6.3",
-    "@unvented/empty": "^1.0.1",
+    "@unvented/empty": "^1.0.2",
     "esbuild": "^0.14.51",
     "eslint": "^8.20.0",
     "jest": "^28.1.3",
