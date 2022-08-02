@@ -1,20 +1,5 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "es2020",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "alwaysStrict": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "removeComments": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "skipLibCheck": true,
-    "newLine": "crlf"
-  },
+  "extends": "@azury/style/typescript",
   "include": [
     "src/**/*.ts",
     "src/**/*.test.ts"
