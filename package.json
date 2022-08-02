@@ -9,7 +9,7 @@
     "lint": "eslint src",
     "format": "eslint src --fix",
     "build": "empty dist && esbuild src/index.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
-    "test": "jest"
+    "test": "jest --config jest.config.json"
   },
   "license": "Apache-2.0",
   "repository": "azurystudio/cachu",
