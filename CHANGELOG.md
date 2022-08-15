@@ -1,5 +1,13 @@
 # cachu
 
+## 6.0.5
+
+### Patch Changes
+
+- [#139](https://github.com/azurystudio/cachu/pull/139) [`308a186`](https://github.com/azurystudio/cachu/commit/308a186d4aebb479ff8c78cfa3b819ee03f7eb9e) Thanks [@unvented](https://github.com/unvented)! - ci: trigger test workflow only on pushes
+
+* [`d9e18c8`](https://github.com/azurystudio/cachu/commit/d9e18c85d333ea8951f4088c54de0c457336cbda) Thanks [@unvented](https://github.com/unvented)! - chore: upgrade dependencies
+
 ## 6.0.4
 
 ### Patch Changes
