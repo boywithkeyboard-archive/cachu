@@ -1,5 +1,11 @@
 # cachu
 
+## 6.0.6
+
+### Patch Changes
+
+- [#151](https://github.com/azurystudio/cachu/pull/151) [`105480c`](https://github.com/azurystudio/cachu/commit/105480c25584d802af5dc4e99dec2f4831129afe) Thanks [@unvented](https://github.com/unvented)! - docs: remove contact section
+
 ## 6.0.5
 
 ### Patch Changes
