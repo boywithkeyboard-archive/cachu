@@ -48,10 +48,3 @@ const entry = await cache.get('one') // 'Hello World'
   * `keys()`
   * `values()`
   * `clear()` *(delete all overaged entries manually)*
-
-<hr>
-<div align='center'>
-  <h3>Chat with us</h3>
-  <a href='https://azury.dev/discord'><b>Join our Discord</b></a>
-</div>
-<hr>
