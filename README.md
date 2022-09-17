@@ -1,7 +1,5 @@
 # cachu
 
-> **Warning** - As of September 2022, cachu is being retired. It has all features you can expect from a simple cache module and can be considered stable. No further updates are anticipated.
-
 ## Setup
 
 ```bash
