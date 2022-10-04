@@ -23,7 +23,7 @@
     "@changesets/cli": "^2.24.4",
     "@types/jest": "^28.1.8",
     "@types/ms": "^0.7.31",
-    "@types/node": "^18.7.23",
+    "@types/node": "^18.8.1",
     "@unvented/empty": "^1.0.4",
     "esbuild": "^0.15.10",
     "eslint": "^8.24.0",
