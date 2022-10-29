@@ -47,7 +47,7 @@ export class Cache {
     this.store = new Map()
   }
 
-  async add(key: unknown, value: unknown, maxAge: number | string) {
+  async add(key: unknown, value: unknown, maxAge?: number | string) {
     if (this.autodelete)
       await this.rmOveraged()
 
@@ -67,7 +67,7 @@ export class Cache {
     this.store.set(key, data)
   }
 
-  async addMany(...records: [unknown, unknown, number | string][]) {
+  async addMany(...records: ([unknown, unknown] | [unknown, unknown, number | string])[]) {
     if (this.autodelete)
       await this.rmOveraged()
 
@@ -121,6 +121,16 @@ export class Cache {
 
     if (!record) return
 
+    const data = {
+      v: value,
+      e: record.e + this.maximumAge * .75
+    }
+
+    const size = JSON.stringify({ key, data }).length
+
+    if (size > this.maximumRecordSize)
+      return
+
     this.store.set(key, {
       v: value,
       e: record.e + this.maximumAge * .75
@@ -132,6 +142,16 @@ export class Cache {
       const record = this.store.get(key)
 
       if (!record) continue
+
+      const data = {
+        v: value,
+        e: record.e + this.maximumAge * .75
+      }
+  
+      const size = JSON.stringify({ key, data }).length
+  
+      if (size > this.maximumRecordSize)
+        continue
 
       this.store.set(key, {
         v: value,
