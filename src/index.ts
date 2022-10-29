@@ -1,18 +1,20 @@
 import ms from 'ms'
-import type { InitializeCache } from '../types'
+import bytes from '@azury/bytes'
+import { Unit } from '@azury/bytes/types/unit'
 
-export const useCache: InitializeCache = (config = {}) => {
-  const maxAge = typeof config.maxAge === 'string' ? ms(config.maxAge) : !config.maxAge ? ms('10m') : config.maxAge * 1000
-  , maxAmount = config.maxAmount ?? 10000
-  , autodelete = config.autodelete ?? false
+export class Cache {
+  private autodelete: boolean
+  private maximumAge: number
+  private maximumAmount: number
+  private maximumRecordSize: number
 
-  , store = new Map<any, { v: any, e: number }>()
+  private store: Map<any, { v: any, e: number }>
 
-  , removeOldest = async (r: number): Promise<void> => {
+  private async rmOldest(amount: number): Promise<void> {
     let oldestAge = Date.now()
     , oldestKey
 
-    for (let e of store) {
+    for (let e of this.store) {
       if (e[1].e > oldestAge) continue
 
       oldestAge = e[1].e
@@ -20,154 +22,174 @@ export const useCache: InitializeCache = (config = {}) => {
     }
 
     if (oldestKey)
-      store.delete(oldestKey)
+      this.store.delete(oldestKey)
 
-    r--
+    amount--
 
-    if (r > 0)
-      return await removeOldest(r)
+    if (amount > 0)
+      return await this.rmOldest(amount)
   }
 
-  , removeOveraged = async () => {
-    for (let e of store)
-      if (e[1].e <= Date.now())
-        store.delete(e[0])
+  private async rmOveraged() {
+    for (const record of this.store) {
+      if (record[1].e <= Date.now())
+        this.store.delete(record[0])
+    }
   }
 
-  return {
-    add: async (k, v, m) => {
-      if (autodelete)
-        await removeOveraged()
+  constructor(options?: { autodelete?: boolean, maximumAge?: number | string, maximumAmount?: number, maximumRecordSize?: number | Unit }) {
+    this.autodelete = options?.autodelete ?? false
+    this.maximumAge = typeof options?.maximumAge === 'string' ? ms(options.maximumAge) : !options?.maximumAge ? ms('10m') : options.maximumAge * 1000
+    this.maximumAmount = options?.maximumAmount ?? Infinity
+    // @ts-ignore
+    this.maximumRecordSize = typeof options?.maximumRecordSize === 'string' ? bytes(options.maximumRecordSize) : !options?.maximumRecordSize ? bytes('10 KB') : options.maximumRecordSize
 
-      if (store.size + 1 > maxAmount)
-        await removeOldest(1)
+    this.store = new Map()
+  }
 
-      store.set(k, {
-        v,
-        e: Date.now() + (!m ? maxAge : typeof m === 'string' ? ms(m) : m * 1000)
-      })
-    },
+  async add(key: unknown, value: unknown, maxAge: number | string) {
+    if (this.autodelete)
+      await this.rmOveraged()
 
-    addMany: async (...e) => {
-      if (autodelete)
-        await removeOveraged()
+    if (this.store.size + 1 > this.maximumAmount)
+      await this.rmOldest(1)
 
-      if (store.size + e.length > maxAmount)
-        await removeOldest(store.size + e.length - maxAmount)
+    const data = {
+      v: value,
+      e: Date.now() + (!maxAge ? this.maximumAge : typeof maxAge === 'string' ? ms(maxAge) : maxAge * 1000)
+    }
 
-      for (let [k, v, m] of e)
-        store.set(k, {
-          v,
-          e: Date.now() + (!m ? maxAge : typeof m === 'string' ? ms(m) : m)
-        })
-    },
+    const size = JSON.stringify({ key, data }).length
 
-    get: async k => {
-      const entry = store.get(k)
+    if (size > this.maximumRecordSize)
+      return
 
-      if (!entry) return
+    this.store.set(key, data)
+  }
 
-      if (entry.e > Date.now())
-        return entry.v
+  async addMany(...records: [unknown, unknown, number | string][]) {
+    if (this.autodelete)
+      await this.rmOveraged()
 
-      store.delete(k)
-    },
+    if (this.store.size + records.length > this.maximumAmount)
+      await this.rmOldest(this.store.size + records.length - this.maximumAmount)
 
-    getMany: async (...k) => {
-      const entries = []
-
-      for (let i of k) {
-        const entry = store.get(i)
-
-        if (!entry) {
-          entries.push(undefined)
-        } else if (entry.e <= Date.now()) {
-          store.delete(i)
-          
-          entries.push(undefined)
-        } else {
-          entries.push(entry.v)
-        }
+    for (const [key, value, maxAge] of records) {
+      const data = {
+        v: value,
+        e: Date.now() + (!maxAge ? this.maximumAge : typeof maxAge === 'string' ? ms(maxAge) : maxAge)
       }
 
-      return entries
-    },
+      const size = JSON.stringify({ key, data }).length
 
-    update: async (k, v) => {
-      const entry = store.get(k)
+      if (size > this.maximumRecordSize)
+        continue
 
-      if (!entry) return
+      this.store.set(key, data)
+    }
+  }
 
-      store.set(k, {
-        v,
-        e: entry.e + maxAge * .75
-      })
-    },
+  async get(key: unknown) {
+    const entry = this.store.get(key)
 
-    updateMany: async (...e) => {
-      for (let [k, v] of e) {
-        const entry = store.get(k)
+    if (!entry) return
 
-        if (!entry) continue
+    if (entry.e > Date.now())
+      return entry.v
+    
+    this.store.delete(key)
+  }
 
-        store.set(k, {
-          v,
-          e: entry.e + maxAge * .75
-        })
+  async * getMany(...keys: unknown[]): AsyncIterable<any | undefined> {
+    for (const key of keys) {
+      const record = this.store.get(key)
+
+      if (!record) {
+        yield undefined
+      } else if (record.e <= Date.now()) {
+        this.store.delete(key)
+
+        yield undefined
+      } else {
+        yield record.v
       }
-    },
+    }
+  }
 
-    remove: async k => {
-      store.delete(k)
-    },
+  async update(key: unknown, value: unknown) {
+    const record = this.store.get(key)
 
-    removeMany: async (...k) => {
-      if (k.length === 0)
-        return store.clear()
+    if (!record) return
 
-      for (let i of k)
-        store.delete(i)
-    },
+    this.store.set(key, {
+      v: value,
+      e: record.e + this.maximumAge * .75
+    })
+  }
 
-    has: async k => {
-      const entry = store.get(k)
+  async updateMany(...records: [unknown, unknown][]) {
+    for (const [key, value] of records) {
+      const record = this.store.get(key)
 
-      if (!entry)
-        return false
+      if (!record) continue
 
-      if (entry.e > Date.now())
-        return true
+      this.store.set(key, {
+        v: value,
+        e: record.e + this.maximumAge * .75
+      })
+    }
+  }
 
-      store.delete(k)
+  async remove(key: unknown) {
+    this.store.delete(key)
+  }
 
+  async removeMany(...keys: unknown[]) {
+    if (keys.length === 0)
+      this.store.clear()
+    else
+      for (const key of keys)
+        this.store.delete(key)
+  }
+
+  async has(key: unknown) {
+    const record = this.store.get(key)
+
+    if (!record)
       return false
-    },
 
-    size: async () => {
-      const replacer = (k: any, v: any) => {
-        if (v instanceof Map)
-          return {
-            dataType: 'Map',
-            value: [...v]
-          }
+    if (record.e > Date.now())
+      return true
 
-        return v
-      }
+    this.store.delete(key)
 
-      return JSON.stringify(store, replacer).length
-    },
+    return false
+  }
 
-    keys: async () => [...store.keys()],
+  async size() {
+    const replacer = (key: unknown, value: unknown) => {
+      if (value instanceof Map)
+        return {
+          dataType: 'Map',
+          value: [...value]
+        }
 
-    values: async () => {
-      let v = []
+      return value
+    }
 
-      for (let i of store.values())
-        v.push(i.v)
+    return JSON.stringify(this.store, replacer).length
+  }
 
-      return v
-    },
+  async keys() {
+    return [...this.store.keys()]
+  }
 
-    clear: removeOveraged
+  async * values(): AsyncIterable<any> {
+    for (const value of this.store.values())
+      yield (value.v)
+  }
+
+  async clear() {
+    this.rmOveraged()
   }
 }
