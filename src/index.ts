@@ -39,8 +39,8 @@ export class Cache {
 
   constructor(options?: { autodelete?: boolean, maximumAge?: number | string, maximumAmount?: number, maximumRecordSize?: number | Unit }) {
     this.autodelete = options?.autodelete ?? false
-    this.maximumAge = typeof options?.maximumAge === 'string' ? ms(options.maximumAge) : !options?.maximumAge ? ms('10m') : options.maximumAge * 1000
-    this.maximumAmount = options?.maximumAmount ?? Infinity
+    this.maximumAge = typeof options?.maximumAge === 'string' ? ms(options.maximumAge) : !options?.maximumAge ? 600000 : options.maximumAge * 1000
+    this.maximumAmount = options?.maximumAmount ?? 10000
     // @ts-ignore
     this.maximumRecordSize = typeof options?.maximumRecordSize === 'string' ? bytes(options.maximumRecordSize) : !options?.maximumRecordSize ? bytes('10 KB') : options.maximumRecordSize
 
