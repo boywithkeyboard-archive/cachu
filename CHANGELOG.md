@@ -1,5 +1,9 @@
 # Changelog
 
+#### Archived Releases:
+
+- [**v6**](https://github.com/azurystudio/cachu/blob/c454bf2723e351bc8809bd8a9c7ca90613c4e54a/CHANGELOG.md)
+
 ## v7.0.0
 
 ### Breaking Changes

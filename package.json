@@ -1,7 +1,7 @@
 {
   "name": "cachu",
-  "version": "6.0.6",
-  "description": "A simple key-value cache for Node.js.",
+  "version": "7.0.0",
+  "description": "👾 A simple key-value cache for Node.js.",
   "author": "Samuel Kopp <opensource@azury.dev> (https://azury.dev)",
   "main": "dist/index.js",
   "exports": "./dist/index.js",
@@ -9,15 +9,17 @@
   "scripts": {
     "lint": "eslint src",
     "format": "eslint src --fix",
-    "build": "empty dist && esbuild src/index.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
+    "build": "empty dist types && tsc && esbuild src/index.ts --bundle --minify --format=esm --legal-comments=none --outfile=dist/index.js",
     "test": "jest --config jest.config.json"
   },
   "license": "Apache-2.0",
   "repository": "azurystudio/cachu",
   "bugs": "https://github.com/azurystudio/cachu/issues",
   "homepage": "https://github.com/azurystudio/cachu#readme",
+  "dependencies": {
+    "@azury/bytes": "^2.0.0"
+  },
   "devDependencies": {
-    "@azury/bytes": "^2.0.0",
     "@azury/eslint-config": "^1.0.7",
     "@azury/style": "^1.0.0",
     "@types/ms": "^0.7.31",
