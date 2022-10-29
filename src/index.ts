@@ -1,6 +1,6 @@
-import ms from 'ms'
 import bytes from '@azury/bytes'
-import { Unit } from '@azury/bytes/types/unit'
+import ms from 'ms'
+import type { Unit } from '@azury/bytes/types/unit'
 
 export class Cache {
   private autodelete: boolean
@@ -14,7 +14,7 @@ export class Cache {
     let oldestAge = Date.now()
     , oldestKey
 
-    for (let e of this.store) {
+    for (const e of this.store) {
       if (e[1].e > oldestAge) continue
 
       oldestAge = e[1].e
