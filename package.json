@@ -17,6 +17,7 @@
   "bugs": "https://github.com/azurystudio/cachu/issues",
   "homepage": "https://github.com/azurystudio/cachu#readme",
   "devDependencies": {
+    "@azury/bytes": "^2.0.0",
     "@azury/eslint-config": "^1.0.7",
     "@azury/style": "^1.0.0",
     "@changesets/changelog-github": "^0.4.7",
